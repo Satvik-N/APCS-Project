@@ -1,5 +1,5 @@
+import java.util.List;
 import java.util.ArrayList;
-
 /**
  * Write a description of class Player here.
  *
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Player
 {
     // instance variables - replace the example below with your own
-    private ArrayList<Supplies> supplies = new ArrayList<Supplies>();
+    private List<Supplies> supplies = new ArrayList<Supplies>();
     private final int NUM_SUPPLIES;
     private int health;
 
