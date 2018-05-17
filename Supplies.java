@@ -66,13 +66,18 @@ public class Supplies
         myFur = 0;
     }
     
-    public void replenish()
+    public void replenishAll()
     {
         myWater = waterCapacity;
         myWood = woodCapacity;
         myMetal = metalCapacity;
         myFood = foodCapacity;
         myFur = furCapacity;
+    }
+    
+    public int addSupplies(int amount)
+    {
+        return 0;
     }
     
     public Point2D.Double getPos()

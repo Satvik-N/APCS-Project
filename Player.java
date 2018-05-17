@@ -21,11 +21,6 @@ public class Player
         NUM_SUPPLIES = 5;
         health = 10;
         
-        supplies.add(new Food());
-        supplies.add(new Fur());
-        supplies.add(new Water());
-        supplies.add(new Wood());
-        supplies.add(new Metals());
     }
     
     // LOTS OF METHODS TO ADD TO THIS CLASS CHANGING THE AMOUNT OF SUPPLIES
