@@ -5,22 +5,40 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public abstract class Supplies
+public class Supplies
 {
     // instance variables - replace the example below with your own
-    protected int amount;
+    private int myAmount;
 
     /**
      * Constructor for objects of class Supplies
      */
     public Supplies()
     {
-        amount = 0;
+        myAmount = 0;
+    }
+    
+    /**
+     * Constructor that initializes myAmount to the amount specified
+     * @param amount amount of supply initially
+     */
+    public Supplies(int amount)
+    {
+        myAmount = amount;
     }
 
-    public abstract void add(int x);
+    public void add(int x)
+    {
+        myAmount += x;
+    }
 
-    public abstract void subtract(int x);
+    public void subtract(int x)
+    {
+        myAmount -= x;
+    }
     
-    public abstract int getNum();
+    public int getNum()
+    {
+        return myAmount;
+    }
 }

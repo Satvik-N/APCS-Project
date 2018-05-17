@@ -14,7 +14,7 @@ public class Wood extends Supplies
     public Wood()
     {
         // initialize instance variables
-        amount = 0;
+        super();
     }
     
     /**
@@ -25,7 +25,7 @@ public class Wood extends Supplies
     public Wood(int num)
     {
         // initialize instance variables
-        amount = num;
+        super(num);
     }
 
     /**
@@ -35,7 +35,7 @@ public class Wood extends Supplies
      */
     public void add(int num)
     {
-        amount += num;
+        super.add(num);
     }
     
     /**
@@ -45,7 +45,7 @@ public class Wood extends Supplies
      */
     public void subtract(int num)
     {
-        amount -= num;
+        super.subtract(num);
     }
     
     /**
@@ -55,6 +55,6 @@ public class Wood extends Supplies
      */
     public int getNum()
     {
-        return amount;
+        return super.getNum();
     }
 }
