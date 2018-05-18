@@ -7,27 +7,14 @@
  */
 public class Board
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Map
-     */
+    private int[][] board;
     public Board()
     {
-        // initialise instance variables
-        x = 0;
+        board = new int[200][200];
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public Board(int size)
     {
-        // put your code here
-        return x + y;
+        board = new int[size][size];
     }
+    
 }

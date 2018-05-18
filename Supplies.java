@@ -5,7 +5,7 @@ import java.awt.geom.Point2D;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Supplies
+public class Supplies extends Materials
 {
     // instance variables - replace the example below with your own
     private int myWater;

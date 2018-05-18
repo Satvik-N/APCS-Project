@@ -6,15 +6,15 @@ import java.awt.geom.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public interface Obstacles
+public abstract class Obstacles extends Materials
 {
-    public int healthDecrement();
+    public abstract int healthDecrement();
     
-    public void supplyDecrement();
+    public abstract void supplyDecrement();
     
-    public void movePlayer();
+    public abstract void movePlayer();
     
-    public Point2D.Double currentLocation();
+    public abstract Point2D.Double currentLocation();
     
-    public void changeLocation(double x, double y);
+    public abstract void changeLocation(double x, double y);
 }
