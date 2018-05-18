@@ -1,4 +1,5 @@
 import java.awt.geom.*;
+
 /**
  * Write a description of class Obstacles here.
  *

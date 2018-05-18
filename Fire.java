@@ -1,4 +1,5 @@
 import java.awt.geom.*;
+
 /**
  * Write a description of class Fire here.
  *
@@ -9,6 +10,7 @@ public class Fire implements Obstacles
 {
     private Point2D.Double point;
     private static final int LOWER_HEALTH = 20;
+    
     public int healthDecrement()
     {
         return LOWER_HEALTH;

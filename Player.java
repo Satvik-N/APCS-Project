@@ -12,6 +12,7 @@ public class Player
     private List<Supplies> supplies = new ArrayList<Supplies>();
     private final int NUM_SUPPLIES;
     private int health;
+    private String name;
 
     /**
      * Constructor for objects of class Player
@@ -23,6 +24,10 @@ public class Player
         
     }
     
+    public void setName(String s)
+    {
+        name = s;
+    }
     // LOTS OF METHODS TO ADD TO THIS CLASS CHANGING THE AMOUNT OF SUPPLIES
     
 }
