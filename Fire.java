@@ -6,7 +6,7 @@ import java.awt.geom.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Fire implements Obstacles
+public class Fire
 {
     private Point2D.Double point;
     private static final int LOWER_HEALTH = 20;
