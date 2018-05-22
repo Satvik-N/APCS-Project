@@ -11,23 +11,41 @@ public class Fire extends Obstacles
     private int x;
 
     /**
-     * Constructor for objects of class Fire
+     * Constructor for objects of class Storm
      */
     public Fire()
     {
         // initialise instance variables
         x = 0;
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    
+    public int healthDecrement()
     {
-        // put your code here
-        return x + y;
+        return 0;
+    }
+    
+    public void supplyDecrement()
+    {
+        
+    }
+    
+    public boolean succeedOrFail()
+    {
+        return true;
+    }
+    
+    public void movePlayer()
+    {
+        
+    }
+    
+    public Point2D.Double currentLocation()
+    {
+        return null;
+    }
+    
+    public void changeLocation(double x, double y)
+    {
+        
     }
 }

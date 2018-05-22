@@ -1,4 +1,5 @@
 import java.awt.geom.*;
+
 /**
  * Write a description of class Storm here.
  *
@@ -19,16 +20,34 @@ public class Storm extends Obstacles
         x = 0;
     }
     
-    public abstract int healthDecrement();
+    public int healthDecrement()
+    {
+        return 0;
+    }
     
-    public abstract void supplyDecrement();
+    public void supplyDecrement()
+    {
+        
+    }
     
-    public abstract boolean succeedOrFail();
+    public boolean succeedOrFail()
+    {
+        return true;
+    }
     
-    public abstract void movePlayer();
+    public void movePlayer()
+    {
+        
+    }
     
-    public abstract Point2D.Double currentLocation();
+    public Point2D.Double currentLocation()
+    {
+        return null;
+    }
     
-    public abstract void changeLocation(double x, double y);
+    public void changeLocation(double x, double y)
+    {
+        
+    }
 
 }

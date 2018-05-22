@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
+import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 

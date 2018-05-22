@@ -11,23 +11,41 @@ public class Drought extends Obstacles
     private int x;
 
     /**
-     * Constructor for objects of class Drought
+     * Constructor for objects of class Storm
      */
     public Drought()
     {
         // initialise instance variables
         x = 0;
     }
-
-    public abstract int healthDecrement();
     
-    public abstract void supplyDecrement();
+    public int healthDecrement()
+    {
+        return 0;
+    }
     
-    public abstract boolean succeedOrFail();
+    public void supplyDecrement()
+    {
+        
+    }
     
-    public abstract void movePlayer();
+    public boolean succeedOrFail()
+    {
+        return true;
+    }
     
-    public abstract Point2D.Double currentLocation();
+    public void movePlayer()
+    {
+        
+    }
     
-    public abstract void changeLocation(double x, double y);
+    public Point2D.Double currentLocation()
+    {
+        return null;
+    }
+    
+    public void changeLocation(double x, double y)
+    {
+        
+    }
 }

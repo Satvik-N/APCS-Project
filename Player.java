@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.awt.Point;
 /**
  * Write a description of class Player here.
  *
@@ -13,9 +14,9 @@ public class Player
     private final int NUM_SUPPLIES;
     private int health;
     private String name;
-    private double posX, posY;
     private double width, height;
-
+    private Point pos;
+    
     /**
      * Constructor for objects of class Player
      */
@@ -23,20 +24,18 @@ public class Player
     {
         NUM_SUPPLIES = 5;
         health = 10;
-        posX = 0;
-        posY = 0;
         width = 30;
         height = 40;
+        pos = new Point(0, 0);
     }
     
-    public Player(double x, double y)
+    public Player(int x, int y)
     {
         NUM_SUPPLIES = 5;
         health = 10;
-        posX = x;
-        posY = y;
         width = 30;
         height = 40;
+        pos = new Point(x, y);
     }
     
     public void setName(String s)
@@ -45,20 +44,19 @@ public class Player
     }
     // LOTS OF METHODS TO ADD TO THIS CLASS CHANGING THE AMOUNT OF SUPPLIES
     
-    public void move(double x, double y)
+    public void move(int x, int y)
     {
-        posX = x;
-        posY = y;
+        pos.setLocation(x, y);
     }
     
     public double getX()
     {
-        return posX;
+        return pos.getX();
     }
     
     public double getY()
     {
-        return posY;
+        return pos.getY();
     }
     
     public double getWidth()
