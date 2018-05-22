@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class Fire here.
+ * Write a description of class Sandstorm here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Fire extends Obstacles
+public class Sandstorm extends Storm
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Fire
+     * Constructor for objects of class Sandstorm
      */
-    public Fire()
+    public Sandstorm()
     {
         // initialise instance variables
         x = 0;

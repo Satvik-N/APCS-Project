@@ -1,19 +1,19 @@
 
 /**
- * Write a description of class Fight here.
+ * Write a description of class Animal here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Fight
+public class Animal extends Obstacles
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Fight
+     * Constructor for objects of class Animal
      */
-    public Fight()
+    public Animal()
     {
         // initialise instance variables
         x = 0;

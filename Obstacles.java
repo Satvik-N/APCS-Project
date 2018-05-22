@@ -12,6 +12,8 @@ public abstract class Obstacles extends Materials
     
     public abstract void supplyDecrement();
     
+    public abstract boolean succeedOrFail();
+    
     public abstract void movePlayer();
     
     public abstract Point2D.Double currentLocation();

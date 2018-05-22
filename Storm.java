@@ -1,24 +1,24 @@
 
 /**
- * Write a description of class Famine here.
+ * Write a description of class Storm here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Famine extends Obstacles
+public class Storm extends Obstacles
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Famine
+     * Constructor for objects of class Storm
      */
-    public Famine()
+    public Storm()
     {
         // initialise instance variables
         x = 0;
     }
-
+    
     public abstract int healthDecrement();
     
     public abstract void supplyDecrement();
@@ -30,4 +30,5 @@ public class Famine extends Obstacles
     public abstract Point2D.Double currentLocation();
     
     public abstract void changeLocation(double x, double y);
+
 }
