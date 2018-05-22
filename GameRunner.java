@@ -8,16 +8,28 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 import java.awt.Rectangle;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.paint.Color;
 import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Screen;
 
 import java.util.ArrayList;
+
+
+/**
+ * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
+ * 
+ * Class GameRunner
+ * Includes all GUI parts
+ */
+
+
 
 // Animation of Earth rotating around the sun. (Hello, world!)
 public class GameRunner extends Application 
 {
-    final double move = 5, windowX = 1600, windowY = 1000;
+    static double moveSpeed = 5, windowX, windowY;
     
     public static void main(String[] args) 
     {
@@ -27,6 +39,10 @@ public class GameRunner extends Application
     @Override
     public void start(Stage theStage) 
     {
+        Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        windowX = bounds.getWidth() * 2.0 / 3;
+        windowY = bounds.getHeight() * 2.0 / 3;
+        
         theStage.setTitle("Survivor");
         Group root = new Group();
         Scene theScene = new Scene(root);
@@ -42,7 +58,7 @@ public class GameRunner extends Application
         
         Player p = new Player();
         p.move(0,0);
-        p.setWidthAndHeight(30, 40);
+        p.setWidthAndHeight(windowX /80.0, windowY / 30.0);
         
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
         
@@ -83,21 +99,21 @@ public class GameRunner extends Application
                 gc.setFill(new Color(0, 0, 0, 0));
                 gc.fillRect(0, 0, windowX, windowY);
                 
-                if(input.contains("LEFT") && p.getX() >= move)
+                if(input.contains("LEFT") && p.getX() >= moveSpeed)
                 {
-                    p.move(p.getX() - move, p.getY());
+                    p.move(p.getX() - moveSpeed, p.getY());
                 } else
-                    if(input.contains("RIGHT") && p.getX() <= windowX - p.getWidth() - move)
+                    if(input.contains("RIGHT") && p.getX() <= windowX - p.getWidth() - moveSpeed)
                     {
-                        p.move(p.getX() + move, p.getY());
+                        p.move(p.getX() + moveSpeed, p.getY());
                     } else
-                        if(input.contains("DOWN") && p.getY() <= windowY - p.getHeight() - move)
+                        if(input.contains("DOWN") && p.getY() <= windowY - p.getHeight() - moveSpeed)
                         {
-                            p.move(p.getX(), p.getY() + move);
+                            p.move(p.getX(), p.getY() + moveSpeed);
                         } else
-                            if(input.contains("UP") && p.getY() >= move + p.getHeight())
+                            if(input.contains("UP") && p.getY() >= moveSpeed + p.getHeight())
                             {
-                                p.move(p.getX(), p.getY() - move);
+                                p.move(p.getX(), p.getY() - moveSpeed);
                             }
                 
                 
