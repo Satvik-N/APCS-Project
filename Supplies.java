@@ -7,34 +7,17 @@ import java.awt.geom.Point2D;
  */
 public class Supplies extends Materials
 {
-    // instance variables - replace the example below with your own
-    private int myWater;
-    private int myWood;
-    private int myMetal;
-    private int myFood;
-    private int myFur;
-    private int waterCapacity;
-    private int woodCapacity;
-    private int metalCapacity;
-    private int foodCapacity;
-    private int furCapacity;
-    private Point2D.Double point;
-
+    private int myAmount; //amount of supply
+    private int myCapacity; //capacity of supply
+    private Point2D.Double point; //location of supply
+    
     /**
      * Constructor for objects of class Supplies
      */
     public Supplies()
     {
-        myWater = 0;
-        myWood = 0;
-        myMetal = 0;
-        myFood = 0;
-        myFur = 0;
-        waterCapacity = 0;
-        woodCapacity = 0;
-        metalCapacity = 0;
-        foodCapacity = 0;
-        furCapacity = 0;
+        myAmount = 0; 
+        myCapacity = 0;
         point = new Point2D.Double(0.0, 0.0);
     }
     
@@ -42,44 +25,31 @@ public class Supplies extends Materials
      * Constructor that initializes myAmount to the amount specified
      * @param amount amount of supply initially
      */
-    public Supplies(int water, int wood, int metal, int food, int fur, double x, double y)
+    public Supplies(int amount, double x, double y)
     {
-        myWater = water;
-        myWood = wood;
-        myMetal = metal;
-        myFood = food;
-        myFur = fur;
-        waterCapacity = water;
-        woodCapacity = wood;
-        metalCapacity = metal;
-        foodCapacity = food;
-        furCapacity = fur;
-        point = new Point2D.Double(x, y);
+        myAmount = amount;
+        point = new Point2D.Double(x, y); 
     }
 
+    /**
+     * <b>Summary</b> Method empty() - sets number of supplies to zero
+     */
     public void empty()
     {
-        myWater = 0;
-        myWood = 0;
-        myMetal = 0;
-        myFood = 0;
-        myFur = 0;
+        myAmount = 0;
     }
     
+    /**
+     * <b>Summary</b> Method replenish() - replenishes the supplies to original capacity
+     */
     public void replenishAll()
     {
-        myWater = waterCapacity;
-        myWood = woodCapacity;
-        myMetal = metalCapacity;
-        myFood = foodCapacity;
-        myFur = furCapacity;
+        myAmount = myCapacity;
     }
     
-    public int addSupplies(int amount)
-    {
-        return 0;
-    }
-    
+    /**
+     * <b>Summary</b> Method getPos() - returns position of the supply
+     */
     public Point2D.Double getPos()
     {
         return point;
