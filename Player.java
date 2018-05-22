@@ -29,6 +29,16 @@ public class Player
         height = 40;
     }
     
+    public Player(double x, double y)
+    {
+        NUM_SUPPLIES = 5;
+        health = 10;
+        posX = x;
+        posY = y;
+        width = 30;
+        height = 40;
+    }
+    
     public void setName(String s)
     {
         name = s;
@@ -59,6 +69,12 @@ public class Player
     public double getHeight()
     {
         return height;
+    }
+    
+    public void setWidthAndHeight(double x, double y)
+    {
+        width = x;
+        height = y;
     }
     
     public void setWidth(double x)

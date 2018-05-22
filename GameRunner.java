@@ -17,7 +17,8 @@ import java.util.ArrayList;
 // Animation of Earth rotating around the sun. (Hello, world!)
 public class GameRunner extends Application 
 {
-    final double move = 10, windowX = 800, windowY = 800;
+    final double move = 5, windowX = 1600, windowY = 1000;
+    
     public static void main(String[] args) 
     {
         launch(args);
@@ -26,7 +27,7 @@ public class GameRunner extends Application
     @Override
     public void start(Stage theStage) 
     {
-        theStage.setTitle("Welcome to Survivor");
+        theStage.setTitle("Survivor");
         Group root = new Group();
         Scene theScene = new Scene(root);
         theStage.setScene(theScene);
@@ -41,8 +42,7 @@ public class GameRunner extends Application
         
         Player p = new Player();
         p.move(0,0);
-        p.setWidth(30);
-        p.setHeight(40);
+        p.setWidthAndHeight(30, 40);
         
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
         
@@ -57,10 +57,11 @@ public class GameRunner extends Application
                     String code = e.getCode().toString();
  
                     // only add once... prevent duplicates
-                    if ( !input.contains(code) )
-                        input.add( code );
+                    if (!input.contains(code))
+                        input.add(code);
                 }
-            });
+            }
+        );
  
         theScene.setOnKeyReleased(
             new EventHandler<KeyEvent>()
@@ -68,29 +69,11 @@ public class GameRunner extends Application
                 public void handle(KeyEvent e)
                 {
                     String code = e.getCode().toString();
-                    input.remove( code );
+                    input.remove(code);
                 }
-            });
+            }
+        );
         
-        
-        // theScene.setOnMouseClicked(
-            // new EventHandler<MouseEvent>()
-            // {
-                    // public void handle(MouseEvent e)
-                    // {
-                        // if(mapBox.contains(e.getX(), e.getY()))
-                        // {
-                            // double pX = e.getX();
-                            // double pY = e.getY();
-                            
-                            // p.move(pX, pY);
-                        // }
-                    // }
-            // }
-        // );
-        
-        gc.setStroke( Color.BLACK );
-        gc.setLineWidth(1);
         
             
         new AnimationTimer()
