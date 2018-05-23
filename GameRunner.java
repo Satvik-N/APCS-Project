@@ -14,7 +14,10 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
+import javafx.event.ActionEvent;
+import javafx.scene.control.TextArea;
 
 import java.util.ArrayList;
 
@@ -46,107 +49,157 @@ public class GameRunner extends Application
         windowX = bounds.getWidth() * 2.0 / 3;
         windowY = bounds.getHeight() * 2.0 / 3;
         
-        
+        HBox hb = new HBox(10);
         
         Group r1 = new Group();
         Scene startScreen = new Scene(r1);
         Canvas startC = new Canvas(windowX / 5, windowY / 5);
-        // theStage.setScene(startScreen);
+        theStage.setScene(startScreen);
         
-        Button startB = new Button("Start");
+        Button startB = new Button("                            Start");
         Button instB = new Button("Instructions");
+        
+        r1.getChildren().add(startC);
+        
+        hb.getChildren().addAll(startB, instB);
         
         r1.getChildren().add(startB);
         r1.getChildren().add(instB);
         
-        r1.getChildren().add(startC);
         
         
         
-        
-        theStage.setTitle("Survivor");
-        Group root = new Group();
-        Scene theScene = new Scene(root);
-        theStage.setScene(theScene);
-        
-        Canvas c = new Canvas(windowX, windowY);
-        root.getChildren().add(c);
-        
-        
-        
-        
-        GraphicsContext gc = c.getGraphicsContext2D();
-        
-        Image pImage = new Image("Person.jpeg");
-        Image map = new Image("FakeMap.gif");
-        
-        Player p = new Player();
-        p.move(0,0);
-        p.setWidthAndHeight(windowX /80.0, windowY / 30.0);
-        
-        Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
-        
-        ArrayList<String> input = new ArrayList<String>();
-        
-        
-        theScene.setOnKeyPressed(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    String code = e.getCode().toString();
- 
-                    // only add once... prevent duplicates
-                    if (!input.contains(code))
-                        input.add(code);
-                }
-            }
-        );
- 
-        theScene.setOnKeyReleased(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    String code = e.getCode().toString();
-                    input.remove(code);
-                }
-            }
-        );
-        
-        
-            
-        new AnimationTimer()
+        startB.setOnAction(new EventHandler<ActionEvent>()
         {
-            public void handle(long currentNanoTime)
-            {
-                gc.setFill(new Color(0, 0, 0, 0));
-                gc.fillRect(0, 0, windowX, windowY);
-                
-                if(input.contains("LEFT") && p.getX() >= moveSpeed)
+        @Override public void handle(ActionEvent e)
+        {
+            
+            theStage.close();
+            
+            Stage game = new Stage();
+            
+            game.setTitle("Survivor");
+            Group root = new Group();
+            Scene theScene = new Scene(root);
+            game.setScene(theScene);
+            
+            Canvas c = new Canvas(windowX, windowY);
+            root.getChildren().add(c);
+            
+            
+            GraphicsContext gc = c.getGraphicsContext2D();
+            
+            Image pImage = new Image("Person.jpeg");
+            Image map = new Image("FakeMap.gif");
+            
+            Player p = new Player();
+            p.move(0,0);
+            p.setWidthAndHeight(windowX /80.0, windowY / 30.0);
+            
+            Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
+            
+            ArrayList<String> input = new ArrayList<String>();
+            
+            
+            theScene.setOnKeyPressed(
+                new EventHandler<KeyEvent>()
                 {
-                    p.move(p.getX() - moveSpeed, p.getY());
-                } else
-                    if(input.contains("RIGHT") && p.getX() <= windowX - p.getWidth() - moveSpeed)
+                    public void handle(KeyEvent e)
                     {
-                        p.move(p.getX() + moveSpeed, p.getY());
-                    } else
-                        if(input.contains("DOWN") && p.getY() <= windowY - p.getHeight() - moveSpeed)
-                        {
-                            p.move(p.getX(), p.getY() + moveSpeed);
-                        } else
-                            if(input.contains("UP") && p.getY() >= moveSpeed)
-                            {
-                                p.move(p.getX(), p.getY() - moveSpeed);
-                            }
-                
-                
-                            
-                gc.drawImage(map, 0, 0, windowX, windowY);
-                gc.drawImage(pImage, p.getX(), p.getY(), p.getWidth(), p.getHeight());
-            }
-        }.start();
+                        String code = e.getCode().toString();
      
+                        // only add once... prevent duplicates
+                        if (!input.contains(code))
+                            input.add(code);
+                    }
+                }
+            );
+     
+            theScene.setOnKeyReleased(
+                new EventHandler<KeyEvent>()
+                {
+                    public void handle(KeyEvent e)
+                    {
+                        String code = e.getCode().toString();
+                        input.remove(code);
+                    }
+                }
+            );
+            
+            
+                
+            new AnimationTimer()
+            {
+                public void handle(long currentNanoTime)
+                {
+                    gc.setFill(new Color(0, 0, 0, 0));
+                    gc.fillRect(0, 0, windowX, windowY);
+                    
+                    if(input.contains("LEFT") && p.getX() >= moveSpeed)
+                    {
+                        p.move(p.getX() - moveSpeed, p.getY());
+                    } else
+                        if(input.contains("RIGHT") && p.getX() <= windowX - p.getWidth() - moveSpeed)
+                        {
+                            p.move(p.getX() + moveSpeed, p.getY());
+                        } else
+                            if(input.contains("DOWN") && p.getY() <= windowY - p.getHeight() - moveSpeed)
+                            {
+                                p.move(p.getX(), p.getY() + moveSpeed);
+                            } else
+                                if(input.contains("UP") && p.getY() >= moveSpeed)
+                                {
+                                    p.move(p.getX(), p.getY() - moveSpeed);
+                                }
+                    
+                    
+                                
+                    gc.drawImage(map, 0, 0, windowX, windowY);
+                    gc.drawImage(pImage, p.getX(), p.getY(), p.getWidth(), p.getHeight());
+                }
+            }.start();
+         
+            game.show();
+            
+        }
+        });
+        
+        instB.setOnAction(new EventHandler<ActionEvent>()
+        {
+        @Override public void handle(ActionEvent e)
+        {
+            
+            theStage.close();
+            
+            Group instG = new Group();
+            Stage instStage = new Stage();
+            
+            instStage.setTitle("Instructions");
+            
+            Scene instScene = new Scene(instG);
+            instStage.setScene(instScene);
+            
+            TextArea title = new TextArea("Instructions:");
+            TextArea p1 = new TextArea(" 1  ");
+            TextArea p2 = new TextArea(" 2  ");
+            
+            Button backB = new Button("Back");
+            
+            backB.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    instStage.close();
+                    theStage.show();
+                }
+            }
+            );
+            
+        
+            instStage.show();
+        }
+        });
+        
         theStage.show();
     }
 }
