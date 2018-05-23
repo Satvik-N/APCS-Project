@@ -5,10 +5,10 @@ import java.awt.geom.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Animal extends Obstacles
+public class Animal extends Obstacles // lvl 2
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private double constant;
 
     /**
      * Constructor for objects of class Storm
@@ -16,22 +16,25 @@ public class Animal extends Obstacles
     public Animal()
     {
         // initialise instance variables
-        x = 0;
+        constant = generateConstant(); 
     }
     
     public int healthDecrement()
     {
-        return 0;
+        return 20;
     }
     
-    public void supplyDecrement()
+    public int supplyDecrement()
     {
-        
+        return 2;
     }
     
     public boolean succeedOrFail()
     {
-        return true;
+        constant = generateConstant();
+        if(constant*player.getHealth() + constant*player.getSupplies() >= 40)
+            return true;
+        return false; 
     }
     
     public void movePlayer()

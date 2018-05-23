@@ -1,38 +1,40 @@
 import java.awt.geom.*;
-
 /**
- * Write a description of class Storm here.
+ * Write a description of class Mudslide here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Storm extends Obstacles
+public class Mudslide extends Obstacles // lvl 1
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private double constant;
 
     /**
-     * Constructor for objects of class Storm
+     * Constructor for objects of class Mudslide
      */
-    public Storm()
+    public Mudslide()
     {
         // initialise instance variables
-        x = 0;
+        constant = generateConstant(); 
     }
-    
+
     public int healthDecrement()
     {
-        return 0;
+        return 10;
     }
     
-    public void supplyDecrement()
+    public int supplyDecrement()
     {
-        
+        return 1; 
     }
     
-    public boolean succeedOrFail()
+    public boolean succeedOrFail(Player player)
     {
-        return true;
+        constant = generateConstant();
+        if(constant*player.getHealth() + constant*player.getSupplies() >= 20)
+            return true;
+        return false; 
     }
     
     public void movePlayer()
@@ -49,5 +51,4 @@ public class Storm extends Obstacles
     {
         
     }
-
 }

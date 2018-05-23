@@ -5,10 +5,10 @@ import java.awt.geom.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Sandstorm extends Storm
+public class Sandstorm extends Obstacles // lvl 4
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private double constant;
 
     /**
      * Constructor for objects of class Sandstorm
@@ -16,18 +16,39 @@ public class Sandstorm extends Storm
     public Sandstorm()
     {
         // initialise instance variables
-        x = 0;
+        constant = generateConstant(); 
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public int healthDecrement()
     {
-        // put your code here
-        return x + y;
+        return 40;
+    }
+    
+    public int supplyDecrement()
+    {
+        return 4; 
+    }
+    
+    public boolean succeedOrFail()
+    {
+        constant = generateConstant();
+        if(constant*player.getHealth() + constant*player.getSupplies() >= 80)
+            return true;
+        return false; 
+    }
+    
+    public void movePlayer()
+    {
+        
+    }
+    
+    public Point2D.Double currentLocation()
+    {
+        return null;
+    }
+    
+    public void changeLocation(double x, double y)
+    {
+        
     }
 }

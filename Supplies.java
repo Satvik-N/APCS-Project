@@ -54,4 +54,5 @@ public class Supplies extends Materials
     {
         return point;
     }
+    
 }
