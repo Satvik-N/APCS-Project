@@ -8,9 +8,14 @@ import java.awt.geom.*;
  */
 public abstract class Obstacles extends Materials
 {
+    public double generateConstant()
+    {
+        return Math.random();
+    }
+    
     public abstract int healthDecrement();
     
-    public abstract void supplyDecrement();
+    public abstract int supplyDecrement();
     
     public abstract boolean succeedOrFail();
     

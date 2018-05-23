@@ -1,19 +1,19 @@
-import java.awt.geom.*;
+
 /**
- * Write a description of class Rainstorm here.
+ * Write a description of class Armor here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Rainstorm extends Storm
+public class Armor extends BuildSupplies
 {
     // instance variables - replace the example below with your own
     private int x;
 
     /**
-     * Constructor for objects of class Rainstorm
+     * Constructor for objects of class Armor
      */
-    public Rainstorm()
+    public Armor()
     {
         // initialise instance variables
         x = 0;

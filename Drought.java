@@ -5,10 +5,10 @@ import java.awt.geom.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Drought extends Obstacles
+public class Drought extends Obstacles // lvl 4
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private double constant;
 
     /**
      * Constructor for objects of class Storm
@@ -16,22 +16,25 @@ public class Drought extends Obstacles
     public Drought()
     {
         // initialise instance variables
-        x = 0;
+        constant = generateConstant(); 
     }
     
     public int healthDecrement()
     {
-        return 0;
+        return 40;
     }
     
-    public void supplyDecrement()
+    public int supplyDecrement()
     {
-        
+        return 4; 
     }
     
     public boolean succeedOrFail()
     {
-        return true;
+        constant = generateConstant();
+        if(constant*player.getHealth() + constant*player.getSupplies() >= 80)
+            return true;
+        return false; 
     }
     
     public void movePlayer()

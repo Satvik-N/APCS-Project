@@ -17,6 +17,8 @@ public class Player
     private double width, height;
     private Point pos;
     
+    // make a health/supply increment/decrement
+    
     /**
      * Constructor for objects of class Player
      */
@@ -83,5 +85,15 @@ public class Player
     public void setHeight(double y)
     {
         height = y;
+    }
+    
+    public int getHealth()
+    {
+        return 0;
+    }
+    
+    public int getSupplies()
+    {
+        return 0; 
     }
 }
