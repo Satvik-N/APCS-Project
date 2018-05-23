@@ -17,7 +17,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.event.ActionEvent;
-import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 
@@ -49,22 +50,24 @@ public class GameRunner extends Application
         windowX = bounds.getWidth() * 2.0 / 3;
         windowY = bounds.getHeight() * 2.0 / 3;
         
-        HBox hb = new HBox(10);
+        VBox vb = new VBox(10);
         
         Group r1 = new Group();
         Scene startScreen = new Scene(r1);
         Canvas startC = new Canvas(windowX / 5, windowY / 5);
         theStage.setScene(startScreen);
         
-        Button startB = new Button("                            Start");
+        Button startB = new Button("Start");
         Button instB = new Button("Instructions");
         
-        r1.getChildren().add(startC);
+        // r1.getChildren().add(startC);
         
-        hb.getChildren().addAll(startB, instB);
+        vb.getChildren().addAll(startB, instB);
         
-        r1.getChildren().add(startB);
-        r1.getChildren().add(instB);
+        r1.getChildren().add(vb);
+        
+        //r1.getChildren().add(startB);
+        //r1.getChildren().add(instB);
         
         
         
@@ -176,14 +179,20 @@ public class GameRunner extends Application
             
             instStage.setTitle("Instructions");
             
+            VBox textVB = new VBox();
+            
+            Button backB = new Button("Back");
+            
             Scene instScene = new Scene(instG);
             instStage.setScene(instScene);
             
-            TextArea title = new TextArea("Instructions:");
-            TextArea p1 = new TextArea(" 1  ");
-            TextArea p2 = new TextArea(" 2  ");
+            Label title = new Label("Instructions:");
+            Text p1 = new Text(" 1  ");
+            Text p2 = new Text(" 2  ");
             
-            Button backB = new Button("Back");
+            textVB.getChildren().addAll(title, p1, p2, backB);
+            
+            instG.getChildren().add(textVB);
             
             backB.setOnAction(new EventHandler<ActionEvent>()
             {
