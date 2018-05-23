@@ -14,6 +14,7 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Screen;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,8 @@ import java.util.ArrayList;
 // Animation of Earth rotating around the sun. (Hello, world!)
 public class GameRunner extends Application 
 {
-    static double moveSpeed = 5, windowX, windowY;
+    static double moveSpeed = 5;
+    static double windowX, windowY;
     
     public static void main(String[] args) 
     {
@@ -44,6 +46,24 @@ public class GameRunner extends Application
         windowX = bounds.getWidth() * 2.0 / 3;
         windowY = bounds.getHeight() * 2.0 / 3;
         
+        
+        
+        Group r1 = new Group();
+        Scene startScreen = new Scene(r1);
+        Canvas startC = new Canvas(windowX / 5, windowY / 5);
+        // theStage.setScene(startScreen);
+        
+        Button startB = new Button("Start");
+        Button instB = new Button("Instructions");
+        
+        r1.getChildren().add(startB);
+        r1.getChildren().add(instB);
+        
+        r1.getChildren().add(startC);
+        
+        
+        
+        
         theStage.setTitle("Survivor");
         Group root = new Group();
         Scene theScene = new Scene(root);
@@ -51,6 +71,9 @@ public class GameRunner extends Application
         
         Canvas c = new Canvas(windowX, windowY);
         root.getChildren().add(c);
+        
+        
+        
         
         GraphicsContext gc = c.getGraphicsContext2D();
         
@@ -112,7 +135,7 @@ public class GameRunner extends Application
                         {
                             p.move(p.getX(), p.getY() + moveSpeed);
                         } else
-                            if(input.contains("UP") && p.getY() >= moveSpeed + p.getHeight())
+                            if(input.contains("UP") && p.getY() >= moveSpeed)
                             {
                                 p.move(p.getX(), p.getY() - moveSpeed);
                             }

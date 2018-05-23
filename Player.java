@@ -44,7 +44,7 @@ public class Player
     }
     // LOTS OF METHODS TO ADD TO THIS CLASS CHANGING THE AMOUNT OF SUPPLIES
     
-    public void move(int x, int y)
+    public void move(double x, double y)
     {
         pos.setLocation(x, y);
     }
