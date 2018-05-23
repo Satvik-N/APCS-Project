@@ -35,7 +35,9 @@ import java.util.ArrayList;
 // Animation of Earth rotating around the sun. (Hello, world!)
 public class GameRunner extends Application 
 {
+    // double to hold the speed of movement of the character
     static double moveSpeed = 5;
+    // will hold the size of the window
     static double windowX, windowY;
     
     public static void main(String[] args) 
@@ -46,24 +48,34 @@ public class GameRunner extends Application
     @Override
     public void start(Stage theStage) 
     {
+        // returns the screen size as a Rectangle2D
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
+        // save the width and height of the window and scale it by 66%
         windowX = bounds.getWidth() * 2.0 / 3;
         windowY = bounds.getHeight() * 2.0 / 3;
         
+        // create a VBox to organize the other nodes
         VBox vb = new VBox(10);
         
+        // Group to hold the children
         Group r1 = new Group();
+        // Scene with the start menu
         Scene startScreen = new Scene(r1);
+        // 
         Canvas startC = new Canvas(windowX / 5, windowY / 5);
+        // put the screen on the stage
         theStage.setScene(startScreen);
         
+        // Button to start the game
         Button startB = new Button("Start");
+        // Button to start the instructions
         Button instB = new Button("Instructions");
         
         // r1.getChildren().add(startC);
         
+        // add the buttons to the VBox
         vb.getChildren().addAll(startB, instB);
-        
+        // add the VBox to the scene
         r1.getChildren().add(vb);
         
         //r1.getChildren().add(startB);
@@ -71,44 +83,56 @@ public class GameRunner extends Application
         
         
         
-        
+        // When the start button is pressed
         startB.setOnAction(new EventHandler<ActionEvent>()
         {
         @Override public void handle(ActionEvent e)
         {
-            
+            // Close the menu window
             theStage.close();
-            
+            // create a new window
             Stage game = new Stage();
-            
+            // set the window title
             game.setTitle("Survivor");
+            // create the top of the nodes
             Group root = new Group();
+            // create a new scene
             Scene theScene = new Scene(root);
+            // set the scene to the window
             game.setScene(theScene);
             
+            // create a canvas for the game
             Canvas c = new Canvas(windowX, windowY);
+            // add canvas to group
             root.getChildren().add(c);
             
-            
+            // create a graphics context
             GraphicsContext gc = c.getGraphicsContext2D();
             
+            // make two new images
+            // person image
             Image pImage = new Image("Person.jpeg");
+            // map image
             Image map = new Image("FakeMap.gif");
             
+            // create a player
             Player p = new Player();
-            p.move(0,0);
+            // set size of player
             p.setWidthAndHeight(windowX /80.0, windowY / 30.0);
             
+            // Rectangle with the size of the map in it
             Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
             
+            // holds the inputs
             ArrayList<String> input = new ArrayList<String>();
             
-            
+            // when a key is pressed
             theScene.setOnKeyPressed(
                 new EventHandler<KeyEvent>()
                 {
                     public void handle(KeyEvent e)
                     {
+                        // keycode
                         String code = e.getCode().toString();
      
                         // only add once... prevent duplicates
@@ -117,12 +141,14 @@ public class GameRunner extends Application
                     }
                 }
             );
-     
+            
+            // when the key is released
             theScene.setOnKeyReleased(
                 new EventHandler<KeyEvent>()
                 {
                     public void handle(KeyEvent e)
                     {
+                        // remove code from arraylist
                         String code = e.getCode().toString();
                         input.remove(code);
                     }
@@ -130,14 +156,18 @@ public class GameRunner extends Application
             );
             
             
-                
+            // make a new AnimationTimer 
             new AnimationTimer()
             {
                 public void handle(long currentNanoTime)
                 {
+                    // refresh the canvas
                     gc.setFill(new Color(0, 0, 0, 0));
                     gc.fillRect(0, 0, windowX, windowY);
                     
+                    // if the keypressed is LEFT, RIGHT, DOWN, or UP
+                    // and the player will not move out of the board
+                    // move the player to the desired location
                     if(input.contains("LEFT") && p.getX() >= moveSpeed)
                     {
                         p.move(p.getX() - moveSpeed, p.getY());
@@ -156,59 +186,97 @@ public class GameRunner extends Application
                                 }
                     
                     
-                                
+                    // draw the map and the players again        
                     gc.drawImage(map, 0, 0, windowX, windowY);
                     gc.drawImage(pImage, p.getX(), p.getY(), p.getWidth(), p.getHeight());
                 }
             }.start();
+            
+            // if(p.isAtObstacle())
+            {
+                
+                
+                Group g3 = new Group();
+                Scene pop = new Scene(g3);
+                Stage popup = new Stage();
+                VBox vb2 = new VBox();
+                HBox hb = new HBox();
+                
+                Text obstacle = new Text(p.getObstacle());
+                Button attackB = new Button("Attack");
+                Text damageT = new Text("" + p.getDamage());
+                
+                hb.getChildren().addAll(attackB, damageT);
+                
+                vb2.getChildren().add(hb);
+                
+                g3.getChildren().add(vb2);
+                popup.showAndWait();
+            }
          
+            // show the window with the game
             game.show();
             
         }
         });
         
+        // when the instructions button is pressed
         instB.setOnAction(new EventHandler<ActionEvent>()
         {
         @Override public void handle(ActionEvent e)
         {
-            
+            // close the menu
             theStage.close();
             
+            // create a new group of nodes
             Group instG = new Group();
+            // make a new window
             Stage instStage = new Stage();
             
+            // set the title of the window
             instStage.setTitle("Instructions");
             
+            // create a VBox to organize the texts
             VBox textVB = new VBox();
             
+            // button to go back to the main menu
             Button backB = new Button("Back");
             
+            // create and add scene with instructions
             Scene instScene = new Scene(instG);
             instStage.setScene(instScene);
             
+            // label the window
             Label title = new Label("Instructions:");
-            Text p1 = new Text(" 1  ");
-            Text p2 = new Text(" 2  ");
+            // create two 'paragraphs'
+            Text p1 = new Text(" 1 ");
+            Text p2 = new Text(" 2 ");
             
+            // add everything to VBox
             textVB.getChildren().addAll(title, p1, p2, backB);
             
+            // add VBox to window
             instG.getChildren().add(textVB);
             
+            // when the back button is pressed
             backB.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    // close instructions window
                     instStage.close();
+                    // show the main menu window
                     theStage.show();
                 }
             }
             );
             
-        
+            // show the instructions window
             instStage.show();
         }
         });
         
+        // show the main menu window
         theStage.show();
     }
 }
