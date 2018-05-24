@@ -10,6 +10,8 @@ import java.awt.Point;
  */
 public abstract class Obstacles extends Materials
 {
+    private Point location;
+    
     public double generateConstant()
     {
         return Math.random();
@@ -23,7 +25,13 @@ public abstract class Obstacles extends Materials
     
     public abstract void movePlayer();
     
-    public abstract Point currentLocation();
+    public Point currentLocation()
+    {
+        return location; 
+    }
     
-    public abstract void changeLocation(double x, double y);
+    public void changeLocation(double x, double y)
+    {
+        location.setLocation(x, y);
+    }
 }

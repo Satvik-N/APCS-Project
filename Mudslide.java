@@ -12,7 +12,6 @@ public class Mudslide extends Obstacles // lvl 1
 {
     // instance variables - replace the example below with your own
     private double constant;
-    private Point location;
 
     /**
      * Constructor for objects of class Mudslide
@@ -21,7 +20,7 @@ public class Mudslide extends Obstacles // lvl 1
     {
         // initialise instance variables
         constant = 0;
-        location = new Point(x, y); 
+        changeLocation(x, y); 
     }
 
     public int healthDecrement()
@@ -46,14 +45,5 @@ public class Mudslide extends Obstacles // lvl 1
     {
         
     }
-    
-    public Point currentLocation()
-    {
-        return location; 
-    }
-    
-    public void changeLocation(double x, double y)
-    {
-        
-    }
+
 }

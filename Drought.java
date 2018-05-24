@@ -21,7 +21,7 @@ public class Drought extends Obstacles // lvl 4
     {
         // initialise instance variables
         constant = 0; 
-        location = new Point(x, y);
+        changeLocation(x, y); 
     }
     
     public int healthDecrement()
@@ -43,16 +43,6 @@ public class Drought extends Obstacles // lvl 4
     }
     
     public void movePlayer()
-    {
-        
-    }
-    
-    public Point currentLocation()
-    {
-        return location; 
-    }
-    
-    public void changeLocation(double x, double y)
     {
         
     }
