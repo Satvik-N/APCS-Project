@@ -22,8 +22,11 @@ public abstract class Obstacles extends Materials
     }
   public abstract int healthDecrement(); 
   public abstract int supplyDecrement();
-    // use an equation based on health and supply to generate a random number
-    // if this random number is greater than a designated amount, player succeeds
-    public abstract boolean succeedOrFail(Player player);
-    
+  public abstract boolean succeedOrFail(Player player);
+  public abstract String toString();
+  public String FightOrFlight()
+  {
+      String string = "";
+      return string; 
+  }
 }

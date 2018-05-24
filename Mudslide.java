@@ -11,7 +11,7 @@ import java.awt.Point;
 public class Mudslide extends Obstacles
 {
    // toString
-   // get option1
+   // get option1 (fight or flight)
    // get option2
    // do option 1
    // do option 2
