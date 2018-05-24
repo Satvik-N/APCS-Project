@@ -10,17 +10,23 @@ import java.awt.Point;
  */
 public abstract class Obstacles extends Materials
 {
-    
+  /**
+   *  Generates a random constant to be used as the coefficient for succeedOrFail
+   *
+   * @param  none  
+   * @return double (randomly generated) 
+   */
     public double generateConstant()
     {
         return Math.random();
     }
-    
-    public abstract int healthDecrement();
-    
-    public abstract int supplyDecrement();
-    
-    public abstract boolean succeedOrFail(Player player);
-    
-    //public abstract void movePlayer(); shouldn't this be in the player or board class?????
+  public abstract int healthDecrement(); 
+  public abstract int supplyDecrement();
+  public abstract boolean succeedOrFail(Player player);
+  public abstract String toString();
+  public String FightOrFlight()
+  {
+      String string = "";
+      return string; 
+  }
 }
