@@ -1,4 +1,7 @@
 import java.awt.geom.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.awt.Point;
 /**
  * Write a description of class Sandstorm here.
  *
@@ -9,14 +12,16 @@ public class Sandstorm extends Obstacles // lvl 4
 {
     // instance variables - replace the example below with your own
     private double constant;
+    private Point location; 
 
     /**
      * Constructor for objects of class Sandstorm
      */
-    public Sandstorm()
+    public Sandstorm(int x, int y)
     {
         // initialise instance variables
-        constant = generateConstant(); 
+        constant = 0;  
+        location = new Point(x, y);
     }
 
     public int healthDecrement()
@@ -29,7 +34,7 @@ public class Sandstorm extends Obstacles // lvl 4
         return 4; 
     }
     
-    public boolean succeedOrFail()
+    public boolean succeedOrFail(Player player)
     {
         constant = generateConstant();
         if(constant*player.getHealth() + constant*player.getSupplies() >= 80)
@@ -42,9 +47,9 @@ public class Sandstorm extends Obstacles // lvl 4
         
     }
     
-    public Point2D.Double currentLocation()
+    public Point currentLocation()
     {
-        return null;
+        return location; 
     }
     
     public void changeLocation(double x, double y)

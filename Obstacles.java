@@ -1,5 +1,7 @@
 import java.awt.geom.*;
-
+import java.util.List;
+import java.util.ArrayList;
+import java.awt.Point;
 /**
  * Write a description of class Obstacles here.
  *
@@ -17,11 +19,11 @@ public abstract class Obstacles extends Materials
     
     public abstract int supplyDecrement();
     
-    public abstract boolean succeedOrFail();
+    public abstract boolean succeedOrFail(Player player);
     
     public abstract void movePlayer();
     
-    public abstract Point2D.Double currentLocation();
+    public abstract Point currentLocation();
     
     public abstract void changeLocation(double x, double y);
 }
