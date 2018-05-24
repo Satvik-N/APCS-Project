@@ -9,6 +9,9 @@ public class TimTheEnchanter
 {
     // instance variables - replace the example below with your own
     private int x;
+    
+    // narrator
+    // random gifts (food, water, or health)
 
     /**
      * Constructor for objects of class TimTheEnchanter
