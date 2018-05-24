@@ -8,13 +8,13 @@
 public class Board
 {
     private int[][] board;
+    private Desert desert;
+    private Grassland grassland;
+    private Rainforest rainforest;
     public Board()
     {
         board = new int[200][200];
     }
-    public Board(int size)
-    {
-        board = new int[size][size];
-    }
+    
     
 }
