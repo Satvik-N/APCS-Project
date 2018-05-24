@@ -40,10 +40,5 @@ public class Mudslide extends Obstacles // lvl 1
             return true;
         return false; 
     }
-    
-    public void movePlayer()
-    {
-        
-    }
 
 }

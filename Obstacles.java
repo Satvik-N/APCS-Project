@@ -10,7 +10,6 @@ import java.awt.Point;
  */
 public abstract class Obstacles extends Materials
 {
-    private Point location;
     
     public double generateConstant()
     {
@@ -23,15 +22,5 @@ public abstract class Obstacles extends Materials
     
     public abstract boolean succeedOrFail(Player player);
     
-    public abstract void movePlayer();
-    
-    public Point currentLocation()
-    {
-        return location; 
-    }
-    
-    public void changeLocation(double x, double y)
-    {
-        location.setLocation(x, y);
-    }
+    //public abstract void movePlayer(); shouldn't this be in the player or board class?????
 }

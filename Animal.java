@@ -12,7 +12,6 @@ public class Animal extends Obstacles // lvl 2
 {
     // instance variables - replace the example below with your own
     private double constant;
-    private Point location;
 
     /**
      * Constructor for objects of class Storm
@@ -41,9 +40,5 @@ public class Animal extends Obstacles // lvl 2
             return true;
         return false; 
     }
-    
-    public void movePlayer()
-    {
-        
-    }
+
 }

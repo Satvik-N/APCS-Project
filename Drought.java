@@ -12,7 +12,6 @@ public class Drought extends Obstacles // lvl 4
 {
     // instance variables - replace the example below with your own
     private double constant;
-    private Point location;
 
     /**
      * Constructor for objects of class Storm
@@ -42,8 +41,4 @@ public class Drought extends Obstacles // lvl 4
         return false; 
     }
     
-    public void movePlayer()
-    {
-        
-    }
 }

@@ -1,4 +1,5 @@
 import java.awt.geom.*;
+import java.awt.Point;
 /**
  * Write a description of class Materials here.
  *
@@ -7,13 +8,13 @@ import java.awt.geom.*;
  */
 public abstract class Materials
 {
-    private Point2D.Double point = new Point2D.Double(0, 0);
+    private Point point = new Point(0, 0);
     private int myAmount;
-    public Point2D.Double getLoc()
+    public Point getLocation()
     {
         return point;
     }
-    public void changeLoc(double x, double y)
+    public void changeLocation(double x, double y)
     {
         point.setLocation(x, y);
     }
