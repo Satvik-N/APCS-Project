@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class GameRunner extends Application 
 {
     // double to hold the speed of movement of the character
-    static final int moveSpeed = 10;
+    static final int moveSpeed = 1;
     // will hold the size of the window
     static int windowX, windowY;
     // border around the edge where player cannot travel
@@ -225,26 +225,58 @@ public class GameRunner extends Application
             }
         }.start();
     
-        // if(p.isAtObstacle())
-        // {
+        if(p.isAtObstacle())
+        {
     
-            // Group g3 = new Group();
-            // Scene pop = new Scene(g3);
-            // Stage popup = new Stage();
-            // VBox vb2 = new VBox();
-            // HBox hb = new HBox();
-    
-            // Text obstacle = new Text(p.getObstacle().toString());
-            // Button attackB = new Button("Attack");
-            // Text damageT = new Text("" + p.getDamage());
-    
-            // hb.getChildren().addAll(attackB, damageT);
-    
-            // vb2.getChildren().add(hb);
-    
-            // g3.getChildren().add(vb2);
-            // popup.showAndWait();
-        // }
+            Group g3 = new Group();
+            Scene pop = new Scene(g3);
+            Stage popup = new Stage();
+            
+            VBox vb2 = new VBox();
+            HBox hb = new HBox();
+            
+            double rand = Math.random() * 2;
+            String s = "";
+            
+            if(rand < 1)
+                s = "Ack";
+            else
+                s = "Oh no";
+            
+            Text obstacle = new Text(s + " =( You encountered a " + p.getObstacle().toString());
+            
+            
+            
+            Button counterB1 = new Button(p.getObstacle().getOption1());
+            Button counterB2 = new Button(p.getObstacle().getOption2());
+            
+            vb2.getChildren().addAll(counterB1, counterB2);
+            
+            g3.getChildren().add(vb2);
+            
+            // when the instructions button is pressed
+            counterB1.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    //  show the instructions page
+                    p.getObstacle().doOption1();
+                }
+            });
+            
+            counterB2.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    //  show the instructions page
+                    p.getObstacle().doOption2();
+                }
+            });
+            
+            
+            
+            popup.showAndWait();
+        }
     
         // show the window with the game
         game.show();
