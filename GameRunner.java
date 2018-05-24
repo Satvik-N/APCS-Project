@@ -225,12 +225,13 @@ public class GameRunner extends Application
             }
         }.start();
     
-        if(p.isAtObstacle())
+        //if(p.isAtObstacle())
         {
-    
             Group g3 = new Group();
             Scene pop = new Scene(g3);
             Stage popup = new Stage();
+            
+            popup.setScene(pop);
             
             VBox vb2 = new VBox();
             HBox hb = new HBox();
@@ -243,24 +244,30 @@ public class GameRunner extends Application
             else
                 s = "Oh no";
             
-            Text obstacle = new Text(s + " =( You encountered a " + p.getObstacle().toString());
+            Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
             
             
             
-            Button counterB1 = new Button(p.getObstacle().getOption1());
-            Button counterB2 = new Button(p.getObstacle().getOption2());
+            Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
+            Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
+            Button confirm = new Button("Confirm");
             
-            vb2.getChildren().addAll(counterB1, counterB2);
+            vb2.getChildren().addAll(counterB1, counterB2, confirm);
+            vb2.setPrefWidth(windowX / 4);
+            vb2.setPrefHeight(windowY / 4);
+            
+            vb2.setAlignment(Pos.CENTER);
             
             g3.getChildren().add(vb2);
             
-            // when the instructions button is pressed
+            // when the option 1 button is pressed
             counterB1.setOnAction(new EventHandler<ActionEvent>()
             {
-                @Override public void handle(ActionEvent e)
+                @Override public void handle(ActionEve nt e)
                 {
-                    //  show the instructions page
-                    p.getObstacle().doOption1();
+                    // do the first option
+                    System.out.println("Op 1");
+                    // p.getObstacle().doOption1();
                 }
             });
             
@@ -268,12 +275,23 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    //  show the instructions page
-                    p.getObstacle().doOption2();
+                    // do the second option
+                    System.out.println("Op 2");
+                    // p.getObstacle().doOption2();
                 }
             });
             
-            
+            // when the confirm button is pressed
+            confirm.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    // do the first option
+                    System.out.println("conf");
+                    popup.close();
+                    // p.getObstacle().doOption1();
+                }
+            });
             
             popup.showAndWait();
         }
