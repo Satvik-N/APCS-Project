@@ -10,88 +10,92 @@ import java.awt.Point;
 public class Player
 {
     // instance variables - replace the example below with your own
-    private List<Supplies> supplies = new ArrayList<Supplies>();
-    private final int NUM_SUPPLIES;
+    private int metal;
+    private int wood;
+    private int food;
+    private int water;
+    private int bowAndArrow;
+    private int spear;
+    private int armor;
+    private int pickaxe;
+    private int sword;
+    private int rope;
+    private int trap;
     private int health;
     private String name;
-    private double width, height;
     private Point pos;
-    
+    private Board board;
+
     // make a health/supply increment/decrement
-    
+
     /**
      * Constructor for objects of class Player
      */
-    public Player()
+    public Player(String playerName)
     {
-        NUM_SUPPLIES = 5;
-        health = 10;
-        width = 30;
-        height = 40;
+        health = 100;
+        metal = 0;
+        wood = 0;
+        food = 0;
+        water = 0;
+        bowAndArrow = 0;
+        spear = 0;
+        armor = 0;
+        pickaxe = 0;
+        sword = 0;
+        rope = 0;
+        trap = 0;
+        name = playerName;
         pos = new Point(0, 0);
+        board = new Board();
     }
-    
-    public Player(int x, int y)
+
+    public Player(int x, int y, String playerName)
     {
-        NUM_SUPPLIES = 5;
-        health = 10;
-        width = 30;
-        height = 40;
+        health = 100;
+        metal = 0;
+        wood = 0;
+        food = 0;
+        water = 0;
+        bowAndArrow = 0;
+        spear = 0;
+        armor = 0;
+        pickaxe = 0;
+        sword = 0;
+        rope = 0;
+        trap = 0;
+        name = playerName;
         pos = new Point(x, y);
+        board = new Board();
     }
-    
+
     public void setName(String s)
     {
         name = s;
     }
     // LOTS OF METHODS TO ADD TO THIS CLASS CHANGING THE AMOUNT OF SUPPLIES
-    
-    public void move(double x, double y)
+
+    public void move(int x, int y)
     {
         pos.setLocation(x, y);
+        board.move(x, y);
     }
-    
+
     public double getX()
     {
         return pos.getX();
     }
-    
+
     public double getY()
     {
         return pos.getY();
     }
-    
-    public double getWidth()
-    {
-        return width;
-    }
-    
-    public double getHeight()
-    {
-        return height;
-    }
-    
-    public void setWidthAndHeight(double x, double y)
-    {
-        width = x;
-        height = y;
-    }
-    
-    public void setWidth(double x)
-    {
-        width = x;
-    }
-    
-    public void setHeight(double y)
-    {
-        height = y;
-    }
-    
+
     public int getHealth()
     {
-        return 0;
+        return health;
     }
-    
+
     public int getSupplies()
     {
         return 0; 
