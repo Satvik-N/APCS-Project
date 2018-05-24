@@ -11,7 +11,6 @@ import java.awt.Point;
 public class Sandstorm extends Obstacles // lvl 4
 {
     // instance variables - replace the example below with your own
-    private double constant;
 
     /**
      * Constructor for objects of class Sandstorm
@@ -19,7 +18,6 @@ public class Sandstorm extends Obstacles // lvl 4
     public Sandstorm(int x, int y)
     {
         // initialise instance variables
-        constant = 0;  
         changeLocation(x, y); 
     }
 
@@ -35,7 +33,7 @@ public class Sandstorm extends Obstacles // lvl 4
     
     public boolean succeedOrFail(Player player)
     {
-        constant = generateConstant();
+        double constant = generateConstant();
         if(constant*player.getHealth() + constant*player.getSupplies() >= 80)
             return true;
         return false; 

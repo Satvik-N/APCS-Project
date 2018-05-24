@@ -11,7 +11,6 @@ import java.awt.Point;
 public class Mudslide extends Obstacles // lvl 1
 {
     // instance variables - replace the example below with your own
-    private double constant;
 
     /**
      * Constructor for objects of class Mudslide
@@ -19,7 +18,6 @@ public class Mudslide extends Obstacles // lvl 1
     public Mudslide(int x, int y)
     {
         // initialise instance variables
-        constant = 0;
         changeLocation(x, y); 
     }
 
@@ -35,7 +33,7 @@ public class Mudslide extends Obstacles // lvl 1
     
     public boolean succeedOrFail(Player player)
     {
-        constant = generateConstant();
+        double constant = generateConstant();
         if(constant*player.getHealth() + constant*player.getSupplies() >= 20)
             return true;
         return false; 
