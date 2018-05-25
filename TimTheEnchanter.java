@@ -1,4 +1,4 @@
-
+import java.awt.Point;
 /**
  * Write a description of class TimTheEnchanter here.
  *
@@ -8,7 +8,7 @@
 public class TimTheEnchanter
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private Point location = new Point(0, 0);
     
     // narrator
     // random gifts (food, water, or health)
@@ -16,10 +16,13 @@ public class TimTheEnchanter
     /**
      * Constructor for objects of class TimTheEnchanter
      */
-    public TimTheEnchanter()
+    public TimTheEnchanter(int x, int y)
     {
-        // initialise instance variables
-        x = 0;
+        location.setLocation(x, y);
+    }
+    public String enteredNewBiome(Player player)
+    {
+        
     }
 
     /**

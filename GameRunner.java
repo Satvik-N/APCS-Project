@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class GameRunner extends Application 
 {
     // double to hold the speed of movement of the character
-    static final int moveSpeed = 10;
+    static final int moveSpeed = 1;
     // will hold the size of the window
     static int windowX, windowY;
     // border around the edge where player cannot travel
@@ -225,26 +225,76 @@ public class GameRunner extends Application
             }
         }.start();
     
-        // if(p.isAtObstacle())
-        // {
-    
-            // Group g3 = new Group();
-            // Scene pop = new Scene(g3);
-            // Stage popup = new Stage();
-            // VBox vb2 = new VBox();
-            // HBox hb = new HBox();
-    
-            // Text obstacle = new Text(p.getObstacle().toString());
-            // Button attackB = new Button("Attack");
-            // Text damageT = new Text("" + p.getDamage());
-    
-            // hb.getChildren().addAll(attackB, damageT);
-    
-            // vb2.getChildren().add(hb);
-    
-            // g3.getChildren().add(vb2);
-            // popup.showAndWait();
-        // }
+        //if(p.isAtObstacle())
+        {
+            Group g3 = new Group();
+            Scene pop = new Scene(g3);
+            Stage popup = new Stage();
+            
+            popup.setScene(pop);
+            
+            VBox vb2 = new VBox();
+            HBox hb = new HBox();
+            
+            double rand = Math.random() * 2;
+            String s = "";
+            
+            if(rand < 1)
+                s = "Ack";
+            else
+                s = "Oh no";
+            
+            Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
+            
+            
+            
+            Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
+            Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
+            Button confirm = new Button("Confirm");
+            
+            vb2.getChildren().addAll(counterB1, counterB2, confirm);
+            vb2.setPrefWidth(windowX / 4);
+            vb2.setPrefHeight(windowY / 4);
+            
+            vb2.setAlignment(Pos.CENTER);
+            
+            g3.getChildren().add(vb2);
+            
+            // when the option 1 button is pressed
+            counterB1.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEve nt e)
+                {
+                    // do the first option
+                    System.out.println("Op 1");
+                    // p.getObstacle().doOption1();
+                }
+            });
+            
+            counterB2.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    // do the second option
+                    System.out.println("Op 2");
+                    // p.getObstacle().doOption2();
+                }
+            });
+            
+            // when the confirm button is pressed
+            confirm.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    // do the first option
+                    System.out.println("conf");
+                    popup.close();
+                    // p.getObstacle().doOption1();
+                }
+            });
+            
+            popup.showAndWait();
+        }
     
         // show the window with the game
         game.show();
