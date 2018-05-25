@@ -46,6 +46,7 @@ public class GameRunner extends Application
     static double pWidth, pHeight;
     // Player
     static Player p;
+    static int choice;
 
     public static void main(String[] args) 
     {
@@ -161,7 +162,7 @@ public class GameRunner extends Application
         // person image
         Image pImage = new Image("Person.jpeg");
         // map image
-        Image map = new Image("Map.pdf");
+        Image map = new Image("FakeMap.gif");
     
         // Rectangle with the size of the map in it
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
@@ -229,7 +230,7 @@ public class GameRunner extends Application
             }
         }.start();
     
-        //if(p.isAtObstacle())
+        // if(p.isAtObstacle())
         {
             Group g3 = new Group();
             Scene pop = new Scene(g3);
@@ -264,7 +265,7 @@ public class GameRunner extends Application
             
             g3.getChildren().add(vb2);
 
-            int choice;
+            
             
             // when the option 1 button is pressed
             counterB1.setOnAction(new EventHandler<ActionEvent>()
