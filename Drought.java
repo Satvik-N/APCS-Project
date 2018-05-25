@@ -56,5 +56,10 @@ public class Drought extends Obstacles // lvl 4
             return true;
         return false; 
     }
+   
+   public String toString()
+   {
+       return "drought";
+   }
     
 }

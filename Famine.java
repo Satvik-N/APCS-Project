@@ -56,5 +56,10 @@ public class Famine extends Obstacles // lvl 3
             return true;
         return false; 
     }
+   
+   public String toString()
+   {
+       return "famine";
+   }
 
 }

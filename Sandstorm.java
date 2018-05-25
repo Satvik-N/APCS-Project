@@ -56,5 +56,10 @@ public class Sandstorm extends Obstacles // lvl 4
             return true;
         return false; 
     }
+    
+   public String toString()
+   {
+       return "sandstorm";
+   }
 
 }

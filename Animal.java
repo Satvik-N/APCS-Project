@@ -55,5 +55,10 @@ public class Animal extends Obstacles // lvl 2
             return true;
         return false; 
     }
+   
+   public String toString()
+   {
+       return "animal";
+   }
 
 }

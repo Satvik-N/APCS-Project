@@ -60,6 +60,10 @@ public class Mudslide extends Obstacles
             return true;
         return false; 
     }
-    
+   
+   public String toString()
+   {
+       return "mudslide";
+   }
 
 }

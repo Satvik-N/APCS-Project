@@ -10,6 +10,7 @@ import java.awt.Point;
  */
 public abstract class Obstacles extends Materials
 {
+    // add option as a parameter 
   /**
    *  Generates a random constant to be used as the coefficient for succeedOrFail
    *
