@@ -81,7 +81,7 @@ public class Player
         board.move(x, y);
     }
 
-    public Point getPoint()
+    public Point getLocation()
     {
         return pos;
     }
