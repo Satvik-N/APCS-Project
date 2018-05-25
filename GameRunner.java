@@ -42,6 +42,10 @@ public class GameRunner extends Application
     static int windowX, windowY;
     // border around the edge where player cannot travel
     static final int BORDER = 20;
+    // size of player
+    static double pWidth, pHeight;
+    // Player
+    static Player p;
 
     public static void main(String[] args) 
     {
@@ -90,6 +94,11 @@ public class GameRunner extends Application
         // add the VBox to the scene
         r1.getChildren().add(vb);
 
+        // create a player
+        p = new Player(" ");
+        // set size of player
+        pWidth = windowX /80.0;
+        pHeight = windowY / 30.0;
         
         // When the start button is pressed
         startB.setOnAction(new EventHandler<ActionEvent>()
@@ -152,12 +161,7 @@ public class GameRunner extends Application
         // person image
         Image pImage = new Image("Person.jpeg");
         // map image
-        Image map = new Image("FakeMap.gif");
-    
-        // create a player
-        Player p = new Player();
-        // set size of player
-        p.setWidthAndHeight(windowX /80.0, windowY / 30.0);
+        Image map = new Image("Map.pdf");
     
         // Rectangle with the size of the map in it
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
@@ -206,22 +210,22 @@ public class GameRunner extends Application
                 // if the keypressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
                 // move the player to the desired location
-                if(input.contains("LEFT") && p.getX() >= moveSpeed + BORDER)
-                    p.move(p.getX() - moveSpeed, p.getY());
+                if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                    p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
                 else
-                if(input.contains("RIGHT") && p.getX() <= windowX - p.getWidth() - moveSpeed - BORDER)
-                    p.move(p.getX() + moveSpeed, p.getY());
+                if(input.contains("RIGHT") && p.getLocation().getX() <= windowX - pWidth - moveSpeed - BORDER)
+                    p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
                 else
-                if(input.contains("DOWN") && p.getY() <= windowY - p.getHeight() - moveSpeed - BORDER)
-                    p.move(p.getX(), p.getY() + moveSpeed);
+                if(input.contains("DOWN") && p.getLocation().getY() <= windowY - pHeight - moveSpeed - BORDER)
+                    p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
                 else
-                if(input.contains("UP") && p.getY() >= moveSpeed + BORDER)
-                    p.move(p.getX(), p.getY() - moveSpeed);
+                if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER)
+                    p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
     
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, windowX, windowY);
-                gc.drawImage(pImage, p.getX(), p.getY(), p.getWidth(), p.getHeight());
+                gc.drawImage(pImage, p.getLocation().getX(), p.getLocation().getY(), pWidth, pHeight);
             }
         }.start();
     
@@ -259,15 +263,17 @@ public class GameRunner extends Application
             vb2.setAlignment(Pos.CENTER);
             
             g3.getChildren().add(vb2);
+
+            int choice;
             
             // when the option 1 button is pressed
             counterB1.setOnAction(new EventHandler<ActionEvent>()
             {
-                @Override public void handle(ActionEve nt e)
+                @Override public void handle(ActionEvent e)
                 {
                     // do the first option
-                    System.out.println("Op 1");
-                    // p.getObstacle().doOption1();
+                    // System.out.println("Op 1");
+                    choice = 0;
                 }
             });
             
@@ -276,10 +282,12 @@ public class GameRunner extends Application
                 @Override public void handle(ActionEvent e)
                 {
                     // do the second option
-                    System.out.println("Op 2");
-                    // p.getObstacle().doOption2();
+                    // System.out.println("Op 2");
+                    choice = 2;
                 }
             });
+            
+            // p.getObstacle().succeedOrFail();
             
             // when the confirm button is pressed
             confirm.setOnAction(new EventHandler<ActionEvent>()
@@ -287,9 +295,8 @@ public class GameRunner extends Application
                 @Override public void handle(ActionEvent e)
                 {
                     // do the first option
-                    System.out.println("conf");
+                    // System.out.println("conf");
                     popup.close();
-                    // p.getObstacle().doOption1();
                 }
             });
             
