@@ -24,6 +24,7 @@ public class Player
     private int health;
     private String name;
     private Point pos;
+    private Point oldPos;
     private Board board;
 
     // make a health/supply increment/decrement
@@ -77,13 +78,23 @@ public class Player
 
     public void move(int x, int y)
     {
+        setOldPosition(); 
         pos.setLocation(x, y);
-        board.move(x, y);
+    }
+    
+    public void setOldPosition()
+    {
+        oldPos.setLocation(pos.getX(), pos.getY());
     }
 
     public Point getLocation()
     {
         return pos;
+    }
+    
+    public Point getOldLocation()
+    {
+        return oldPos; 
     }
 
     public int getHealth()
