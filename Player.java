@@ -81,14 +81,9 @@ public class Player
         board.move(x, y);
     }
 
-    public double getX()
+    public Point getPoint()
     {
-        return pos.getX();
-    }
-
-    public double getY()
-    {
-        return pos.getY();
+        return pos;
     }
 
     public int getHealth()

@@ -14,9 +14,9 @@ public class Desert extends Biomes
 
     public void buildObstacles() //sandstorm, fire, drought, famine, and animal
     {
-        for (int row = 0; row < biome.length; row++)
+        for (int row = 0; row < biome.length/2; row++)
         {
-            for (int col = 0; col < biome[row].length/2; col++)
+            for (int col = 0; col < biome[row].length; col++)
             {
                 if (Math.random() < (1.0/8.0))
                 {
@@ -24,6 +24,19 @@ public class Desert extends Biomes
                         biome[row][col] = new Drought(col, row);
                     else
                         biome[row][col] = new Sandstorm(col, row);
+                }
+            }
+        }
+        for (int i = biome.length/2; i < biome.length; i++)
+        {
+            for (int j = 0; j < biome[i].length; j++)
+            {
+                if (Math.random() < (1.0/8.0))
+                {
+                    if (Math.random() < .5)
+                        biome[i][j] = new Fire(j, i);
+                    else
+                        biome[i][j] = new Famine(j, i);
                 }
             }
         }

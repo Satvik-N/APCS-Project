@@ -10,12 +10,12 @@ public abstract class Biomes
     protected Materials[][] biome;
     public abstract void buildObstacles();
     
-    public boolean isAtObstacle (int x, int y)
+    public boolean isObstacle (int x, int y)
     {
         return biome[y][x] instanceof Obstacles;
     }
     
-    public Materials getObstacle(int x, int y)
+    public Materials getMaterial(int x, int y)
     {
         return biome[y][x];
     }
