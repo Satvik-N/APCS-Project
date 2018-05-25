@@ -20,9 +20,12 @@ public class TimTheEnchanter
     {
         location.setLocation(x, y);
     }
-    public String enteredNewBiome(Player player)
+    public String enteredNewBiome(Player player, Board board)
     {
-        
+        if(!player.getOldLocation().equals(player.getLocation()))
+        {
+            return ("You've entered the " + board.getBiome() + " terrain!");
+        }
     }
 
     /**
@@ -31,9 +34,9 @@ public class TimTheEnchanter
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public void sampleMethod(int y)
     {
         // put your code here
-        return x + y;
+        //return x + y;
     }
 }
