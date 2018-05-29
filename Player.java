@@ -78,7 +78,8 @@ public class Player
 
     public void move(int x, int y)
     {
-        setOldPosition(); 
+        if(pos != null)
+            setOldPosition(); 
         pos.setLocation(x, y);
     }
     
