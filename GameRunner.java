@@ -97,6 +97,8 @@ public class GameRunner extends Application
 
         // create a player
         p = new Player(" ");
+        
+        
         // set size of player
         pWidth = windowX /80.0;
         pHeight = windowY / 30.0;
@@ -166,7 +168,7 @@ public class GameRunner extends Application
     
         // Rectangle with the size of the map in it
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
-    
+        
         // holds the inputs
         ArrayList<String> input = new ArrayList<String>();
     
@@ -208,20 +210,20 @@ public class GameRunner extends Application
                 gc.setFill(new Color(0, 0, 0, 0));
                 gc.fillRect(0, 0, windowX, windowY);
     
-                // if the keypressed is LEFT, RIGHT, DOWN, or UP
+                // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
                 // move the player to the desired location
                 if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
                     p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
                 else
-                if(input.contains("RIGHT") && p.getLocation().getX() <= windowX - pWidth - moveSpeed - BORDER)
-                    p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
-                else
-                if(input.contains("DOWN") && p.getLocation().getY() <= windowY - pHeight - moveSpeed - BORDER)
-                    p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
-                else
-                if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER)
-                    p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                    if(input.contains("RIGHT") && p.getLocation().getX() <= windowX - pWidth - moveSpeed - BORDER)
+                        p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
+                    else
+                        if(input.contains("DOWN") && p.getLocation().getY() <= windowY - pHeight - moveSpeed - BORDER)
+                            p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
+                        else
+                            if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER)
+                                p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
     
         
                 // draw the map and the players again        
@@ -231,78 +233,9 @@ public class GameRunner extends Application
         }.start();
     
         // if(p.isAtObstacle())
-        {
-            Group g3 = new Group();
-            Scene pop = new Scene(g3);
-            Stage popup = new Stage();
+        // {
             
-            popup.setScene(pop);
-            
-            VBox vb2 = new VBox();
-            HBox hb = new HBox();
-            
-            double rand = Math.random() * 2;
-            String s = "";
-            
-            if(rand < 1)
-                s = "Ack";
-            else
-                s = "Oh no";
-            
-            Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
-            
-            
-            
-            Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
-            Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
-            Button confirm = new Button("Confirm");
-            
-            vb2.getChildren().addAll(counterB1, counterB2, confirm);
-            vb2.setPrefWidth(windowX / 4);
-            vb2.setPrefHeight(windowY / 4);
-            
-            vb2.setAlignment(Pos.CENTER);
-            
-            g3.getChildren().add(vb2);
-
-            
-            
-            // when the option 1 button is pressed
-            counterB1.setOnAction(new EventHandler<ActionEvent>()
-            {
-                @Override public void handle(ActionEvent e)
-                {
-                    // do the first option
-                    // System.out.println("Op 1");
-                    choice = 0;
-                }
-            });
-            
-            counterB2.setOnAction(new EventHandler<ActionEvent>()
-            {
-                @Override public void handle(ActionEvent e)
-                {
-                    // do the second option
-                    // System.out.println("Op 2");
-                    choice = 2;
-                }
-            });
-            
-            // p.getObstacle().succeedOrFail();
-            
-            // when the confirm button is pressed
-            confirm.setOnAction(new EventHandler<ActionEvent>()
-            {
-                @Override public void handle(ActionEvent e)
-                {
-                    // do the first option
-                    // System.out.println("conf");
-                    popup.close();
-                }
-            });
-            
-            popup.showAndWait();
-        }
+        // }
     
         // show the window with the game
         game.show();
@@ -423,6 +356,68 @@ public class GameRunner extends Application
 
         // show the instructions window
         credStage.show();
+    }
+    
+    private static void encounter(Stage theStage)
+    {
+        Group g3 = new Group();
+        Scene pop = new Scene(g3);
+        Stage popup = new Stage();
+        
+        popup.setScene(pop);
+        
+        VBox vb2 = new VBox();
+        HBox hb = new HBox();
+        
+        double rand = Math.random() * 2;
+        String s = "";
+        
+        if(rand < 1)
+            s = "Ack";
+        else
+            s = "Oh no";
+        
+        Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
+        
+        
+        
+        Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
+        Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
+        
+        vb2.getChildren().addAll(counterB1, counterB2);
+        vb2.setPrefWidth(windowX / 4);
+        vb2.setPrefHeight(windowY / 4);
+        
+        vb2.setAlignment(Pos.CENTER);
+        
+        g3.getChildren().add(vb2);
+
+        
+        
+        // when the option 1 button is pressed
+        counterB1.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                // do the first option
+                // System.out.println("Op 1");
+                choice = 1;
+            }
+        });
+        
+        counterB2.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                // do the second option
+                // System.out.println("Op 2");
+                choice = 2;
+            }
+        });
+        
+        // p.getObstacle().succeedOrFail(p);
+        
+        popup.showAndWait();
     }
 }
 
