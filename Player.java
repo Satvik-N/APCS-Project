@@ -47,7 +47,7 @@ public class Player
         rope = 0;
         trap = 0;
         name = playerName;
-        pos = new Point((int)(Math.random()*201), (int)(Math.random()*176 + 25));
+        pos = new Point((int)(Math.random()*201),  (int)(Math.random()*176 + 25));
         board = new Board();
     }
 
