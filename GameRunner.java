@@ -60,7 +60,7 @@ public class GameRunner extends Application
         // returns the screen size as a Rectangle2D
         Rectangle2D bounds = Screen.getPrimary().getVisualBounds();
         // save the width and height of the window and scale it by 66%
-        windowY = (int)((double)(bounds.getHeight() * 2) / 3);
+        windowY = (int)(bounds.getHeight());
         windowX = windowY;
 
         // create a VBox to organize the other nodes
