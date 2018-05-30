@@ -266,12 +266,12 @@ public class GameRunner extends Application
         Scene instScene = new Scene(instG);
         instStage.setScene(instScene);
         
-        Image tim = new Image("map_finalfinal1.png");
+        Image tim = new Image("Person.jpeg"); // Replace with picture of Tim
         
-        Canvas timSpace = new Canvas(windowX / 10, windowY / 10);
+        Canvas timSpace = new Canvas(windowX / 7, windowY / 5);
         GraphicsContext gc = timSpace.getGraphicsContext2D();
         
-        gc.drawImage(tim, 0, 0, windowX / 10, windowY / 10);
+        gc.drawImage(tim, 80, 0, windowX / 13, windowY / 10);
 
         // label the window
         Label title = new Label("Instructions:");
