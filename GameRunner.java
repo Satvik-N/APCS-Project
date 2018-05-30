@@ -101,7 +101,7 @@ public class GameRunner extends Application
         
         // set size of player
         pWidth = windowX /80.0;
-        pHeight = windowY / 30.0;
+        pHeight = windowY / 50.0;
         
         // When the start button is pressed
         startB.setOnAction(new EventHandler<ActionEvent>()
@@ -164,7 +164,7 @@ public class GameRunner extends Application
         // person image
         Image pImage = new Image("Person.jpeg");
         // map image
-        Image map = new Image("map_finalfinalfinal.png");
+        Image map = new Image("map_finalfinal1.png");
     
         // Rectangle with the size of the map in it
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
@@ -257,6 +257,7 @@ public class GameRunner extends Application
 
         // create a VBox to organize the texts
         VBox textVB = new VBox(20);
+        HBox pixHB = new HBox(10);
 
         // button to go back to the main menu
         Button backB = new Button("Back");
@@ -264,15 +265,25 @@ public class GameRunner extends Application
         // create and add scene with instructions
         Scene instScene = new Scene(instG);
         instStage.setScene(instScene);
+        
+        Image tim = new Image("Person.jpeg"); // Replace with picture of Tim
+        
+        Canvas timSpace = new Canvas(windowX / 7, windowY / 5);
+        GraphicsContext gc = timSpace.getGraphicsContext2D();
+        
+        gc.drawImage(tim, 80, 0, windowX / 13, windowY / 10);
 
         // label the window
         Label title = new Label("Instructions:");
         // create two 'paragraphs'
-        Text p1 = new Text(" 1 ");
-        Text p2 = new Text(" 2 ");
+        Text p1 = new Text(" Don't die ");
+        Text p2 = new Text(" Live ");
 
+        
+        pixHB.getChildren().addAll(p1, timSpace);
+        
         // add everything to VBox
-        textVB.getChildren().addAll(title, p1, p2, backB);
+        textVB.getChildren().addAll(title, pixHB, p2, backB);
         textVB.setPrefWidth(windowX / 3);
         textVB.setPrefHeight(windowY / 3);
         
@@ -358,6 +369,11 @@ public class GameRunner extends Application
         credStage.show();
     }
     
+    // enteredNewBiome(Player player, Board board)
+    // runIntoObstacle(Player player, Board board)
+    // runIntoSupply(Player player, Board board)
+    // randomGift(Player player, Board board)
+    
     private static void encounter(Stage theStage)
     {
         Group g3 = new Group();
@@ -372,14 +388,8 @@ public class GameRunner extends Application
         double rand = Math.random() * 2;
         String s = "";
         
-        if(rand < 1)
-            s = "Ack";
-        else
-            s = "Oh no";
         
-        Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
-        
-        
+        Text obstacle = new Text("You encountered a "); //+ p.getObstacle().toString());
         
         Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
         Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
