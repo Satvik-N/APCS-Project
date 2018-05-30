@@ -28,7 +28,9 @@ public class TimTheEnchanter
         }
         return "";
     }
-
+    // runIntoObstacle
+    // runIntoSupply
+    // randomGift
     /**
      * An example of a method - replace this comment with your own
      *
