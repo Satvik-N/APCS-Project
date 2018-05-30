@@ -24,8 +24,9 @@ public class TimTheEnchanter
     {
         if(!player.getOldLocation().equals(player.getLocation()))
         {
-            return ("You've entered the " + board.getBiome() + " terrain!");
+            return ("You've entered the " + board.getBiome(player) + " terrain!");
         }
+        return "";
     }
 
     /**
