@@ -17,7 +17,7 @@ public class Rainforest extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/10.0))
+                if (Math.random() < (1.0/8.0))
                 {
                     if (Math.random() < 0.5)
                         biome[row][col] = new Drought(col, row);
@@ -30,7 +30,7 @@ public class Rainforest extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/10.0))
+                if (Math.random() < (1.0/8.0))
                     biome[row][col] = new Animal(col, row);
             }
         }
@@ -44,7 +44,40 @@ public class Rainforest extends Biomes
         }
     }
     public void buildSupplies()
-    {
-        
+    {   
+        for (int row = 0; row < biome.length; row++)
+        {
+            for (int col = 0; col < biome[row].length; col++)
+            {
+                if (!(biome[row][col] == null))
+                {
+                    if (Math.random() < (1.0/10.0))
+                    {
+                        if (Math.random() < (1.0/3.0))
+                        {
+                            if (Math.random() < 0.5)
+                                biome[row][col] = new Wood(20, col, row);
+                            else
+                                biome[row][col] = new Wood(40, col, row);
+                        }
+                        else
+                            if (Math.random() < (1.0/3.0))
+                            {
+                                if (Math.random() < 0.5)
+                                    biome[row][col] = new Food(20, col, row);
+                                else
+                                    biome[row][col] = new Food(40, col, row);
+                            }
+                            else
+                            {
+                                if (Math.random() < 0.5)
+                                    biome[row][col] = new Water(20, col, row);
+                                else
+                                    biome[row][col] = new Water(40, col, row);
+                            }
+                    }
+                }      
+            }
+        }
     }
 }

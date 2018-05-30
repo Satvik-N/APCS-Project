@@ -89,6 +89,13 @@ public class Player
     {
         oldPos.setLocation(pos.getX(), pos.getY());
     }
+    
+    public String playerBiome()
+    {
+        String s;
+        if (getLocation().getY() < 80)
+            s = "DESERT";
+    }
 
     public Point getLocation()
     {
