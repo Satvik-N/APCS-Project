@@ -164,7 +164,7 @@ public class GameRunner extends Application
         // person image
         Image pImage = new Image("Person.jpeg");
         // map image
-        Image map = new Image("map_finalfinalfinal.png");
+        Image map = new Image("map_finalfinal1.png");
     
         // Rectangle with the size of the map in it
         Rectangle mapBox = new Rectangle((int)map.getWidth(), (int)map.getHeight());
