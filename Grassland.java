@@ -11,7 +11,10 @@ public class Grassland extends Biomes
     {
         biome = new Materials[120][100];
     }
-
+    public boolean isAtSupply(int x, int y)
+    {
+        return biome[y][x] instanceof Supplies;
+    }
     public void buildObstacles()
     {
         for (int row = 0; row < biome.length * 0.2; row++)

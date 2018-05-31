@@ -26,6 +26,9 @@ public class Player
     private Point pos;
     private Point oldPos;
     private Board board;
+    private Grassland grassland;
+    private Rainforest rainforest;
+    private Desert desert;
 
     // make a health/supply increment/decrement
 
@@ -50,6 +53,9 @@ public class Player
         pos = new Point((int)(Math.random()*201),  (int)(Math.random()*176 + 25));
         oldPos = pos;
         board = new Board();
+        grassland = new Grassland();
+        rainforest = new Rainforest();
+        desert = new Desert();
     }
 
     public Player(int x, int y, String playerName)
@@ -90,11 +96,43 @@ public class Player
         oldPos.setLocation(pos.getX(), pos.getY());
     }
     
+    public boolean isAtObstacle()
+    {
+        if (playerBiome().equalsIgnoreCase("Desert"))
+        {
+            return desert.isObstacle((int)pos.getX(), (int)pos.getY());
+        }
+        else
+            if (playerBiome().equalsIgnoreCase("Rainforest"))
+            {
+                return rainforest.isObstacle((int)pos.getX(), (int)(pos.getY() - 80));
+            }
+            else
+                return grassland.isObstacle((int)(pos.getX()-100), (int)(pos.getY() - 80));
+    }
+    
+    public boolean isAtSupply()
+    {
+        boolean supply = false;
+        if (playerBiome().equalsIgnoreCase("Rainforest"))
+            supply = rainforest.isAtSupply((int)pos.getX(), (int)(pos.getY() - 80));
+        else
+            if (playerBiome().equalsIgnoreCase("Grassland"))
+                supply = grassland.isAtSupply((int)(pos.getX() - 100), (int)(pos.getY() - 80));
+        return supply;
+    }
+    
     public String playerBiome()
     {
         String s;
         if (getLocation().getY() < 80)
             s = "DESERT";
+        else 
+            if (getLocation().getX() < 100)
+                s = "RAINFOREST";
+            else
+                s = "GRASSLAND";
+        return s;
     }
 
     public Point getLocation()
