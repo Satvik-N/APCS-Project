@@ -112,8 +112,6 @@ public class GameRunner extends Application
                 @Override public void handle(ActionEvent e)
                 {
                     choosePlayer(theStage);
-                    // start the game
-                    startGame(theStage);
                 }
             });
   
@@ -152,8 +150,69 @@ public class GameRunner extends Application
         VBox vb = new VBox();
         HBox hb = new HBox();
         
+        Label title = new Label("CHOOSE YOUR FIGHTER");
         Button pic1 = new Button("Boring Standard Player");
+        Button pic2 = new Button("Bill the Cat");
+        Button pic3 = new Button("The Lantsberger");
+        Button pic4 = new Button("Henry the Stressed");
         
+        hb.getChildren().addAll(pic1, pic2, pic3, pic4);
+        vb.getChildren().addAll(title, hb);
+        
+        g.getChildren().addAll(vb);
+        
+        popup.setScene(s);
+        
+        popup.setTitle("Player");
+        
+        // When the pic1 button is pressed
+        pic1.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                playerImage = "Person.jpeg";
+                popup.close();
+                // start the game
+                startGame(theStage);
+            }
+        });
+        // When the pic1 button is pressed
+        pic2.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                playerImage = "bill the cat.png";
+                popup.close();
+                // start the game
+                startGame(theStage);
+            }
+        });
+        
+        // When the pic1 button is pressed
+        pic3.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                playerImage = "mr. lantsberger.jpg";
+                popup.close();
+                // start the game
+                startGame(theStage);
+            }
+        });
+        
+        // When the pic1 button is pressed
+        pic4.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                playerImage = "henry.PNG";
+                popup.close();
+                // start the game
+                startGame(theStage);
+            }
+        });
+        
+        popup.show();
     }
     
     private static void startGame(Stage theStage)
