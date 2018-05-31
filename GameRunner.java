@@ -100,8 +100,8 @@ public class GameRunner extends Application
         
         
         // set size of player
-        pWidth = windowX /80.0;
-        pHeight = windowY / 50.0;
+        pWidth = windowX /50.0;
+        pHeight = windowY / 31.25;
         
         // When the start button is pressed
         startB.setOnAction(new EventHandler<ActionEvent>()
@@ -162,7 +162,7 @@ public class GameRunner extends Application
     
         // make two new images
         // person image
-        Image pImage = new Image("Person.jpeg");
+        Image pImage = new Image("bill the cat.png");
         // map image
         Image map = new Image("map_finalfinal1.png");
     
@@ -266,18 +266,18 @@ public class GameRunner extends Application
         Scene instScene = new Scene(instG);
         instStage.setScene(instScene);
         
-        Image tim = new Image("Person.jpeg"); // Replace with picture of Tim
+        Image tim = new Image("tim the enchanter.png"); // Replace with picture of Tim
         
-        Canvas timSpace = new Canvas(windowX / 7, windowY / 5);
+        Canvas timSpace = new Canvas(windowX / 4, windowY / 4);
         GraphicsContext gc = timSpace.getGraphicsContext2D();
         
-        gc.drawImage(tim, 80, 0, windowX / 13, windowY / 10);
+        gc.drawImage(tim, 0, 20, windowX / 4, windowY / 4);
 
         // label the window
         Label title = new Label("Instructions:");
         // create two 'paragraphs'
-        Text p1 = new Text(" Don't die ");
-        Text p2 = new Text(" Live ");
+        Text p1 = new Text(" I am an enchanter. ");
+        Text p2 = new Text(" There are some who call me...Tim. ");
 
         
         pixHB.getChildren().addAll(p1, timSpace);
