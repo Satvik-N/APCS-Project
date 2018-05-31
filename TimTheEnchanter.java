@@ -1,4 +1,3 @@
-import java.awt.Point;
 /**
  * Write a description of class TimTheEnchanter here.
  *
@@ -8,38 +7,43 @@ import java.awt.Point;
 public class TimTheEnchanter
 {
     // instance variables - replace the example below with your own
-    private Point location = new Point(0, 0);
     
     // narrator
     // random gifts (food, water, or health)
+    // build supply?
 
     /**
      * Constructor for objects of class TimTheEnchanter
      */
-    public TimTheEnchanter(int x, int y)
+    public TimTheEnchanter()
     {
-        location.setLocation(x, y);
+        
     }
-    public String enteredNewBiome(Player player, Board board)
+    public String enteredNewBiome(Player player)
     {
         if(!player.getOldLocation().equals(player.getLocation()))
         {
-            return ("You've entered the " + board.getBiome(player) + " terrain!");
+            return ("You've entered the " + player.playerBiome() + " terrain!");
         }
         return "";
+    }
+    public String runIntoObstacle(Player player)
+    {
+        return null; 
+    }
+    public String runIntoSupply(Player player)
+    {
+        return null;
+    }
+    public String randomGift(Player player)
+    {
+        return null; 
+    }
+    public String buildSupply(Player player)
+    {
+        return null;
     }
     // runIntoObstacle
     // runIntoSupply
     // randomGift
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public void sampleMethod(int y)
-    {
-        // put your code here
-        //return x + y;
-    }
 }
