@@ -47,6 +47,8 @@ public class GameRunner extends Application
     // Player
     static Player p;
     static int choice;
+    static TimTheEnchanter tim;
+    static String playerImage;
 
     public static void main(String[] args) 
     {
@@ -98,6 +100,7 @@ public class GameRunner extends Application
         // create a player
         p = new Player(" ");
         
+        tim = new TimTheEnchanter();
         
         // set size of player
         pWidth = windowX /50.0;
@@ -108,6 +111,7 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
+                    choosePlayer(theStage);
                     // start the game
                     startGame(theStage);
                 }
@@ -137,6 +141,21 @@ public class GameRunner extends Application
         theStage.show();
     }
     
+    private static void choosePlayer(Stage theStage)
+    {
+        Group g = new Group();
+        Stage popup = new Stage();
+        Scene s = new Scene(g);
+        
+        theStage.close();
+        
+        VBox vb = new VBox();
+        HBox hb = new HBox();
+        
+        Button pic1 = new Button("Boring Standard Player");
+        
+    }
+    
     private static void startGame(Stage theStage)
     {
         // Close the menu window
@@ -162,7 +181,7 @@ public class GameRunner extends Application
     
         // make two new images
         // person image
-        Image pImage = new Image("bill the cat.png");
+        Image pImage = new Image(playerImage);
         // map image
         Image map = new Image("map_finalfinal1.png");
     
@@ -232,11 +251,18 @@ public class GameRunner extends Application
             }
         }.start();
     
-        if(p.isAtObstacle())
+        // enteredNewBiome(Player player)
+        // runIntoObstacle(Player player)
+        // runIntoSupply(Player player)
+        // randomGift(Player player)
+        
+        
+        if(tim.runIntoObstacle(p) != null)
         {
             atObstacle(theStage);
-        } else
-            if(p.isAtSupply())
+        }
+        else
+            if(tim.runIntoSupply(p) != null)
             {
                 atSupply(theStage);
             }
@@ -377,10 +403,7 @@ public class GameRunner extends Application
         credStage.show();
     }
     
-    // enteredNewBiome(Player player, Board board)
-    // runIntoObstacle(Player player, Board board)
-    // runIntoSupply(Player player, Board board)
-    // randomGift(Player player, Board board)
+    
     
     private static void atObstacle(Stage theStage)
     {
