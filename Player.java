@@ -14,14 +14,15 @@ public class Player
     private int wood;
     private int food;
     private int water;
-    private int bowAndArrow;
-    private int spear;
-    private int armor;
-    private int pickaxe;
-    private int sword;
-    private int rope;
-    private int trap;
+    private int bowAndArrow; //lvl 2
+    private int spear; //lvl 1
+    private int armor; //lvl 2
+    private int pickaxe; //lvl 1
+    private int sword; //lvl 2
+    private int rope; //lvl 1
     private int health;
+    private final int WOOD_DECREMENT = 50;
+    private final int METAL_DECREMENT = 50;
     private String name;
     private Point pos;
     private Point oldPos;
@@ -48,7 +49,6 @@ public class Player
         pickaxe = 0;
         sword = 0;
         rope = 0;
-        trap = 0;
         name = playerName;
         pos = new Point((int)(Math.random()*201),  (int)(Math.random()*176 + 25));
         oldPos = pos;
@@ -71,7 +71,6 @@ public class Player
         pickaxe = 0;
         sword = 0;
         rope = 0;
-        trap = 0;
         name = playerName;
         pos = new Point(x, y);
         oldPos = pos;
@@ -98,12 +97,12 @@ public class Player
     
     public boolean isAtObstacle()
     {
-        if (playerBiome().equalsIgnoreCase("Desert"))
+        if (playerBiome(pos).equalsIgnoreCase("Desert"))
         {
             return desert.isObstacle((int)pos.getX(), (int)pos.getY());
         }
         else
-            if (playerBiome().equalsIgnoreCase("Rainforest"))
+            if (playerBiome(pos).equalsIgnoreCase("Rainforest"))
             {
                 return rainforest.isObstacle((int)pos.getX(), (int)(pos.getY() - 80));
             }
@@ -114,21 +113,21 @@ public class Player
     public boolean isAtSupply()
     {
         boolean supply = false;
-        if (playerBiome().equalsIgnoreCase("Rainforest"))
+        if (playerBiome(pos).equalsIgnoreCase("Rainforest"))
             supply = rainforest.isAtSupply((int)pos.getX(), (int)(pos.getY() - 80));
         else
-            if (playerBiome().equalsIgnoreCase("Grassland"))
+            if (playerBiome(pos).equalsIgnoreCase("Grassland"))
                 supply = grassland.isAtSupply((int)(pos.getX() - 100), (int)(pos.getY() - 80));
         return supply;
     }
     
-    public String playerBiome()
+    public String playerBiome(Point pos)
     {
         String s;
-        if (getLocation().getY() < 80)
+        if (pos.getY() < 80)
             s = "DESERT";
         else 
-            if (getLocation().getX() < 100)
+            if (pos.getX() < 100)
                 s = "RAINFOREST";
             else
                 s = "GRASSLAND";
@@ -150,8 +149,100 @@ public class Player
         return health;
     }
 
-    public int getSupplies()
+    public int getMetal()
     {
-        return 0; 
+        return metal;
+    }
+    
+    public int getWood()
+    {
+        return wood;
+    }
+    
+    public int getWater()
+    {
+        return wood;
+    }
+    
+    public int getFood()
+    {
+        return food;
+    }
+    
+    public int getBowAndArrow()
+    {
+        return bowAndArrow;
+    }
+    
+    public int getSpear()
+    {
+        return spear;
+    }
+    
+    public int getArmor()
+    {
+        return armor;
+    }
+    
+    public int getPickaxe()
+    {
+        return pickaxe;
+    }
+    
+    public int getSword()
+    {
+        return sword;
+    }
+    
+    public int getRope()
+    {
+        return rope;
+    }
+    
+    public void addMetal(int myMetal)
+    {
+        metal += myMetal;
+    }
+    
+    public void addWood(int myWood)
+    {
+        wood += myWood;
+    }
+    
+    public void addWater(int myWater)
+    {
+        water += myWater;
+    }
+    
+    public void setBowAndArrow(int amount)
+    {
+        bowAndArrow += amount;
+        wood -= ((amount) * WOOD_DECREMENT * 2);
+        metal -= ((amount) * METAL_DECREMENT);
+    }
+    
+    public void addFood(int myFood)
+    {
+        food += myFood;
+    }
+    
+    public void subtractMetal(int myMetal)
+    {
+        metal -= myMetal;
+    }
+    
+    public void subtractWood(int myWood)
+    {
+        wood -= myWood;
+    }
+    
+    public void subtractWater(int myWater)
+    {
+        water -= myWater;
+    }
+    
+    public void subtractFood(int myFood)
+    {
+        food -= myFood;
     }
 }
