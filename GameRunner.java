@@ -37,7 +37,7 @@ import java.util.ArrayList;
 public class GameRunner extends Application 
 {
     // double to hold the speed of movement of the character
-    static final int moveSpeed = 1;
+    static final int moveSpeed = 4;
     // will hold the size of the window
     static int windowX, windowY;
     // border around the edge where player cannot travel
@@ -232,10 +232,15 @@ public class GameRunner extends Application
             }
         }.start();
     
-        // if(p.isAtObstacle())
-        // {
-            
-        // }
+        if(p.isAtObstacle())
+        {
+            atObstacle(theStage);
+        } else
+            if(p.isAtSupply())
+            {
+                atSupply(theStage);
+            }
+        
     
         // show the window with the game
         game.show();
@@ -374,7 +379,7 @@ public class GameRunner extends Application
     // runIntoSupply(Player player, Board board)
     // randomGift(Player player, Board board)
     
-    private static void encounter(Stage theStage)
+    private static void atObstacle(Stage theStage)
     {
         Group g3 = new Group();
         Scene pop = new Scene(g3);
@@ -388,8 +393,12 @@ public class GameRunner extends Application
         double rand = Math.random() * 2;
         String s = "";
         
+        if(rand < 1)
+            s = "Ack! ";
+        else
+            s = "Oh No! ";
         
-        Text obstacle = new Text("You encountered a "); //+ p.getObstacle().toString());
+        Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
         
         Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
         Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
@@ -426,6 +435,61 @@ public class GameRunner extends Application
         });
         
         // p.getObstacle().succeedOrFail(p);
+        
+        popup.showAndWait();
+    }
+    
+    private static void atSupply(Stage theStage)
+    {
+        Group g3 = new Group();
+        Scene pop = new Scene(g3);
+        Stage popup = new Stage();
+        
+        popup.setScene(pop);
+        
+        VBox vb2 = new VBox();
+        HBox hb = new HBox();
+        
+        double rand = Math.random() * 2;
+        String s = "";
+        
+        if(rand < 1)
+            s = "Cool! ";
+        else
+            s = "Awesome! ";
+        
+        Text obstacle = new Text(s + " =) You found a some supplies");
+        
+        Button supplyB1 = new Button("Take and Leave");
+        Button supplyB2 = new Button("Leave");
+        
+        vb2.getChildren().addAll(supplyB1, supplyB2);
+        vb2.setPrefWidth(windowX / 4);
+        vb2.setPrefHeight(windowY / 4);
+        
+        vb2.setAlignment(Pos.CENTER);
+        
+        g3.getChildren().add(vb2);
+
+        
+        
+        // when the option 1 button is pressed
+        supplyB1.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        
+        supplyB2.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                
+            }
+        });
+        
         
         popup.showAndWait();
     }
