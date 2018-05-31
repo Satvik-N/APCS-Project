@@ -47,7 +47,7 @@ public class GameRunner extends Application
     // Player
     static Player p;
     static int choice;
-    static TimTheEnchanter tim;
+    // static TimTheEnchanter tim;
     static String playerImage;
 
     public static void main(String[] args) 
@@ -100,7 +100,7 @@ public class GameRunner extends Application
         // create a player
         p = new Player(" ");
         
-        tim = new TimTheEnchanter();
+        // tim = new TimTheEnchanter();
         
         // set size of player
         pWidth = windowX /50.0;
@@ -145,21 +145,27 @@ public class GameRunner extends Application
         Stage popup = new Stage();
         Scene s = new Scene(g);
         
+        Canvas c = new Canvas();
+        
         theStage.close();
         
-        VBox vb = new VBox();
+        VBox vb1 = new VBox(10);
+        
         HBox hb = new HBox();
         
-        Label title = new Label("CHOOSE YOUR FIGHTER");
+        GraphicsContext gc = c.getGraphicsContext2D();
+        
+        Label title = new Label("CHOOSE YOUR PLAYER");
         Button pic1 = new Button("Boring Standard Player");
         Button pic2 = new Button("Bill the Cat");
         Button pic3 = new Button("The Lantsberger");
         Button pic4 = new Button("Henry the Stressed");
         
-        hb.getChildren().addAll(pic1, pic2, pic3, pic4);
-        vb.getChildren().addAll(title, hb);
+        Image bsp = new Image("Person.png");
+        Image btc = new Image("bill the cat.png");
+        Image l = new Image("mr. lantsberger.png");
+        Image hs = new Image("henry.PNG");
         
-        g.getChildren().addAll(vb);
         
         popup.setScene(s);
         
@@ -170,13 +176,13 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-                playerImage = "Person.jpeg";
+                playerImage = "Person.png";
                 popup.close();
                 // start the game
                 startGame(theStage);
             }
         });
-        // When the pic1 button is pressed
+        // When the pic2 button is pressed
         pic2.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
@@ -188,19 +194,19 @@ public class GameRunner extends Application
             }
         });
         
-        // When the pic1 button is pressed
+        // When the pic3 button is pressed
         pic3.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
-                playerImage = "mr. lantsberger.jpg";
+                playerImage = "mr. lantsberger.png";
                 popup.close();
                 // start the game
                 startGame(theStage);
             }
         });
         
-        // When the pic1 button is pressed
+        // When the pic4 button is pressed
         pic4.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
@@ -232,6 +238,10 @@ public class GameRunner extends Application
     
         // create a canvas for the game
         Canvas c = new Canvas(windowX, windowY);
+        
+        HBox hb = new HBox();
+        
+        
         // add canvas to group
         root.getChildren().add(c);
     
@@ -316,12 +326,12 @@ public class GameRunner extends Application
         // randomGift(Player player)
         
         
-        if(tim.runIntoObstacle(p) != null)
+        //if(tim.runIntoObstacle(p) != null)
         {
             atObstacle(theStage);
         }
-        else
-            if(tim.runIntoSupply(p) != null)
+        //else
+            // if(tim.runIntoSupply(p) != null)
             {
                 atSupply(theStage);
             }
@@ -359,12 +369,12 @@ public class GameRunner extends Application
         Scene instScene = new Scene(instG);
         instStage.setScene(instScene);
         
-        Image tim = new Image("tim the enchanter.png"); // Replace with picture of Tim
+        Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
         
         Canvas timSpace = new Canvas(windowX / 4, windowY / 4);
         GraphicsContext gc = timSpace.getGraphicsContext2D();
         
-        gc.drawImage(tim, 0, 20, windowX / 4, windowY / 4);
+        gc.drawImage(timImage, 0, 20, windowX / 4, windowY / 4);
 
         // label the window
         Label title = new Label("Instructions:");
