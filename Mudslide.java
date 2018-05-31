@@ -45,14 +45,14 @@ public class Mudslide extends Obstacles
         return 1; 
     }
     
-    /**
-   *  Uses an equation based on health and supply to generate a random number
-   *  If this random number is greater than 20, player succeeds
-   *  If this random number is less than 20, player fails
-   *
-   * @param  Player player  
-   * @return true if player succeeds, false if player fails 
-   */
+   /**
+    *  Uses an equation based on health and supply to generate a random number
+    *  If this random number is greater than 20, player succeeds
+    *  If this random number is less than 20, player fails
+    *
+    * @param  Player player  
+    * @return true if player succeeds, false if player fails 
+    */
     public boolean succeedOrFail(Player player)
     {
         double constant = generateConstant();
@@ -65,5 +65,4 @@ public class Mudslide extends Obstacles
    {
        return "mudslide";
    }
-
 }
