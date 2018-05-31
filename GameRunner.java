@@ -240,6 +240,9 @@ public class GameRunner extends Application
             {
                 atSupply(theStage);
             }
+            
+        if(p.getLocation().getY() == windowY / 10) // if the player is at the wall
+            ;
         
     
         // show the window with the game
@@ -493,5 +496,29 @@ public class GameRunner extends Application
         
         popup.showAndWait();
     }
+    
+    private static void atWall(Stage theStage)
+    {
+        Group g = new Group();
+        Stage popup = new Stage();
+        Scene s = new Scene(g);
+        
+        Button close = new Button("Close");
+        
+        VBox vb = new VBox();
+        Label title = new Label("MESSAGE:");
+        Text warning = new Text("You are now entering passing through, THE WALL");
+        vb.getChildren().addAll(title, warning, close);
+        g.getChildren().add(vb);
+           
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                popup.close();
+            }
+        });
+        
+        popup.showAndWait();
+    }
 }
-
