@@ -25,11 +25,12 @@ public class TimTheEnchanter
         {
             return ("You've entered the " + player.playerBiome() + " terrain!");
         }
-        return "";
+        return null;
     }
     public String runIntoObstacle(Player player)
     {
-        return null; 
+        if(player.isAtObstacle())
+            ; 
     }
     public String runIntoSupply(Player player)
     {
