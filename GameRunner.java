@@ -104,7 +104,7 @@ public class GameRunner extends Application
         
         // set size of player
         pWidth = windowX /50.0;
-        pHeight = windowY / 31.25;
+        pHeight = windowY / 30.0;
         
         // When the start button is pressed
         startB.setOnAction(new EventHandler<ActionEvent>()
@@ -145,20 +145,27 @@ public class GameRunner extends Application
         Stage popup = new Stage();
         Scene s = new Scene(g);
         
-        Canvas c = new Canvas();
+        
         
         theStage.close();
         
-        VBox vb1 = new VBox(10);
+        VBox vb = new VBox(10);
+        vb.setPrefHeight(windowX / 10);
         
-        HBox hb = new HBox();
+        
+        HBox hb = new HBox(10);
+        hb.setPrefHeight(windowX / 13);
+        hb.setPrefWidth(windowX);
+        
+        Canvas c = new Canvas(windowX / , windowX / 5.5);
+        
         
         GraphicsContext gc = c.getGraphicsContext2D();
         
         Label title = new Label("CHOOSE YOUR PLAYER");
         Button pic1 = new Button("Boring Standard Player");
-        Button pic2 = new Button("Bill the Cat");
-        Button pic3 = new Button("The Lantsberger");
+        Button pic2 = new Button("     Bill the Cat     ");
+        Button pic3 = new Button("   Thee Lantsberger    ");
         Button pic4 = new Button("Henry the Stressed");
         
         Image bsp = new Image("Person.png");
@@ -166,6 +173,14 @@ public class GameRunner extends Application
         Image l = new Image("mr. lantsberger.png");
         Image hs = new Image("henry.PNG");
         
+        gc.drawImage(bsp, c.getWidth() / 5 + 5, c.getHeight() * 3 / 5, windowX / 10, windowX / 15);
+        gc.drawImage(btc, c.getWidth() / 2, c.getHeight() * 2 / 3, windowX / 10, windowX / 15);
+        // gc.drawImage(l, c.getWidth() / 3, c.getHeight() * 2 / 3, windowX / 10, windowX / 15);
+        // gc.drawImage(hs, c.getWidth() / 2, c.getHeight() * 2 / 3, windowX / 10, windowX / 15);
+        
+        hb.getChildren().addAll(pic1, pic2, pic3, pic4);
+        vb.getChildren().addAll(title, hb);
+        g.getChildren().addAll(vb, c);
         
         popup.setScene(s);
         
@@ -182,6 +197,7 @@ public class GameRunner extends Application
                 startGame(theStage);
             }
         });
+        
         // When the pic2 button is pressed
         pic2.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -599,7 +615,7 @@ public class GameRunner extends Application
         
         VBox vb = new VBox();
         Label title = new Label("MESSAGE:");
-        Text warning = new Text("You are now entering passing through, THE WALL");
+        Text warning = new Text("You are now entering passing through THE WALL");
         vb.getChildren().addAll(title, warning, close);
         g.getChildren().add(vb);
            
@@ -613,4 +629,4 @@ public class GameRunner extends Application
         
         popup.showAndWait();
     }
-}
+} 
