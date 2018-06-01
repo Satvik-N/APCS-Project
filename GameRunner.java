@@ -143,13 +143,15 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g);
+        Scene s = new Scene(g, windowX * 2 / 3, windowX * 2 / 3);
         
-        Canvas c = new Canvas(windowX / 1.85, windowX / 5.5);
+        popup.sizeToScene(); 
+        
+        Canvas c = new Canvas(windowX * 0.7, windowX / 5.5);
         
         theStage.close();
         
-        VBox vb = new VBox(20);
+        VBox vb = new VBox(s.getWidth() / 15);
         vb.setPrefHeight(windowX / 10);
         
         
@@ -167,18 +169,21 @@ public class GameRunner extends Application
         Button pic2 = new Button("     Bill the Cat     ");
         Button pic3 = new Button("   Thee Lantsberger    ");
         Button pic4 = new Button("  Henry the Stressed  ");
+        Button pic5 = new Button("  Henry the Stressed  ");
         
         Image bsp = new Image("Person.png");
         Image btc = new Image("bill the cat.png");
         Image l = new Image("mr. lantsberger.png");
         Image hs = new Image("henry.PNG");
+        Image zb = new Image("Person.png");
         
         gc.drawImage(bsp, c.getWidth() * 0.05, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(btc, c.getWidth() * 0.33, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(l, c.getWidth() * 0.60, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(l, c.getWidth() * 0.45, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(hs, c.getWidth() * 0.7, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(hs, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         
-        hb.getChildren().addAll(pic1, pic2, pic3, pic4);
+        hb.getChildren().addAll(pic1, pic2, pic3, pic4, pic5);
         vb.getChildren().addAll(title, hb);
         g.getChildren().addAll(c, vb);
         
@@ -342,15 +347,15 @@ public class GameRunner extends Application
         // randomGift(Player player)
         
         
-        //if(tim.runIntoObstacle(p) != null)
-        {
-            atObstacle(theStage);
-        }
-        //else
+        // if(tim.runIntoObstacle(p) != null)
+        // {
+            // atObstacle(theStage);
+        // }
+        // else
             // if(tim.runIntoSupply(p) != null)
-            {
-                atSupply(theStage);
-            }
+            // {
+                // atSupply(theStage);
+            // }
             
         if(p.getLocation().getY() == windowY / 10) // if the player is at the wall
             ;
