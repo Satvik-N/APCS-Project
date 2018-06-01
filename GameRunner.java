@@ -145,19 +145,19 @@ public class GameRunner extends Application
         Stage popup = new Stage();
         Scene s = new Scene(g);
         
-        
+        Canvas c = new Canvas(windowX / 1.85, windowX / 5.5);
         
         theStage.close();
         
-        VBox vb = new VBox(10);
+        VBox vb = new VBox(20);
         vb.setPrefHeight(windowX / 10);
         
         
-        HBox hb = new HBox(10);
-        hb.setPrefHeight(windowX / 13);
-        hb.setPrefWidth(windowX);
+        HBox hb = new HBox(20);
+        hb.setPrefHeight(c.getHeight());
+        hb.setPrefWidth(c.getWidth());
         
-        Canvas c = new Canvas(windowX / , windowX / 5.5);
+        
         
         
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -173,10 +173,10 @@ public class GameRunner extends Application
         Image l = new Image("mr. lantsberger.png");
         Image hs = new Image("henry.PNG");
         
-        gc.drawImage(bsp, c.getWidth() / 5 + 5, c.getHeight() * 3 / 5, windowX / 10, windowX / 15);
-        gc.drawImage(btc, c.getWidth() / 2, c.getHeight() * 2 / 3, windowX / 10, windowX / 15);
-        // gc.drawImage(l, c.getWidth() / 3, c.getHeight() * 2 / 3, windowX / 10, windowX / 15);
-        // gc.drawImage(hs, c.getWidth() / 2, c.getHeight() * 2 / 3, windowX / 10, windowX / 15);
+        gc.drawImage(bsp, c.getWidth() * .03, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(btc, c.getWidth() * .3, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(l, c.getWidth() * .55, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(hs, c.getWidth() * .8, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
         
         hb.getChildren().addAll(pic1, pic2, pic3, pic4);
         vb.getChildren().addAll(title, hb);
