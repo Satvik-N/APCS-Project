@@ -147,7 +147,7 @@ public class GameRunner extends Application
         
         popup.sizeToScene(); 
         
-        Canvas c = new Canvas(windowX * 0.7, windowX / 5.5);
+        Canvas c = new Canvas(s.getWi * 0.7, windowX / 5.5);
         
         theStage.close();
         
@@ -233,6 +233,18 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 playerImage = "henry.PNG";
+                popup.close();
+                // start the game
+                startGame(theStage);
+            }
+        });
+        
+        // When the pic5 button is pressed
+        pic5.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                playerImage = "Zaphod Beeblebrox.png";
                 popup.close();
                 // start the game
                 startGame(theStage);
