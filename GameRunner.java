@@ -166,21 +166,21 @@ public class GameRunner extends Application
         Button pic1 = new Button("Boring Standard Player");
         Button pic2 = new Button("     Bill the Cat     ");
         Button pic3 = new Button("   Thee Lantsberger    ");
-        Button pic4 = new Button("Henry the Stressed");
+        Button pic4 = new Button("  Henry the Stressed  ");
         
         Image bsp = new Image("Person.png");
         Image btc = new Image("bill the cat.png");
         Image l = new Image("mr. lantsberger.png");
         Image hs = new Image("henry.PNG");
         
-        gc.drawImage(bsp, c.getWidth() * .03, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(btc, c.getWidth() * .3, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(l, c.getWidth() * .55, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(hs, c.getWidth() * .8, c.getHeight() * .5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(bsp, c.getWidth() * 0.05, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(btc, c.getWidth() * 0.33, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(l, c.getWidth() * 0.60, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(hs, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         
         hb.getChildren().addAll(pic1, pic2, pic3, pic4);
         vb.getChildren().addAll(title, hb);
-        g.getChildren().addAll(vb, c);
+        g.getChildren().addAll(c, vb);
         
         popup.setScene(s);
         
@@ -358,7 +358,6 @@ public class GameRunner extends Application
     
         // show the window with the game
         game.show();
-
     }
     
     private static void showInstructions(Stage theStage)
