@@ -76,6 +76,11 @@ public class Player
         oldPos = pos;
         board = new Board();
     }
+    
+    public int getSupplies()
+    {
+        return 0;
+    }
 
     public void setName(String s)
     {
