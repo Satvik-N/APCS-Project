@@ -270,8 +270,8 @@ public class GameRunner extends Application
         Canvas c = new Canvas(windowX * .9, windowY * .9);
         
         // set size of player
-        pWidth = windowX /50.0;
-        pHeight = windowY / 30.0;
+        pWidth = windowX /40.0;
+        pHeight = windowY / 20.0;
         
         HBox hb = new HBox(10);
         VBox vb = new VBox(20);
@@ -292,8 +292,9 @@ public class GameRunner extends Application
         Text rope = new Text("Rope: " + p.getRope());
         
         Button craft = new Button("Craft");
-        
-        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, sword, rope, craft);
+        Button eat = new Button("Eat Food");
+        Button drink = new Button("Drink");
+        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, sword, rope, craft, eat, drink);
         
         // create a graphics context
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -410,6 +411,32 @@ public class GameRunner extends Application
             }
         );
         
+        eat.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    try
+                    {
+                        p.subtractFood(10);
+                        p.addHealth(2);
+                    }
+                    catch (IllegalArgumentException ex)
+                    {
+                        showErrorMessage(theStage, ex.toString());
+                    }
+                }
+            }
+        );
+        
+        drink.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    p.subtractWater(10);
+                    p.addHealth(1);
+                }
+            }
+        );
         
         // show the window with the game
         game.show();
@@ -699,7 +726,7 @@ public class GameRunner extends Application
                 }
                 catch(IllegalArgumentException error)
                 {
-                    showErrorMessage(theStage);
+                    showErrorMessage(theStage, error.toString());
                 }
             }
         });
@@ -715,7 +742,7 @@ public class GameRunner extends Application
                 }
                 catch(IllegalArgumentException error)
                 {
-                    showErrorMessage(theStage);
+                    showErrorMessage(theStage, error.toString());
                 }
             }
         });
@@ -731,7 +758,7 @@ public class GameRunner extends Application
                 }
                 catch(IllegalArgumentException error)
                 {
-                    showErrorMessage(theStage);
+                    showErrorMessage(theStage, error.toString());
                 }
             }
         });
@@ -747,7 +774,7 @@ public class GameRunner extends Application
                 }
                 catch(IllegalArgumentException error)
                 {
-                    showErrorMessage(theStage);
+                    showErrorMessage(theStage, error.toString());
                 }
             }
         });
@@ -763,7 +790,7 @@ public class GameRunner extends Application
                 }
                 catch(IllegalArgumentException error)
                 {
-                    showErrorMessage(theStage);
+                    showErrorMessage(theStage, error.toString());
                 }
             }
         });
@@ -779,7 +806,7 @@ public class GameRunner extends Application
                 }
                 catch(IllegalArgumentException error)
                 {
-                    showErrorMessage(theStage);
+                    showErrorMessage(theStage, error.toString());
                 }
             }
         });
@@ -787,14 +814,14 @@ public class GameRunner extends Application
         popup.showAndWait();
     }
     
-    private static void showErrorMessage(Stage theStage)
+    private static void showErrorMessage(Stage theStage, String err)
     {
         Group g = new Group();
         Stage s = new Stage();
         Scene error = new Scene(g);
         
         s.setTitle("Error");
-        Text msg = new Text("Error: Not enough materials");
+        Text msg = new Text("Error: " + err);
         
         g.getChildren().add(msg);
         
