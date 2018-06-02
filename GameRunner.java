@@ -47,7 +47,7 @@ public class GameRunner extends Application
     // Player
     static Player p;
     static int choice;
-    // static TimTheEnchanter tim;
+    static TimTheEnchanter tim;
     static String playerImage;
 
     public static void main(String[] args) 
@@ -100,7 +100,7 @@ public class GameRunner extends Application
         // create a player
         p = new Player(" ");
         
-        // tim = new TimTheEnchanter();
+        tim = new TimTheEnchanter();
         
         // set size of player
         pWidth = windowX /50.0;
@@ -359,17 +359,20 @@ public class GameRunner extends Application
         // randomGift(Player player)
         
         
-        // if(tim.runIntoObstacle(p) != null)
-        // {
-            // atObstacle(theStage);
-        // }
-        // else
-            // if(tim.runIntoSupply(p) != null)
-            // {
-                // atSupply(theStage);
-            // }
+        if(tim.runIntoObstacle(p) != null)
+        {
+            atObstacle(theStage);
+        }
+        else
+            if(tim.runIntoSupply(p) != null)
+            {
+                atSupply(theStage);
+            }
             
-        // if(tim.enteredNewBiome(p))
+        if(tim.enteredNewBiome(p) != null)
+            biomeChange(theStage, tim.enteredNewBiome(p));
+        if(tim.randomGift(p) != null)
+            giftMessage(theStage, tim.randomGift(p));
         
         
     
@@ -504,8 +507,6 @@ public class GameRunner extends Application
         credStage.show();
     }
     
-    
-    
     private static void atObstacle(Stage theStage)
     {
         Group g3 = new Group();
@@ -621,18 +622,47 @@ public class GameRunner extends Application
         popup.showAndWait();
     }
     
-    private static void atWall(Stage theStage)
+    private static void biomeChange(Stage theStage, String biome)
     {
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
         
+        popup.setScene(s);
+        
         Button close = new Button("Close");
         
         VBox vb = new VBox();
         Label title = new Label("MESSAGE:");
-        Text warning = new Text("You are now entering passing through THE WALL");
+        Text warning = new Text("You are now entering " + biome);
         vb.getChildren().addAll(title, warning, close);
+        g.getChildren().add(vb);
+        
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                popup.close();
+            }
+        });
+        
+        popup.showAndWait();
+    }
+    
+    private static void giftMessage(Stage theStage, String gift)
+    {
+        Group g = new Group();
+        Stage popup = new Stage();
+        Scene s = new Scene(g);
+        
+        popup.setScene(s);
+        
+        Button close = new Button("Close");
+        
+        VBox vb = new VBox();
+        Label title = new Label("MESSAGE:");
+        Text msg = new Text("Tim granted you a gift. You got " + gift);
+        vb.getChildren().addAll(title, msg, close);
         g.getChildren().add(vb);
            
         close.setOnAction(new EventHandler<ActionEvent>()
@@ -645,4 +675,48 @@ public class GameRunner extends Application
         
         popup.showAndWait();
     }
+    
+    private static void finalObstacle(Stage theStage)
+    {
+        Group g = new Group();
+        Stage popup = new Stage();
+        Scene confirmScene = new Scene(g);
+        
+        popup.setScene(confirmScene);
+        
+        Button confirm = new Button("Yes");
+        Button deny = new Button("Nah");
+        
+        VBox vb = new VBox(10);
+        HBox buttonHB = new HBox(15);
+        
+        Label title = new Label("MESSAGE:");
+        Text msg = new Text("Are you sure you want to enter the final obstacle?");
+        Text msg2 = new Text("Once you accept, there is no going back.");
+        
+        buttonHB.getChildren().addAll(confirm, deny);
+        
+        vb.getChildren().addAll(title, msg, msg2, buttonHB);
+        g.getChildren().add(vb);
+           
+        deny.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                popup.close();
+            }
+        });
+        
+        confirm.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                Scene finalBoss = new Scene(g);
+                ;
+            }
+        });
+        
+        popup.showAndWait();
+    }
+    
 } 
