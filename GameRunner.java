@@ -399,7 +399,7 @@ public class GameRunner extends Application
             biomeChange(theStage, tim.enteredNewBiome(p));
         if(tim.randomGift(p) != null)
             giftMessage(theStage, tim.randomGift(p));
-            
+        
         craft.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
@@ -410,7 +410,6 @@ public class GameRunner extends Application
         );
         
         
-    
         // show the window with the game
         game.show();
     }
@@ -676,7 +675,7 @@ public class GameRunner extends Application
         
         HBox buttons = new HBox(20);
         
-        buttons.getChildren().addAll(close);
+        buttons.getChildren().addAll(bowArrow, spear, armor, pick, sword, rope, close);
         
         g.getChildren().add(buttons);
            
