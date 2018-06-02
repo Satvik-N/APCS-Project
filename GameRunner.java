@@ -272,12 +272,28 @@ public class GameRunner extends Application
         // create a canvas for the game
         Canvas c = new Canvas(windowX, windowY);
         
-        HBox hb = new HBox();
+        HBox hb = new HBox(10);
+        VBox vb = new VBox(20);
         
-        
+        hb.getChildren().addAll(c, vb);
         // add canvas to group
-        root.getChildren().add(c);
-    
+        root.getChildren().add(hb);
+        
+        Text Health = new Text("Health: " + p.getWater() + "\n");
+        Text wood = new Text("Wood: " + p.getWood());
+        Text metal = new Text("Metal: " + p.getMetal());
+        Text food = new Text("Food: " + p.getFood());
+        Text water = new Text("Water: " + p.getWater());
+        Text bAndA = new Text("Bow And Arrow: " + p.getBowAndArrow());
+        Text armor = new Text("Armor: " + p.getArmor());
+        Text pick = new Text("Pickaxe: " + p.getPickaxe());
+        Text sword = new Text("Sword: " + p.getSword());
+        Text rope = new Text("Rope: " + p.getRope());
+        
+        Button craft = new Button("Craft");
+        
+        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, sword, rope, craft);
+        
         // create a graphics context
         GraphicsContext gc = c.getGraphicsContext2D();
     
@@ -350,6 +366,16 @@ public class GameRunner extends Application
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, windowX, windowY);
                 gc.drawImage(pImage, p.getLocation().getX(), p.getLocation().getY(), pWidth, pHeight);
+                
+                wood.setText("Wood: " + p.getWood());
+                metal.setText("Metal: " + p.getMetal());
+                food.setText("Food: " + p.getFood());
+                water.setText("Water: " + p.getWater());
+                bAndA.setText("Bow And Arrow: " + p.getBowAndArrow());
+                armor.setText("Armor: " + p.getArmor());
+                pick.setText("Pickaxe: " + p.getPickaxe());
+                sword.setText("Sword: " + p.getSword());
+                rope.setText("Rope: " + p.getRope());
             }
         }.start();
     
@@ -373,6 +399,15 @@ public class GameRunner extends Application
             biomeChange(theStage, tim.enteredNewBiome(p));
         if(tim.randomGift(p) != null)
             giftMessage(theStage, tim.randomGift(p));
+            
+        craft.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    showCraftMenu(theStage);
+                }
+            }
+        );
         
         
     
@@ -622,6 +657,149 @@ public class GameRunner extends Application
         popup.showAndWait();
     }
     
+    private static void showCraftMenu(Stage theStage)
+    {
+        Group g = new Group();
+        Stage popup = new Stage();
+        Scene s = new Scene(g);
+        
+        popup.setScene(s);
+        
+        
+        Button close = new Button("Close");
+        Button bowArrow = new Button("Bow and Arrow");
+        Button spear = new Button("Spear");
+        Button armor = new Button("Armor");
+        Button pick = new Button("Pickaxe");
+        Button sword = new Button("Sword");
+        Button rope = new Button("Rope");
+        
+        HBox buttons = new HBox(20);
+        
+        buttons.getChildren().addAll(close);
+        
+        g.getChildren().add(buttons);
+           
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                popup.close();
+            }
+        });
+        
+        bowArrow.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                try
+                {
+                    p.addBowAndArrow(1);
+                }
+                catch(IllegalArgumentException error)
+                {
+                    showErrorMessage(theStage);
+                }
+            }
+        });
+        
+        
+        spear.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                try
+                {
+                    p.addSpear(1);
+                }
+                catch(IllegalArgumentException error)
+                {
+                    showErrorMessage(theStage);
+                }
+            }
+        });
+        
+        
+        armor.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                try
+                {
+                    p.addArmor(1);
+                }
+                catch(IllegalArgumentException error)
+                {
+                    showErrorMessage(theStage);
+                }
+            }
+        });
+        
+        
+        pick.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                try
+                {
+                    p.addPickaxe(1);
+                }
+                catch(IllegalArgumentException error)
+                {
+                    showErrorMessage(theStage);
+                }
+            }
+        });
+        
+        
+        sword.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                try
+                {
+                    p.addSword(1);
+                }
+                catch(IllegalArgumentException error)
+                {
+                    showErrorMessage(theStage);
+                }
+            }
+        });
+        
+        
+        rope.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                try
+                {
+                    p.addRope(1);
+                }
+                catch(IllegalArgumentException error)
+                {
+                    showErrorMessage(theStage);
+                }
+            }
+        });
+        
+        popup.showAndWait();
+    }
+    
+    private static void showErrorMessage(Stage theStage)
+    {
+        Group g = new Group();
+        Stage s = new Stage();
+        Scene error = new Scene(g);
+        
+        s.setTitle("Error");
+        Text msg = new Text("Error: Not enough materials");
+        
+        g.getChildren().add(msg);
+        
+        s.showAndWait();
+    }
+    
     private static void biomeChange(Stage theStage, String biome)
     {
         Group g = new Group();
@@ -691,7 +869,7 @@ public class GameRunner extends Application
         HBox buttonHB = new HBox(15);
         
         Label title = new Label("MESSAGE:");
-        Text msg = new Text("Are you sure you want to enter the final obstacle?");
+        Text msg = new Text("Are you sure you want to enter the final battle?");
         Text msg2 = new Text("Once you accept, there is no going back.");
         
         buttonHB.getChildren().addAll(confirm, deny);
@@ -716,6 +894,8 @@ public class GameRunner extends Application
                 Scene finalBoss = new Scene(g);
                 popup.setScene(finalBoss);
                 
+                popup.setTitle("Final Boss");
+                
                 
                 
                 popup.show();
@@ -724,5 +904,4 @@ public class GameRunner extends Application
         
         popup.showAndWait();
     }
-    
 } 
