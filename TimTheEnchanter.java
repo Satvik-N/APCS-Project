@@ -35,6 +35,7 @@ public class TimTheEnchanter
     }
     public String fightObstacle(Player player)
     {
+        return "hello";
     }
     public String runIntoSupply(Player player)
     {
@@ -42,6 +43,7 @@ public class TimTheEnchanter
     }
         public String collectSupply(Player player)
     {
+        return null;
     }
     public String randomGift(Player player)
     {
@@ -61,7 +63,7 @@ public class TimTheEnchanter
                     else
                     {
                         player.addFood(100);
-                        return "You look hungry... here's 100 morefood!";
+                        return "You look hungry... here's 100 more food!";
                     }
                 }
                 if(player.getHealth() < 50)
@@ -73,7 +75,7 @@ public class TimTheEnchanter
                     else
                     {
                         player.addFood(80);
-                        return "You look hungry... here's 80 morefood!";
+                        return "You look hungry... here's 80 more food!";
                     }
             }
             if(player.getHealth() < 50)
