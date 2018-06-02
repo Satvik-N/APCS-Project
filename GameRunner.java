@@ -143,11 +143,11 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g, windowX * 2 / 3, windowX * 2 / 3);
+        Scene s = new Scene(g, windowX * 2 / 3, windowX * 1 / 3);
         
         popup.sizeToScene(); 
         
-        Canvas c = new Canvas(s.getWi * 0.7, windowX / 5.5);
+        Canvas c = new Canvas(s.getWidth() * 0.7, windowX / 5.5);
         
         theStage.close();
         
@@ -369,8 +369,8 @@ public class GameRunner extends Application
                 // atSupply(theStage);
             // }
             
-        if(p.getLocation().getY() == windowY / 10) // if the player is at the wall
-            ;
+        // if(tim.enteredNewBiome(p))
+        
         
     
         // show the window with the game

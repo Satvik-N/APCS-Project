@@ -23,7 +23,7 @@ public class TimTheEnchanter
     {
         if(!player.getOldLocation().equals(player.getLocation()))
         {
-            return ("You've entered the " + player.playerBiome() + " terrain!");
+            return ("You've entered the " + player.playerBiome(player.getLocation()) + " terrain!");
         }
         return null;
     }
@@ -31,6 +31,7 @@ public class TimTheEnchanter
     {
         if(player.isAtObstacle())
             ; 
+        return null;
     }
     public String runIntoSupply(Player player)
     {
