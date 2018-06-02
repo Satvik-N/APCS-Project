@@ -711,8 +711,14 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                theStage.close();
+                
                 Scene finalBoss = new Scene(g);
-                ;
+                popup.setScene(finalBoss);
+                
+                
+                
+                popup.show();
             }
         });
         
