@@ -264,24 +264,62 @@ public class Player
         food += myFood;
     }
     
+    public void addHealth(int myHealth)
+    {
+        health += myHealth; 
+    }
+    
+    public void subtractHealth(int myHealth)
+    {
+        health -= myHealth; 
+    }
+    
     public void subtractMetal(int myMetal)
     {
-        metal -= myMetal;
+        if(metal - myMetal < 0)
+        {
+            throw new IllegalArgumentException("You don't have enough metal"); 
+        }
+        else
+        {
+            metal -= myMetal;
+        }
     }
     
     public void subtractWood(int myWood)
     {
-        wood -= myWood;
+        if(wood - myWood < 0)
+        {
+            throw new IllegalArgumentException("You don't have enough wood"); 
+        }
+        else
+        {
+            wood -= myWood;
+        }
     }
     
     public void subtractWater(int myWater)
     {
-        water -= myWater;
+        if(water - myWater < 0)
+        {
+            throw new IllegalArgumentException("You already drank all your water"); 
+        }
+        else
+        {
+            water -= myWater;
+        }
     }
     
     public void subtractFood(int myFood)
     {
-        food -= myFood;
+        if(food - myFood < 0)
+        {
+            throw new IllegalArgumentException("You already ate all your food"); 
+        }
+        else
+        {
+            food -= myFood;
+        }
     }
     
     public void subtractBowAndArrow(int amount)

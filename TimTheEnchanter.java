@@ -21,7 +21,7 @@ public class TimTheEnchanter
     }
     public String enteredNewBiome(Player player)
     {
-        if(!player.getOldLocation().equals(player.getLocation()))
+        if(!player.playerBiome(player.getLocation()).equals(player.playerBiome(player.getOldLocation())))
         {
             return ("You've entered the " + player.playerBiome(player.getLocation()) + " terrain!");
         }
@@ -31,14 +31,63 @@ public class TimTheEnchanter
     {
         if(player.isAtObstacle())
             ; 
-        return null;
+            return null;
+    }
+    public String fightObstacle(Player player)
+    {
     }
     public String runIntoSupply(Player player)
     {
         return null;
     }
+        public String collectSupply(Player player)
+    {
+    }
     public String randomGift(Player player)
     {
+        double random = Math.random();
+        if(random >= 0.9)
+        {
+            if(random >= 0.95)
+            {
+                if(random >= 0.98)
+                {
+                    if(player.getHealth() < 50)
+                    {
+                        player.addHealth(45); 
+                        return "You've been working hard... here's 45 more health!";
+                    }
+                        
+                    else
+                    {
+                        player.addFood(100);
+                        return "You look hungry... here's 100 morefood!";
+                    }
+                }
+                if(player.getHealth() < 50)
+                    {
+                        player.addHealth(25); 
+                        return "You've been working hard... here's 25 more health!";
+                    }
+                        
+                    else
+                    {
+                        player.addFood(80);
+                        return "You look hungry... here's 80 morefood!";
+                    }
+            }
+            if(player.getHealth() < 50)
+                    {
+                        player.addHealth(10); 
+                        return "You've been working hard... here's 10 more health!";
+                    }
+                        
+                    else
+                    {
+                        player.addFood(50);
+                        return "You look hungry... here's 50 more food!";
+                    }
+        }
         return null; 
     }
     public String buildSupply(Player player)
