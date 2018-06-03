@@ -16,7 +16,7 @@ public class TimTheEnchanter
     {
         if(!player.playerBiome(player.getLocation()).equals(player.playerBiome(player.getOldLocation())))
         {
-            return ("You've entered the " + player.playerBiome(player.getLocation()) + " terrain!");
+            return ("You've entered the " + player.playerBiome(player.getLocation()).toString() + " terrain!");
         }
         return null;
     }
@@ -31,9 +31,17 @@ public class TimTheEnchanter
         }
         return null;
     }
-    public String fightObstacle(Player player, boolean choice)
+    public String fightObstacle(Player p, boolean choice)
     {
-        return "hello";
+        Obstacles obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
+        if(obstacle.succeedOrFail(p, choice))
+        {
+            return "Good work! You succeeded against the obstacle!";
+        }
+        else
+        {
+            return "Ouch... you failed the obstacle"; 
+        }
     }
     public String runIntoSupply(Player p)
     {
@@ -81,9 +89,9 @@ public class TimTheEnchanter
     public String randomGift(Player player)
     {
         double random = Math.random();
-        if(random >= 0.9)
+        if(random >= 0.96)
         {
-            if(random >= 0.95)
+            if(random >= 0.97)
             {
                 if(random >= 0.98)
                 {
@@ -128,5 +136,29 @@ public class TimTheEnchanter
     public Materials returnMaterial(Player p)
     {
         return p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
+    }
+    public String die(Player p)
+    {
+        if(p.getHealth() <= 0)
+        {
+            return "I had faith in you... but you failed... you failure";
+        }
+        return null; 
+    }
+    public String win(Player p)
+    {
+        if(p.getLocation().getY() == 0)
+        {
+           Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
+           if(obstacle.succeedOrFail(p, true))
+           {
+               return "Congratulations! You have escaped!";
+           }
+           else
+           {
+               return "LOSING AT THE FINAL STEP... you fool... come up with another strategy and try again...";
+            }
+        }
+        return null; 
     }
 }
