@@ -53,7 +53,7 @@ public class Grassland extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (!(biome[row][col] == null))
+                if ((biome[row][col] == null))
                 {
                     if (Math.random() < (1.0/10.0))
                     {

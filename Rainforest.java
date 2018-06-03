@@ -7,53 +7,74 @@
  */
 public class Rainforest extends Biomes
 {
+    /**
+     * Constructor Rainforest() constructs a rainforest object
+     */
     public Rainforest()
     {
-        biome = new Materials[120][100];
+        biome = new Materials[120][100]; //size of rainforest biome
     }
+    /**
+     *  <b>Summary</b> Method isAtSupply() - determines whether there's a supply at given location
+     *  @param x x coordinate of location
+     *  @param y y coordinate of location
+     *  @return boolean that tells whether there's a supply at the location
+     */
     public boolean isAtSupply(int x, int y)
     {
-        return biome[y][x] instanceof Supplies;
+        //instanceof operator tells whether object is instance of a certain class
+        return biome[y][x] instanceof Supplies; 
     }
+    /**
+     * <b>Summary</b> Method buildObstacles() - builds obstacles in rainforest biome
+     */
     public void buildObstacles()
     {
+        //first 1/5 of rainforest level 3 obstacles
         for (int row = 0; row < biome.length * 0.2; row++)
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/8.0))
+                if (Math.random() < (1.0/8.0)) //randomly, every 8 spaces
                 {
-                    if (Math.random() < 0.5)
+                    if (Math.random() < 0.5) //decides between the two level 3 obstacles
+                        //row and col must switch spots to make an (x, y) Point
                         biome[row][col] = new Drought(col, row);
                     else
                         biome[row][col] = new Sandstorm(col, row);
                 }
             }
         }
+        //2/5 of the board with Level 2 Obstacles
         for (int row = 24; row < biome.length * 0.4 + 24; row++)
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/8.0))
-                    biome[row][col] = new Animal(col, row);
+                if (Math.random() < (1.0/8.0)) //occur every 8 spaces randomly
+                    biome[row][col] = new Animal(col, row); //col and row switch spots to create an (x, y) point
             }
         }
+        //2/5 of the board with Level 1 Obstacles
         for (int row = 72; row < biome.length * 0.4 + 72; row++)
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/8.0))
-                    biome[row][col] = new Mudslide(col, row);
+                if (Math.random() < (1.0/8.0)) //occur every 8 spaces
+                    biome[row][col] = new Mudslide(col, row); //col and row switch spots
             }
         }
     }
+    /**
+     * <b>Summary</b> Method buildSupplies() - build supplies in rainforest biome
+     */
     public void buildSupplies()
     {   
+        //builds wood, food, and water supplies
         for (int row = 0; row < biome.length; row++)
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (!(biome[row][col] == null))
+                if (biome[row][col] == null)
                 {
                     if (Math.random() < (1.0/10.0))
                     {
