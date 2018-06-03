@@ -24,6 +24,8 @@ public class Supplies extends Materials
     /**
      * Constructor that initializes myAmount to the amount specified
      * @param amount amount of supply initially
+     * @param x x coordinate of supply
+     * @param y y coordinate of supply
      */
     public Supplies(int amount, double x, double y)
     {
@@ -49,6 +51,7 @@ public class Supplies extends Materials
     
     /**
      * <b>Summary</b> Method getPos() - returns position of the supply
+     * @return Point representing location of player
      */
     public Point2D.Double getPos()
     {
