@@ -371,30 +371,86 @@ public class GameRunner extends Application
                 // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
                 // move the player to the desired location
-                if (p.playerBiome(p.getLocation()).toString().equals("Desert"))
-                if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("desert"))
                 {
-                    p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
-                    checkForStuff(game, p);
-                }
-                else
-                    if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                    if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
                     {
-                        p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
+                        p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
                         checkForStuff(game, p);
                     }
                     else
-                        if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                        if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
                         {
-                            p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
+                            p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
                             checkForStuff(game, p);
                         }
                         else
-                            if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                            if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
                             {
-                                p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                                p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
                                 checkForStuff(game, p);
                             }
+                            else
+                                if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                                {
+                                    p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                                    checkForStuff(game, p);
+                                }
+                }
+                else
+                    if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("rainforest"))
+                    {
+                        if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                        {
+                            p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY() + (int)c.getHeight()/2);
+                            checkForStuff(game, p);
+                        }
+                        else
+                            if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                            {
+                                p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY() + (int)c.getHeight()/2);
+                                checkForStuff(game, p);
+                            }
+                            else
+                                if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                                {
+                                    p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed + (int)c.getHeight()/2);
+                                    checkForStuff(game, p);
+                                }
+                                else
+                                    if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                                    {
+                                        p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed + (int)c.getHeight()/2);
+                                        checkForStuff(game, p);
+                                    }
+                    }
+                    else
+                        if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("grassland"))
+                        {
+                            if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                            {
+                                p.move((int)p.getLocation().getX() - moveSpeed + (int)c.getHeight()/2, (int)p.getLocation().getY() + (int)c.getHeight()/2);
+                                checkForStuff(game, p);
+                            }
+                            else
+                                if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                                {
+                                    p.move((int)p.getLocation().getX() + moveSpeed + (int)c.getHeight()/2, (int)p.getLocation().getY() + (int)c.getHeight()/2);
+                                    checkForStuff(game, p);
+                                }
+                                else
+                                    if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                                    {
+                                        p.move((int)p.getLocation().getX() + (int)c.getHeight()/2, (int)p.getLocation().getY() + moveSpeed + (int)c.getHeight()/2);
+                                        checkForStuff(game, p);
+                                    }
+                                    else
+                                        if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                                        {
+                                            p.move((int)p.getLocation().getX() + (int)c.getHeight()/2,(int)p.getLocation().getY() - moveSpeed + (int)c.getHeight()/2);
+                                            checkForStuff(game, p);
+                                        }
+                        }
     
         
                 // draw the map and the players again        
@@ -528,7 +584,7 @@ public class GameRunner extends Application
         // label the window
         Label title = new Label("Instructions:");
         // create two 'paragraphs'
-        Text p1 = new Text(" I am an enchanter. ");
+        Text p1 = new Text(" I...am an enchanter. ");
         Text p2 = new Text(" There are some who call me...Tim. ");
 
         
