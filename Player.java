@@ -18,7 +18,7 @@ public class Player
     private int spear; //lvl 1
     private int armor; //lvl 2
     private int pickaxe; //lvl 1
-    private int sword; //lvl 2
+    private int fireProofShield; //lvl 2
     private int rope; //lvl 1
     private int health;
     private final int WOOD_DECREMENT = 50;
@@ -47,7 +47,7 @@ public class Player
         spear = 0;
         armor = 0;
         pickaxe = 0;
-        sword = 0;
+        fireProofShield = 0;
         rope = 0;
         name = playerName;
         pos = new Point((int)(Math.random()*201),  (int)(Math.random()*176 + 25));
@@ -69,7 +69,7 @@ public class Player
         spear = 0;
         armor = 0;
         pickaxe = 0;
-        sword = 0;
+        fireProofShield = 0;
         rope = 0;
         name = playerName;
         pos = new Point(x, y);
@@ -194,9 +194,9 @@ public class Player
         return pickaxe;
     }
     
-    public int getSword()
+    public int getFireProofShield()
     {
-        return sword;
+        return fireProofShield;
     }
     
     public int getRope()
@@ -249,7 +249,7 @@ public class Player
             throw new IllegalArgumentException("You don't have enough metal");
         subtractWood((amount) * WOOD_DECREMENT);
         subtractMetal((amount) * METAL_DECREMENT * 2);
-        sword += amount;
+        fireProofShield += amount;
     }
     
     public void addRope(int amount)
@@ -338,9 +338,9 @@ public class Player
         pickaxe -= amount;
     }
     
-    public void subtractSword (int amount)
+    public void subtractFireProofShield (int amount)
     {
-        sword -= amount;
+        fireProofShield -= amount;
     }
     
     public void subtractRope (int amount)
