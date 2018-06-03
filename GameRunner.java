@@ -394,6 +394,10 @@ public class GameRunner extends Application
                 pick.setText("Pickaxe: " + p.getPickaxe());
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
+                
+                
+        
+                
             }
         }.start();
     
@@ -401,7 +405,6 @@ public class GameRunner extends Application
         // runIntoObstacle(Player player)
         // runIntoSupply(Player player)
         // randomGift(Player player)
-        
         
         if(tim.runIntoObstacle(p) != null)
         {
@@ -417,6 +420,8 @@ public class GameRunner extends Application
             biomeChange(theStage, tim.enteredNewBiome(p));
         if(tim.randomGift(p) != null)
             giftMessage(theStage, tim.randomGift(p));
+        
+        
         
         craft.setOnAction(new EventHandler<ActionEvent>()
             {
