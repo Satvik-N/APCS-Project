@@ -26,7 +26,6 @@ public class Player
     private String name;
     private Point pos;
     private Point oldPos;
-    private Board board;
     private Grassland grassland;
     private Rainforest rainforest;
     private Desert desert;
@@ -52,7 +51,6 @@ public class Player
         name = playerName;
         pos = new Point((int)(Math.random()*201),  (int)(Math.random()*176 + 25));
         oldPos = pos;
-        board = new Board();
         grassland = new Grassland();
         rainforest = new Rainforest();
         desert = new Desert();
@@ -74,7 +72,6 @@ public class Player
         name = playerName;
         pos = new Point(x, y);
         oldPos = pos;
-        board = new Board();
     }
     
     public int getSupplies()

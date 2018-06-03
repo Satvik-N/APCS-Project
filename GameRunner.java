@@ -288,14 +288,14 @@ public class GameRunner extends Application
         Text bAndA = new Text("Bow And Arrow: " + p.getBowAndArrow());
         Text armor = new Text("Armor: " + p.getArmor());
         Text pick = new Text("Pickaxe: " + p.getPickaxe());
-        Text sword = new Text("Sword: " + p.getSword());
+        Text FireProofShield = new Text("FireProofShield: " + p.getFireProofShield());
         Text rope = new Text("Rope: " + p.getRope());
         
         Button craft = new Button("Craft");
         Button eat = new Button("Eat Food");
         Button drink = new Button("Drink");
         Button instruct = new Button("Instructions");
-        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, sword, rope, craft, eat, drink, instruct);
+        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, FireProofShield, rope, craft, eat, drink, instruct);
         
         // create a graphics context
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -377,7 +377,7 @@ public class GameRunner extends Application
                 bAndA.setText("Bow And Arrow: " + p.getBowAndArrow());
                 armor.setText("Armor: " + p.getArmor());
                 pick.setText("Pickaxe: " + p.getPickaxe());
-                sword.setText("Sword: " + p.getSword());
+                FireProofShield.setText("FireProofShield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
             }
         }.start();
@@ -765,13 +765,13 @@ public class GameRunner extends Application
         Button spear = new Button("Spear");
         Button armor = new Button("Armor");
         Button pick = new Button("Pickaxe");
-        Button sword = new Button("Sword");
+        Button FireProofShield = new Button("FireProofShield");
         Button rope = new Button("Rope");
         
         HBox buttons = new HBox(20);
         VBox vb = new VBox(30);
         
-        buttons.getChildren().addAll(bowArrow, spear, armor, pick, sword, rope);
+        buttons.getChildren().addAll(bowArrow, spear, armor, pick, FireProofShield, rope);
         vb.getChildren().addAll(buttons, close);
         g.getChildren().add(vb);
            
@@ -847,13 +847,13 @@ public class GameRunner extends Application
         });
         
         
-        sword.setOnAction(new EventHandler<ActionEvent>()
+        FireProofShield.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
                 try
                 {
-                    p.addSword(1);
+                    p.addFireProofShield(1);
                 }
                 catch(IllegalArgumentException error)
                 {
