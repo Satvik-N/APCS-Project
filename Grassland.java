@@ -84,4 +84,9 @@ public class Grassland extends Biomes
             }
         }
     }
+    
+    public String toString() 
+    {
+        return "GRASSLAND";
+    }
 }

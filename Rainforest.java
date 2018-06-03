@@ -105,4 +105,9 @@ public class Rainforest extends Biomes
             }
         }
     }
+    
+    public String toString()
+    {
+        return "RAINFOREST";
+    }
 }
