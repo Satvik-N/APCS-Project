@@ -679,8 +679,8 @@ public class GameRunner extends Application
         
         Text obstacle = new Text(s + message); //+ p.getObstacle().toString());
         
-        Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
-        Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
+        Button counterB1 = new Button(" Use Weapon "); // p.getObstacle().getOption1());
+        Button counterB2 = new Button(" Don't Use Weapon "); // p.getObstacle().getOption2());
         
         vb2.getChildren().addAll(counterB1, counterB2);
         vb2.setPrefWidth(windowX / 4);
@@ -699,7 +699,9 @@ public class GameRunner extends Application
             {
                 // do the first option
                 // System.out.println("Op 1");
-                choice = 1;
+                tim.fightObstacle(p, true);
+                
+                p.subtract
             }
         });
         
