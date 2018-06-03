@@ -24,4 +24,8 @@ public class Wood extends Supplies
     {
         super(amount, x, y);
     }
+    public String toString()
+    {
+        return "wood";
+    }
 }
