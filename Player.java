@@ -40,7 +40,7 @@ public class Player
     {
         health = 100;
         metal = 0;
-        wood = 0;
+        wood = 1000;
         food = 0;
         water = 0;
         bowAndArrow = 0;

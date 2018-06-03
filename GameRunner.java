@@ -162,7 +162,7 @@ public class GameRunner extends Application
         GraphicsContext gc = c.getGraphicsContext2D();
         
         Label title = new Label("CHOOSE YOUR PLAYER");
-        Button pic1 = new Button("Boring Standard Player");
+        Button pic1 = new Button("         n00b         ");
         Button pic2 = new Button("     Bill the Cat     ");
         Button pic3 = new Button("    The Lantsberger   ");
         Button pic4 = new Button("  Henry the Stressed  ");
@@ -294,7 +294,8 @@ public class GameRunner extends Application
         Button craft = new Button("Craft");
         Button eat = new Button("Eat Food");
         Button drink = new Button("Drink");
-        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, sword, rope, craft, eat, drink);
+        Button instruct = new Button("Instructions");
+        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, sword, rope, craft, eat, drink, instruct);
         
         // create a graphics context
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -432,11 +433,27 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    p.subtractWater(10);
-                    p.addHealth(1);
+                    try
+                    {
+                        p.subtractFood(10);
+                        p.addHealth(1);
+                    }
+                    catch (IllegalArgumentException ex)
+                    {
+                        showErrorMessage(theStage, ex.toString());
+                    }
                 }
             }
         );
+        
+        instruct.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    // show the instructions page
+                    showInstructionsOther(theStage);
+                }
+            });
         
         // show the window with the game
         game.show();
@@ -510,6 +527,56 @@ public class GameRunner extends Application
         instStage.show();
     }
     
+    private static void showInstructionsOther(Stage theStage)
+    {
+        // close the menu
+        theStage.close();
+
+        // create a new group of nodes
+        Group instG = new Group();
+        // make a new window
+        Stage instStage = new Stage();
+
+        // set the title of the window
+        instStage.setTitle("Instructions");
+
+        // create a VBox to organize the texts
+        VBox textVB = new VBox(20);
+        HBox pixHB = new HBox(10);
+
+        // create and add scene with instructions
+        Scene instScene = new Scene(instG);
+        instStage.setScene(instScene);
+        
+        Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
+        
+        Canvas timSpace = new Canvas(windowX / 4, windowY / 4);
+        GraphicsContext gc = timSpace.getGraphicsContext2D();
+        
+        gc.drawImage(timImage, 0, 20, windowX / 4, windowY / 4);
+
+        // label the window
+        Label title = new Label("Instructions:");
+        // create two 'paragraphs'
+        Text p1 = new Text(" I am an enchanter. ");
+        Text p2 = new Text(" There are some who call me...Tim. ");
+
+        
+        pixHB.getChildren().addAll(p1, timSpace);
+        
+        // add everything to VBox
+        textVB.getChildren().addAll(title, pixHB, p2);
+        textVB.setPrefWidth(windowX / 3);
+        textVB.setPrefHeight(windowY / 3);
+        
+        textVB.setAlignment(Pos.CENTER_LEFT);
+        
+        
+        // add VBox to window
+        instG.getChildren().add(textVB);
+        // show the instructions window
+        instStage.show();
+    }
     private static void showCredits(Stage theStage)
     {
         theStage.close();
@@ -819,11 +886,19 @@ public class GameRunner extends Application
         Group g = new Group();
         Stage s = new Stage();
         Scene error = new Scene(g);
-        
+        s.setScene(error);
         s.setTitle("Error");
-        Text msg = new Text("Error: " + err);
         
-        g.getChildren().add(msg);
+        VBox vB = new VBox(20);
+        
+        err = err.substring(36);
+        
+        Text msg = new Text("Oops. Unfortunately, you are running low on supplies.");
+        Text msg1 = new Text(err);
+        
+        vB.getChildren().addAll(msg, msg1);
+        
+        g.getChildren().add(vB);
         
         s.showAndWait();
     }
