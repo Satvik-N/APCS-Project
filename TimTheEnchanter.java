@@ -56,8 +56,8 @@ public class TimTheEnchanter
                 {
                     if(player.getHealth() < 50)
                     {
-                        player.addHealth(45); 
-                        return "You've been working hard... here's 45 more health!";
+                        player.addWater(45); 
+                        return "You've been working hard... here's 45 more water!";
                     }
                         
                     else
@@ -68,8 +68,8 @@ public class TimTheEnchanter
                 }
                 if(player.getHealth() < 50)
                     {
-                        player.addHealth(25); 
-                        return "You've been working hard... here's 25 more health!";
+                        player.addWater(25); 
+                        return "You've been working hard... here's 25 more water!";
                     }
                         
                     else
@@ -80,8 +80,8 @@ public class TimTheEnchanter
             }
             if(player.getHealth() < 50)
                     {
-                        player.addHealth(10); 
-                        return "You've been working hard... here's 10 more health!";
+                        player.addWater(10); 
+                        return "You've been working hard... here's 10 more water!";
                     }
                         
                     else
