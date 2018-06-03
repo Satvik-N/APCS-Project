@@ -285,7 +285,7 @@ public class Player
     {
         if(health == 100)
         {
-            throw new IllegalArgumentException("You already have 100 health. Save the food and water for when you need it!");
+            throw new IllegalArgumentException("If you eat 10 more food, you'll have over 100 health. Save the food and water for when you need it!");
         }
         health += myHealth; 
     }
