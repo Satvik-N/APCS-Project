@@ -111,7 +111,7 @@ public class GameRunner extends Application
         r1.getChildren().add(vb);
 
         // create a player
-        p = new Player(" ");
+        p = new Player(0, 0, "Player");
         
         tim = new TimTheEnchanter();
         
@@ -924,15 +924,16 @@ public class GameRunner extends Application
         Scene s = new Scene(g);
         
         popup.setScene(s);
+        popup.setTitle("Biome Changing");
         
         Button close = new Button("Close");
         
         VBox vb = new VBox();
         Label title = new Label("MESSAGE:");
-        Text warning = new Text("You are now entering " + biome);
+        Text warning = new Text(biome);
         vb.getChildren().addAll(title, warning, close);
         g.getChildren().add(vb);
-        
+        /*
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
@@ -940,7 +941,7 @@ public class GameRunner extends Application
                 popup.close();
             }
         });
-        
+        */
         popup.showAndWait();
     }
     
