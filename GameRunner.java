@@ -11,6 +11,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;import javafx.scene.Scene;
+import javafx.scene.Group;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Button;
+import javafx.scene.text.Text;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -280,7 +293,7 @@ public class GameRunner extends Application
         // add canvas to group
         root.getChildren().add(hb);
         
-        Text Health = new Text("Health: " + p.getWater() + "\n");
+        Text health = new Text("Health: " + p.getHealth() + "\n");
         Text wood = new Text("Wood: " + p.getWood());
         Text metal = new Text("Metal: " + p.getMetal());
         Text food = new Text("Food: " + p.getFood());
@@ -288,14 +301,15 @@ public class GameRunner extends Application
         Text bAndA = new Text("Bow And Arrow: " + p.getBowAndArrow());
         Text armor = new Text("Armor: " + p.getArmor());
         Text pick = new Text("Pickaxe: " + p.getPickaxe());
-        Text FireProofShield = new Text("FireProofShield: " + p.getFireProofShield());
+        Text fireproof = new Text("Fire-Proof Shield: " + p.getFireProofShield());
         Text rope = new Text("Rope: " + p.getRope());
+        Text spear = new Text("Spear: " + p.getSpear());
         
         Button craft = new Button("Craft");
         Button eat = new Button("Eat Food");
         Button drink = new Button("Drink");
         Button instruct = new Button("Instructions");
-        vb.getChildren().addAll(wood, metal, food, water, bAndA, armor, pick, FireProofShield, rope, craft, eat, drink, instruct);
+        vb.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear, craft, eat, drink, instruct);
         
         // create a graphics context
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -377,7 +391,7 @@ public class GameRunner extends Application
                 bAndA.setText("Bow And Arrow: " + p.getBowAndArrow());
                 armor.setText("Armor: " + p.getArmor());
                 pick.setText("Pickaxe: " + p.getPickaxe());
-                FireProofShield.setText("FireProofShield: " + p.getFireProofShield());
+                fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
             }
         }.start();
@@ -418,8 +432,8 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.subtractFood(10);
                         p.addHealth(2);
+                        p.subtractFood(10);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -435,8 +449,8 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.subtractFood(10);
                         p.addHealth(1);
+                        p.subtractWater(10);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -675,7 +689,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-                // do the first option
+                // do the first option
                 // System.out.println("Op 1");
                 choice = 1;
             }
@@ -685,7 +699,7 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-                // do the second option
+                // do the second option
                 // System.out.println("Op 2");
                 choice = 2;
             }
@@ -765,13 +779,13 @@ public class GameRunner extends Application
         Button spear = new Button("Spear");
         Button armor = new Button("Armor");
         Button pick = new Button("Pickaxe");
-        Button FireProofShield = new Button("FireProofShield");
+        Button fireproof = new Button("Fire-Proof Shield");
         Button rope = new Button("Rope");
         
         HBox buttons = new HBox(20);
         VBox vb = new VBox(30);
         
-        buttons.getChildren().addAll(bowArrow, spear, armor, pick, FireProofShield, rope);
+        buttons.getChildren().addAll(bowArrow, spear, armor, pick, fireproof, rope);
         vb.getChildren().addAll(buttons, close);
         g.getChildren().add(vb);
            
@@ -847,7 +861,7 @@ public class GameRunner extends Application
         });
         
         
-        FireProofShield.setOnAction(new EventHandler<ActionEvent>()
+        fireproof.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
@@ -893,7 +907,7 @@ public class GameRunner extends Application
         
         err = err.substring(36);
         
-        Text msg = new Text("Oops. Unfortunately, you are running low on supplies.");
+        Text msg = new Text("Oops. Unfortunately, you can't do that.");
         Text msg1 = new Text(err);
         
         vB.getChildren().addAll(msg, msg1);
