@@ -51,7 +51,7 @@ import java.util.ArrayList;
 public class GameRunner extends Application 
 {
     // double to hold the speed of movement of the character
-    static final int moveSpeed = 4;
+    static final int moveSpeed = 1;
     // will hold the size of the window
     static int windowX, windowY;
     // border around the edge where player cannot travel
@@ -81,8 +81,8 @@ public class GameRunner extends Application
         windowY = (int)(bounds.getHeight());
         windowX = windowY;
         
-        scale = (int)(windowX*0.9)/(200);
-        
+        scale = (int)(windowX*.9/200);
+       
         // create a VBox to organize the other nodes
         VBox vb = new VBox(20);
 
@@ -553,14 +553,31 @@ public class GameRunner extends Application
         // label the window
         Label title = new Label("Instructions:");
         // create two 'paragraphs'
-        Text p1 = new Text(" I am an enchanter. ");
-        Text p2 = new Text(" There are some who call me...Tim. ");
-
+        Text p1 = new Text(" I...am an enchanter. There are some who call me...Tim. ");
+        Text p2 = new Text(" Welcome to GoTo Island, an isolated and deserted land full of" + 
+                            " never-before seen mysteries. Many brave souls like you that once set" + 
+                            " foot on this island were never seen again… will you share their fate? ");
+        Text p3 = new Text(" Those before you that tried to escape the island all failed, but you have" + 
+                            " potential, so I will give you the best form of guidance- a magical map. This map" + 
+                            " will help you find your way from the Rainforest and the Grassland to the end of the" + 
+                            " Desert, where you can escape. As you explore these puzzling lands, you may run into" + 
+                            " metal, wood, water, and food, which you can utilize to build useful tools and nourish" + 
+                            " your health during the long journey. ");
+        Text p4 = new Text(" You will also encounter various obstacles along the way. Know that the journey only gets" + 
+                            " harder as you get closer to the escape zone. To participate in it, ye must be people of valor." + 
+                            " If you do doubt your courage or your strength, come no further for DEATH AWAITS YOU ALL WITH " + 
+                            "NASTY BIG POINTY TEETH. Wait...no, wrong scenario...");
+        Text p5 = new Text("Ahem. The tools can help you survive the obstacles that you will face, but you may still lose to " + 
+                            "the obstacles. Your health will reflect the severity of your losses, and once your health hits zero" + 
+                            ", it’s game over. ");
+        Text p6 = new Text(" The map won’t show you where you can find certain supplies and obstacles, so you’ll have to figure them out " + 
+                            "on your own. Be smart in your moves and devise a strategy to make it across the desert alive. Of course, I’m not" + 
+                            " entirely cruel either. I will attempt to lend you my help and be...helpful. You might find random gifts along the way if you have earned them. Be warned, I know much that is hidden.");
         
         pixHB.getChildren().addAll(p1, timSpace);
         
         // add everything to VBox
-        textVB.getChildren().addAll(title, pixHB, p2, backB);
+        textVB.getChildren().addAll(title, pixHB, p2, p3, p4, p5, p6, backB);
         textVB.setPrefWidth(windowX / 3);
         textVB.setPrefHeight(windowY / 3);
         
