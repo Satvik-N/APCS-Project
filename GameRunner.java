@@ -296,8 +296,8 @@ public class GameRunner extends Application
         VBox vb = new VBox(20);
         HBox lr = new HBox(5);
         
-        Button up = new Button("up");
-        Button down = new Button("down");
+        Button up = new Button("       up       ");
+        Button down = new Button("     down     ");
         Button left = new Button("left");
         Button right = new Button("right");
         
@@ -552,7 +552,7 @@ public class GameRunner extends Application
                     showInstructionsOther(theStage);
                 }
             });
-        
+        theStage.toFront();
         // show the window with the game
         game.show();
     }
@@ -591,6 +591,8 @@ public class GameRunner extends Application
             theStage.show();
             theStage.toBack();
         }
+        
+        
     }
     
     private static void showInstructions(Stage theStage)
