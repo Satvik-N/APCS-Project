@@ -56,34 +56,24 @@ public class TimTheEnchanter
         public void collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-        double random = Math.random(); 
-        int amountToAdd = 0;
-        if(random <= .50)
-        {
-            amountToAdd = 20;
-        }
-        else
-        {
-            amountToAdd = 40;
-        }
         if(supply instanceof Metal)
         {
-            p.addMetal(amountToAdd); 
+            p.addMetal(supply.getAmount()); 
         }
         else
             if(supply instanceof Wood)
             {
-                p.addWood(amountToAdd); 
+                p.addWood(supply.getAmount()); 
             }
             else
                 if(supply instanceof Food)
                 {
-                    p.addFood(amountToAdd); 
+                    p.addFood(supply.getAmount()); 
                 }
                 else
                     if(supply instanceof Water)
                     {
-                        p.addWater(amountToAdd); 
+                        p.addWater(supply.getAmount()); 
                     }   
     }
     public String randomGift(Player player)
