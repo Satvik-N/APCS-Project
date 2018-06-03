@@ -306,11 +306,15 @@ public class Player
     
     public void subtractWater(int myWater)
     {
+        if(water - myWater < 0)
+            throw new IllegalArgumentException("You don't have enough water");
         water -= myWater;
     }
     
     public void subtractFood(int myFood)
     {
+        if(food - myFood < 0)
+            throw new IllegalArgumentException("You don't have enough food");
         food -= myFood;
     }
     
