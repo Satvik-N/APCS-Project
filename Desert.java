@@ -41,4 +41,9 @@ public class Desert extends Biomes
             }
         }
     }
+    
+    public String toString()
+    {
+        return "DESERT";
+    }
 }
