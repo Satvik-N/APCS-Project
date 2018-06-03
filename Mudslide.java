@@ -10,12 +10,8 @@ import java.awt.Point;
  */
 public class Mudslide extends Obstacles
 {
-   // toString
-   // get option1 (fight or flight)
-   // get option2
-   // do option 1
-   // do option 2
-   /**
+    // factors in rope built supply
+    /**
      * Constructor for objects of class Mudslide - initializes the location of the mudslide
      */
     public Mudslide(int x, int y)
@@ -24,45 +20,55 @@ public class Mudslide extends Obstacles
     }
 
     /**
-   *   If player fails, the health is decremented by 10 
-   *
-   * @param  none  
-   * @return 10 (amount to be decremented from a Level 1 obstacle) 
-   */
-    public int healthDecrement()
+     *   If player fails, the health is decremented by 10 
+     *
+     * @param  none  
+     * @return 10 (amount to be decremented from a Level 1 obstacle) 
+     */
+    public void healthDecrement(Player p)
     {
-        return 10;
+        p.subtractHealth(10);
     }
-   
+
     /**
-   *  If player fails, the supply count is decrement by 1
-   *
-   * @param  none  
-   * @return 1 (amount to be decremented from a Level 1 obstacle) 
-   */
-    public int supplyDecrement()
-    {
-        return 1; 
-    }
-    
-   /**
-    *  Uses an equation based on health and supply to generate a random number
-    *  If this random number is greater than 20, player succeeds
-    *  If this random number is less than 20, player fails
-    *
-    * @param  Player player  
-    * @return true if player succeeds, false if player fails 
-    */
-    public boolean succeedOrFail(Player player)
+     *  Uses an equation based on health and supply to generate a random number
+     *  If this random number is greater than 20, player succeeds
+     *  If this random number is less than 20, player fails
+     *
+     * @param  Player player  
+     * @return true if player succeeds, false if player fails 
+     */
+    public boolean succeedOrFail(Player p, boolean choice)
     {
         double constant = generateConstant();
-        if(constant*player.getHealth() + constant*player.getSupplies() >= 20)
-            return true;
-        return false; 
+        boolean survive;
+        if(choice)
+        {
+            if ((constant) * (p.getHealth() + p.getMetal()) >= 100)
+                survive = true;
+            else
+            {
+                survive = false;
+                healthDecrement(p);
+            }
+        }
+        else
+        {
+            if ((constant) * (p.getHealth() + p.getMetal()) >= 200)
+            {
+                survive = true;
+            }
+            else
+            {
+                survive = false;
+                healthDecrement(p);
+            }
+        }
+        return survive;
     }
-   
-   public String toString()
-   {
-       return "mudslide";
-   }
+
+    public String toString()
+    {
+        return "mudslide";
+    }
 }

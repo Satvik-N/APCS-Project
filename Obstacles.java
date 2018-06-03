@@ -21,9 +21,8 @@ public abstract class Obstacles extends Materials
     {
         return Math.random();
     }
-  public abstract int healthDecrement(); 
-  public abstract int supplyDecrement();
-  public abstract boolean succeedOrFail(Player player);
+  public abstract void healthDecrement(Player p); 
+  public abstract boolean succeedOrFail(Player p, boolean choice);
   public abstract String toString();
   public String FightOrFlight()
   {

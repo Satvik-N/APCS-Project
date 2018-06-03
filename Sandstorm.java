@@ -25,20 +25,9 @@ public class Sandstorm extends Obstacles // lvl 4
    * @param  none  
    * @return 40 (amount to be decremented from a Level 4 obstacle) 
    */
-    public int healthDecrement()
+    public void healthDecrement(Player p)
     {
-        return 40;
-    }
-   
-     /**
-   *  If player fails, the supply count is decrement by 4
-   *
-   * @param  none  
-   * @return 4 (amount to be decremented from a Level 4 obstacle) 
-   */
-    public int supplyDecrement()
-    {
-        return 4; 
+        p.subtractHealth(40);
     }
    
     /**
@@ -49,12 +38,33 @@ public class Sandstorm extends Obstacles // lvl 4
    * @param  Player player  
    * @return true if player succeeds, false if player fails 
    */
-    public boolean succeedOrFail(Player player)
+    public boolean succeedOrFail(Player p, boolean choice)
     {
         double constant = generateConstant();
-        if(constant*player.getHealth() + constant*player.getSupplies() >= 80)
-            return true;
-        return false; 
+        boolean survive;
+        if(choice)
+        {
+            if ((constant) * (p.getHealth() + p.getArmor()) >= 700)
+                survive = true;
+            else
+            {
+                survive = false;
+                healthDecrement(p);
+            }
+        }
+        else
+        {
+            if ((constant) * (p.getHealth() + p.getArmor()) >= 800)
+            {
+                survive = true;
+            }
+            else
+            {
+                survive = false;
+                healthDecrement(p);
+            }
+        }
+        return survive;
     }
     
    public String toString()
