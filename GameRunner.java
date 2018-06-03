@@ -294,6 +294,14 @@ public class GameRunner extends Application
         
         HBox hb = new HBox(10);
         VBox vb = new VBox(20);
+        HBox lr = new HBox(5);
+        
+        Button up = new Button("up");
+        Button down = new Button("down");
+        Button left = new Button("left");
+        Button right = new Button("right");
+        
+        lr.getChildren().addAll(left, right);
         
         hb.getChildren().addAll(c, vb);
         // add canvas to group
@@ -317,6 +325,8 @@ public class GameRunner extends Application
         Button instruct = new Button("Instructions");
         vb.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear, craft, eat, drink, instruct);
         
+        vb.getChildren().addAll(up, lr, down);
+        
         // create a graphics context
         GraphicsContext gc = c.getGraphicsContext2D();
     
@@ -333,33 +343,33 @@ public class GameRunner extends Application
         ArrayList<String> input = new ArrayList<String>();
     
         // when a key is pressed
-        theScene.setOnKeyPressed(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    // keycode
-                    String code = e.getCode().toString();
+        // theScene.setOnKeyPressed(
+            // new EventHandler<KeyEvent>()
+            // {
+                // public void handle(KeyEvent e)
+                // {
+                    // // keycode
+                    // String code = e.getCode().toString();
     
-                    // only add once... prevent duplicates
-                    if (!input.contains(code))
-                        input.add(code);
-                }
-            }
-        );
+                    // // only add once... prevent duplicates
+                    // if (!input.contains(code))
+                        // input.add(code);
+                // }
+            // }
+        // );
     
-        // when the key is released
-        theScene.setOnKeyReleased(
-            new EventHandler<KeyEvent>()
-            {
-                public void handle(KeyEvent e)
-                {
-                    // remove code from arraylist
-                    String code = e.getCode().toString();
-                    input.remove(code);
-                }
-            }
-        );
+        // // when the key is released
+        // theScene.setOnKeyReleased(
+            // new EventHandler<KeyEvent>()
+            // {
+                // public void handle(KeyEvent e)
+                // {
+                    // // remove code from arraylist
+                    // String code = e.getCode().toString();
+                    // input.remove(code);
+                // }
+            // }
+        // );
     
         // make a new AnimationTimer 
         new AnimationTimer()
@@ -373,29 +383,29 @@ public class GameRunner extends Application
                 // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
                 // move the player to the desired location
-                if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
-                    {
-                        p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
-                        checkForStuff(game, p);
-                    }
-                    else
-                        if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
-                        {
-                            p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
-                            checkForStuff(game, p);
-                        }
-                        else
-                            if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
-                            {
-                                p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
-                                checkForStuff(game, p);
-                            }
-                            else
-                                if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
-                                {
-                                    p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
-                                    checkForStuff(game, p);
-                                }
+                // if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                    // {
+                        // p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
+                        // checkForStuff(game, p);
+                    // }
+                    // else
+                        // if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                        // {
+                            // p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
+                            // checkForStuff(game, p);
+                        // }
+                        // else
+                            // if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                            // {
+                                // p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
+                                // checkForStuff(game, p);
+                            // }
+                            // else
+                                // if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                                // {
+                                    // p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                                    // checkForStuff(game, p);
+                                // }
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
@@ -418,7 +428,7 @@ public class GameRunner extends Application
                 pick.setText("Pickaxe: " + p.getPickaxe());
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
-                
+                System.out.println("pX " + p.getLocation().getX() + "   pY " + p.getLocation().getY());
             }
         }.start();
     
@@ -426,6 +436,70 @@ public class GameRunner extends Application
         // runIntoObstacle(Player player)
         // runIntoSupply(Player player)
         // randomGift(Player player)
+        
+        up.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    if(p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                    {
+                        p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                        checkForStuff(game, p);
+                    }
+                }
+            }
+        );
+        
+        down.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    if(p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                    {
+                        p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
+                        checkForStuff(game, p);
+                    }
+                }
+            }
+        );
+        
+        left.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    if(p.getLocation().getX() >= moveSpeed + BORDER)
+                    {
+                        p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
+                        checkForStuff(game, p);
+                    }
+                }
+            }
+        );
+        
+        right.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    if(p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                    {
+                        p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
+                        checkForStuff(game, p);
+                    }
+                }
+            }
+        );
+        down.setOnAction(new EventHandler<ActionEvent>()
+            {
+                @Override public void handle(ActionEvent e)
+                {
+                    if(p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                    {
+                        p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                        checkForStuff(game, p);
+                    }
+                }
+            }
+        );
         
         craft.setOnAction(new EventHandler<ActionEvent>()
             {
