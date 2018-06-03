@@ -111,7 +111,7 @@ public class GameRunner extends Application
         r1.getChildren().add(vb);
 
         // create a player
-        p = new Player(0, 0, "Player");
+        p = new Player("  ");
         
         tim = new TimTheEnchanter();
         
