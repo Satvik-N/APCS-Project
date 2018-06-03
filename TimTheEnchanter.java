@@ -132,10 +132,6 @@ public class TimTheEnchanter
         }
         return null; 
     }
-    public String buildSupply(Player player)
-    {
-        return null;
-    }
     public Materials returnMaterial(Player p)
     {
         return p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
