@@ -12,7 +12,8 @@ public abstract class Biomes
     
     public boolean isObstacle (int x, int y)
     {
-        return biome[y][x] instanceof Obstacles;
+        return true;
+        //return biome[y][x] instanceof Obstacles;
     }
     
     public Materials getMaterial(int x, int y)

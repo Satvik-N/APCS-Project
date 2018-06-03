@@ -54,6 +54,11 @@ public class Player
         grassland = new Grassland();
         rainforest = new Rainforest();
         desert = new Desert();
+        grassland.buildObstacles();
+        rainforest.buildObstacles();
+        desert.buildObstacles();
+        grassland.buildSupplies();
+        rainforest.buildSupplies();
     }
 
     public Player(int x, int y, String playerName)
@@ -72,6 +77,12 @@ public class Player
         name = playerName;
         pos = new Point(x, y);
         oldPos = pos;
+        desert = new Desert();
+        grassland.buildObstacles();
+        rainforest.buildObstacles();
+        desert.buildObstacles();
+        grassland.buildSupplies();
+        rainforest.buildSupplies();
     }
     
     public int getSupplies()
