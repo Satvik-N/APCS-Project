@@ -6,18 +6,11 @@
  */
 public class TimTheEnchanter
 {
-    // instance variables - replace the example below with your own
-    
-    // narrator
-    // random gifts (food, water, or health)
-    // build supply?
-
     /**
      * Constructor for objects of class TimTheEnchanter
      */
     public TimTheEnchanter()
-    {
-        
+    {   
     }
     public String enteredNewBiome(Player player)
     {
@@ -48,7 +41,7 @@ public class TimTheEnchanter
         if(p.isAtSupply())
         {
             supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-            return "Yay! You've just found a a " + supply.toString() + "!"; 
+            return "Yay! You've just found some " + supply.toString() + "!"; 
         }
         return null;
     }
@@ -136,7 +129,4 @@ public class TimTheEnchanter
     {
         return p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
     }
-    // runIntoObstacle
-    // runIntoSupply
-    // randomGift
 }
