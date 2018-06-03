@@ -222,41 +222,41 @@ public class Player
     public void addBowAndArrow(int amount)
     {
         bowAndArrow += amount;
-        wood -= ((amount) * WOOD_DECREMENT * 2);
-        metal -= ((amount) * METAL_DECREMENT);
+        subtractWood((amount) * WOOD_DECREMENT * 2);
+        subtractMetal((amount) * METAL_DECREMENT);
     }
     
     public void addSpear(int amount)
     {
         spear += amount;
-        wood -= ((amount) * WOOD_DECREMENT);
-        metal -= ((amount) * METAL_DECREMENT/2);
+        subtractWood((amount) * WOOD_DECREMENT);
+        subtractMetal((amount) * METAL_DECREMENT/2);
     }
     
     public void addSword(int amount)
     {
         sword += amount;
-        metal -= ((amount) * METAL_DECREMENT * 2);
-        wood -= ((amount) * WOOD_DECREMENT);
+        subtractMetal((amount) * METAL_DECREMENT * 2);
+        subtractWood((amount) * WOOD_DECREMENT);
     }
     
     public void addRope(int amount)
     {
         rope += amount;
-        wood -= ((amount) * WOOD_DECREMENT * 1.5);
+        subtractWood((amount) * (int)(WOOD_DECREMENT * 1.5));
     }
     
     public void addArmor (int amount)
     {
         armor += amount;
-        metal -= ((amount) * METAL_DECREMENT * 2);
+        subtractMetal((amount) * METAL_DECREMENT * 2);
     }
     
     public void addPickaxe (int amount)
     {
         pickaxe += amount;
-        wood -= ((amount) * WOOD_DECREMENT);
-        metal -= ((amount) * METAL_DECREMENT/2);
+        subtractWood((amount) * WOOD_DECREMENT);
+        subtractMetal((amount) * METAL_DECREMENT/2);
     }
     
     public void addFood(int myFood)
