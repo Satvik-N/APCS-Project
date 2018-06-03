@@ -89,9 +89,9 @@ public class TimTheEnchanter
     public String randomGift(Player player)
     {
         double random = Math.random();
-        if(random >= 0.9)
+        if(random >= 0.96)
         {
-            if(random >= 0.95)
+            if(random >= 0.97)
             {
                 if(random >= 0.98)
                 {
