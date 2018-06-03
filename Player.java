@@ -59,6 +59,8 @@ public class Player
         desert.buildObstacles();
         grassland.buildSupplies();
         rainforest.buildSupplies();
+        System.out.println("In setName");
+        //System.out.println(4/0);
     }
 
     public Player(int x, int y, String playerName)
@@ -83,6 +85,7 @@ public class Player
         desert.buildObstacles();
         grassland.buildSupplies();
         rainforest.buildSupplies();
+        System.out.println(4/0);
     }
     
     public int getSupplies()
@@ -93,6 +96,7 @@ public class Player
     public void setName(String s)
     {
         name = s;
+        
     }
     // LOTS OF METHODS TO ADD TO THIS CLASS CHANGING THE AMOUNT OF SUPPLIES
 

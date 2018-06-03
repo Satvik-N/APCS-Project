@@ -32,7 +32,7 @@ public class TimTheEnchanter
         Obstacles obstacle;
         if(p.isAtObstacle())
         {
-            obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.getLocation().getX(), (int)p.getLocation().getY());
+            obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
             return "Oh no! You've run into a " + obstacle.toString() + "!"
                    + "You can fight this with " + obstacle.weapon() + ", if you have some"; 
         }
