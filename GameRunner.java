@@ -369,16 +369,28 @@ public class GameRunner extends Application
                 // and the player will not move out of the board
                 // move the player to the desired location
                 if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                {
                     p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
+                    checkForStuff(game, p);
+                }
                 else
                     if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                    {
                         p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
+                        checkForStuff(game, p);
+                    }
                     else
                         if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                        {
                             p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
+                            checkForStuff(game, p);
+                        }
                         else
                             if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                            {
                                 p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
+                                checkForStuff(game, p);
+                            }
     
         
                 // draw the map and the players again        
@@ -396,22 +408,6 @@ public class GameRunner extends Application
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
                 
-                if(tim.runIntoObstacle(p) != null)
-                {
-                    Obstacles ob = (Obstacles)tim.returnMaterial(p);
-                    String weapon = ob.weapon();
-                    atObstacle(theStage, tim.runIntoObstacle(p), weapon);
-                }
-                else
-                    if(tim.runIntoSupply(p) != null)
-                    {
-                        atSupply(theStage);
-                        Supplies su = (Supplies)tim.returnMaterial(p);
-                    }
-                if(tim.enteredNewBiome(p) != null)
-                    biomeChange(theStage, tim.enteredNewBiome(p));
-                if(tim.randomGift(p) != null)
-                    giftMessage(theStage, tim.randomGift(p));
             }
         }.start();
     
@@ -475,7 +471,25 @@ public class GameRunner extends Application
         // show the window with the game
         game.show();
     }
-    
+    private static void checkForStuff(Stage theStage, Player p)
+    {
+        if(tim.runIntoObstacle(p) != null)
+        {
+            Obstacles ob = (Obstacles)tim.returnMaterial(p);
+            String weapon = ob.weapon();
+            atObstacle(theStage, tim.runIntoObstacle(p), weapon);
+        }
+        else
+            if(tim.runIntoSupply(p) != null)
+            {
+                atSupply(theStage);
+                Supplies su = (Supplies)tim.returnMaterial(p);
+            }
+        if(tim.enteredNewBiome(p) != null)
+            biomeChange(theStage, tim.enteredNewBiome(p));
+        if(tim.randomGift(p) != null)
+            giftMessage(theStage, tim.randomGift(p));
+    }
     private static void showInstructions(Stage theStage)
     {
         // close the menu
