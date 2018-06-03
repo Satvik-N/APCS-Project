@@ -697,11 +697,33 @@ public class GameRunner extends Application
             s = "Oh No! ";
         
         Text obstacle = new Text(s + message); //+ p.getObstacle().toString());
-        
+        Text nope = new Text("Sorry, you don't have the weapons that can fight this one.");
         Button counterB1 = new Button(" Use Weapon "); // p.getObstacle().getOption1());
         Button counterB2 = new Button(" Don't Use Weapon "); // p.getObstacle().getOption2());
+        Button close = new Button(" Close ");
+        int number = 0;
+        if (weapon.equals("bow and arrow"))
+            number = p.getBowAndArrow();
+        else
+            if (weapon.equals("rope"))
+                number = p.getRope();
+            else
+                if (weapon.equals("spear"))
+                    number = p.getSpear();
+                else
+                    if (weapon.equals("armor"))
+                        number = p.getArmor();
+                    else
+                        if (weapon.equals("pickaxe"))
+                            number = p.getPickaxe();
+                        else
+                            if (weapon.equals("fire-proof shield"))
+                                number = p.getFireProofShield();
         
-        vb2.getChildren().addAll(counterB1, counterB2);
+        if (number == 0)
+            vb2.getChildren().addAll(obstacle, nope, close);
+        else
+            vb2.getChildren().addAll(obstacle, counterB1, counterB2);
         vb2.setPrefWidth(windowX / 4);
         vb2.setPrefHeight(windowY / 4);
         
@@ -749,9 +771,18 @@ public class GameRunner extends Application
             }
         });
         
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                // do the second option
+                popup.close();
+            }
+        });
+        
         // p.getObstacle().succeedOrFail(p);
         
-        popup.showAndWait();
+        popup.show();
     }
     
     private static void atSupply(Stage theStage)
@@ -1013,7 +1044,7 @@ public class GameRunner extends Application
             }
         });
         
-        popup.showAndWait();
+        popup.show();
     }
     
     private static void finalObstacle(Stage theStage)
