@@ -40,7 +40,7 @@ public class Player
     {
         health = 100;
         metal = 0;
-        wood = 1000;
+        wood = 0;
         food = 0;
         water = 0;
         bowAndArrow = 0;
@@ -221,42 +221,62 @@ public class Player
     
     public void addBowAndArrow(int amount)
     {
-        bowAndArrow += amount;
+        if(wood - ((amount) * WOOD_DECREMENT * 2) < 0)
+            throw new IllegalArgumentException("You don't have enough wood");
+        if(metal - ((amount) * METAL_DECREMENT) < 0)
+            throw new IllegalArgumentException("You don't have enough metal"); 
         subtractWood((amount) * WOOD_DECREMENT * 2);
         subtractMetal((amount) * METAL_DECREMENT);
+        bowAndArrow += amount;
     }
     
     public void addSpear(int amount)
-    {
-        spear += amount;
+    { 
+        if(wood - ((amount) * WOOD_DECREMENT) < 0)
+            throw new IllegalArgumentException("You don't have enough wood");
+        if(metal - ((amount) * METAL_DECREMENT/2) < 0)
+            throw new IllegalArgumentException("You don't have enough metal"); 
         subtractWood((amount) * WOOD_DECREMENT);
         subtractMetal((amount) * METAL_DECREMENT/2);
+        spear += amount;
     }
     
-    public void addSword(int amount)
+    public void addFireProofShield(int amount)
     {
-        sword += amount;
-        subtractMetal((amount) * METAL_DECREMENT * 2);
+        if(wood - ((amount) * WOOD_DECREMENT) < 0)
+            throw new IllegalArgumentException("You don't have enough wood");
+        if(metal - ((amount) * METAL_DECREMENT*2) < 0)
+            throw new IllegalArgumentException("You don't have enough metal");
         subtractWood((amount) * WOOD_DECREMENT);
+        subtractMetal((amount) * METAL_DECREMENT * 2);
+        sword += amount;
     }
     
     public void addRope(int amount)
     {
-        rope += amount;
+        if(wood - ((amount) * (int)(WOOD_DECREMENT * 1.5)) < 0)
+            throw new IllegalArgumentException("You don't have enough wood");
         subtractWood((amount) * (int)(WOOD_DECREMENT * 1.5));
+        rope += amount;
     }
     
     public void addArmor (int amount)
     {
-        armor += amount;
+        if(metal - ((amount) * METAL_DECREMENT*2) < 0)
+            throw new IllegalArgumentException("You don't have enough metal");
         subtractMetal((amount) * METAL_DECREMENT * 2);
+        armor += amount;
     }
     
     public void addPickaxe (int amount)
     {
-        pickaxe += amount;
+        if(wood - ((amount) * WOOD_DECREMENT) < 0)
+            throw new IllegalArgumentException("You don't have enough wood");
+        if(metal - ((amount) * METAL_DECREMENT/2) < 0)
+            throw new IllegalArgumentException("You don't have enough metal");
         subtractWood((amount) * WOOD_DECREMENT);
         subtractMetal((amount) * METAL_DECREMENT/2);
+        pickaxe += amount;
     }
     
     public void addFood(int myFood)
@@ -276,50 +296,22 @@ public class Player
     
     public void subtractMetal(int myMetal)
     {
-        if(metal - myMetal < 0)
-        {
-            throw new IllegalArgumentException("You don't have enough metal"); 
-        }
-        else
-        {
-            metal -= myMetal;
-        }
+        metal -= myMetal;
     }
     
     public void subtractWood(int myWood)
     {
-        if(wood - myWood < 0)
-        {
-            throw new IllegalArgumentException("You don't have enough wood"); 
-        }
-        else
-        {
-            wood -= myWood;
-        }
+        wood -= myWood;
     }
     
     public void subtractWater(int myWater)
     {
-        if(water - myWater < 0)
-        {
-            throw new IllegalArgumentException("You already drank all your water"); 
-        }
-        else
-        {
-            water -= myWater;
-        }
+        water -= myWater;
     }
     
     public void subtractFood(int myFood)
     {
-        if(food - myFood < 0)
-        {
-            throw new IllegalArgumentException("You already ate all your food"); 
-        }
-        else
-        {
-            food -= myFood;
-        }
+        food -= myFood;
     }
     
     public void subtractBowAndArrow(int amount)
