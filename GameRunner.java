@@ -342,16 +342,16 @@ public class GameRunner extends Application
         // holds the inputs
         ArrayList<String> input = new ArrayList<String>();
     
-        // when a key is pressed
+        // // when a key is pressed
         // theScene.setOnKeyPressed(
             // new EventHandler<KeyEvent>()
             // {
                 // public void handle(KeyEvent e)
                 // {
-                    // // keycode
+                    // keycode
                     // String code = e.getCode().toString();
     
-                    // // only add once... prevent duplicates
+                    // only add once... prevent duplicates
                     // if (!input.contains(code))
                         // input.add(code);
                 // }
@@ -364,7 +364,7 @@ public class GameRunner extends Application
             // {
                 // public void handle(KeyEvent e)
                 // {
-                    // // remove code from arraylist
+                    // remove code from arraylist
                     // String code = e.getCode().toString();
                     // input.remove(code);
                 // }
@@ -483,18 +483,6 @@ public class GameRunner extends Application
                     if(p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
                     {
                         p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
-                        checkForStuff(game, p);
-                    }
-                }
-            }
-        );
-        down.setOnAction(new EventHandler<ActionEvent>()
-            {
-                @Override public void handle(ActionEvent e)
-                {
-                    if(p.getLocation().getY() >= moveSpeed + BORDER / 10.)
-                    {
-                        p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
                         checkForStuff(game, p);
                     }
                 }
