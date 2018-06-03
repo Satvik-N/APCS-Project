@@ -294,7 +294,7 @@ public class GameRunner extends Application
         // add canvas to group
         root.getChildren().add(hb);
         
-        Text health = new Text("Health: " + p.getHealth() + "\n");
+        Text health = new Text("\nHealth: " + p.getHealth() + "\n");
         Text wood = new Text("Wood: " + p.getWood());
         Text metal = new Text("Metal: " + p.getMetal());
         Text food = new Text("Food: " + p.getFood());
@@ -385,6 +385,7 @@ public class GameRunner extends Application
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
                 gc.drawImage(pImage, p.getLocation().getX(), p.getLocation().getY(), pWidth, pHeight);
                 
+                health.setText("\nHealth: " + p.getHealth() + "\n");
                 wood.setText("Wood: " + p.getWood());
                 metal.setText("Metal: " + p.getMetal());
                 food.setText("Food: " + p.getFood());
