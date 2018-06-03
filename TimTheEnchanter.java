@@ -12,6 +12,7 @@ public class TimTheEnchanter
     public TimTheEnchanter()
     {   
     }
+
     public String enteredNewBiome(Player player)
     {
         if(!player.playerBiome(player.getLocation()).equals(player.playerBiome(player.getOldLocation())))
@@ -20,6 +21,7 @@ public class TimTheEnchanter
         }
         return null;
     }
+
     public String runIntoObstacle(Player p)
     {
         Obstacles obstacle;
@@ -27,10 +29,11 @@ public class TimTheEnchanter
         {
             obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
             return "Oh no! You've run into a " + obstacle.toString() + "! "
-                   + "You can fight this with " + obstacle.weapon() + ", if you have some to spare..."; 
+            + "You can fight this with " + obstacle.weapon() + ", if you have some to spare..."; 
         }
         return null;
     }
+
     public String fightObstacle(Player p, boolean choice)
     {
         Obstacles obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
@@ -43,6 +46,7 @@ public class TimTheEnchanter
             return "Ouch... you failed the obstacle"; 
         }
     }
+
     public String runIntoSupply(Player p)
     {
         Supplies supply;
@@ -53,7 +57,8 @@ public class TimTheEnchanter
         }
         return null;
     }
-        public void collectSupply(Player p)
+
+    public void collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
         if(supply instanceof Metal)
@@ -61,21 +66,22 @@ public class TimTheEnchanter
             p.addMetal(supply.getAmount()); 
         }
         else
-            if(supply instanceof Wood)
-            {
-                p.addWood(supply.getAmount()); 
-            }
-            else
-                if(supply instanceof Food)
-                {
-                    p.addFood(supply.getAmount()); 
-                }
-                else
-                    if(supply instanceof Water)
-                    {
-                        p.addWater(supply.getAmount()); 
-                    }   
+        if(supply instanceof Wood)
+        {
+            p.addWood(supply.getAmount()); 
+        }
+        else
+        if(supply instanceof Food)
+        {
+            p.addFood(supply.getAmount()); 
+        }
+        else
+        if(supply instanceof Water)
+        {
+            p.addWater(supply.getAmount()); 
+        }   
     }
+
     public String randomGift(Player player)
     {
         double random = Math.random();
@@ -90,7 +96,7 @@ public class TimTheEnchanter
                         player.addWater(45); 
                         return "You've been working hard... here's 45 more water!";
                     }
-                        
+
                     else
                     {
                         player.addFood(100);
@@ -98,35 +104,37 @@ public class TimTheEnchanter
                     }
                 }
                 if(player.getHealth() < 50)
-                    {
-                        player.addWater(25); 
-                        return "You've been working hard... here's 25 more water!";
-                    }
-                        
-                    else
-                    {
-                        player.addFood(80);
-                        return "You look hungry... here's 80 more food!";
-                    }
+                {
+                    player.addWater(25); 
+                    return "You've been working hard... here's 25 more water!";
+                }
+
+                else
+                {
+                    player.addFood(80);
+                    return "You look hungry... here's 80 more food!";
+                }
             }
             if(player.getHealth() < 50)
-                    {
-                        player.addWater(10); 
-                        return "You've been working hard... here's 10 more water!";
-                    }
-                        
-                    else
-                    {
-                        player.addFood(50);
-                        return "You look hungry... here's 50 more food!";
-                    }
+            {
+                player.addWater(10); 
+                return "You've been working hard... here's 10 more water!";
+            }
+
+            else
+            {
+                player.addFood(50);
+                return "You look hungry... here's 50 more food!";
+            }
         }
         return null; 
     }
+
     public Materials returnMaterial(Player p)
     {
         return p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
     }
+
     public String die(Player p)
     {
         if(p.getHealth() <= 0)
@@ -135,17 +143,18 @@ public class TimTheEnchanter
         }
         return null; 
     }
+
     public String win(Player p)
     {
         if(p.getLocation().getY() == 0)
         {
-           Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
-           if(obstacle.succeedOrFail(p, true))
-           {
-               return "Congratulations! You have escaped!";
-           }
-           else
-           {
+            Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
+            if(obstacle.succeedOrFail(p, true))
+            {
+                return "Congratulations! You have escaped!";
+            }
+            else
+            {
                return "LOSING AT THE FINAL STEP... you fool... come up with another strategy and try again...";
             }
         }
