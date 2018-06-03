@@ -145,6 +145,25 @@ public class Player
             else
                 return grassland;
     }
+    
+    public Point convertLoc(Point pos)
+    {
+        if (playerBiome(pos).equals(desert))
+        {
+            return pos;
+        }
+        else
+            if (playerBiome(pos).equals(rainforest))
+            {
+                pos.setLocation(pos.getX(), pos.getY() - 120);
+                return pos;
+            }
+            else
+            {
+                pos.setLocation((pos.getX() - 100), (pos.getY() - 120));
+                return pos;
+            }
+    }
 
     public Point getLocation()
     {
