@@ -7,31 +7,32 @@
  */
 public class FinalObstacle extends Obstacles
 {
-    // instance variables - replace the example below with your own
-    private int x;
-    // health, water, and food to succeed
 
     /**
      * Constructor for objects of class FinalObstacle
      */
-    public FinalObstacle()
+    public FinalObstacle(int x, int y)
     {
-        // initialise instance variables
-        x = 0;
+        changeLocation(x, y);
     }
 
     public void healthDecrement(Player p)
     {
         p.subtractHealth(50);
     }
-    public boolean succeedOrFail(Player p)
+    // for the final obstacle, don't ask for a choice, just call the method with choice = true for dummy variable
+    public boolean succeedOrFail(Player p, boolean choice)
     {
         double constant = generateConstant();
         if(constant*p.getHealth() + constant*p.getFood() + constant*p.getWater() > 1000)
             return true;
-        healthDecrement(Player p);
-        
+        healthDecrement(p);
+        p.move(85, 100);
+        return false; 
     }
     // if fail, decrement health and move to right behind the wall into a random position
-    public abstract String toString();
+    public String toString()
+    {
+        return "goto heat wave";
+    }
     }
