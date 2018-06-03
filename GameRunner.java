@@ -11,7 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.Scene;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -63,7 +64,8 @@ public class GameRunner extends Application
     static TimTheEnchanter tim;
     static String playerImage;
     static int scale;
-
+    static String wol; 
+    
     public static void main(String[] args) 
     {
         launch(args);
@@ -397,7 +399,7 @@ public class GameRunner extends Application
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
-                if (p.playerBiome(p.getLocation()).toString().equals("dessert"))
+                if (p.playerBiome(p.getLocation()).toString().equals("desert"))
                     gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 else
                     if (p.playerBiome(p.getLocation()).toString().equals("rainforest"))
@@ -480,25 +482,43 @@ public class GameRunner extends Application
         // show the window with the game
         game.show();
     }
+    
     private static void checkForStuff(Stage theStage, Player p)
     {
         if(tim.runIntoObstacle(p) != null)
         {
             Obstacles ob = (Obstacles)tim.returnMaterial(p);
             String weapon = ob.weapon();
+            theStage.close();
             atObstacle(theStage, tim.runIntoObstacle(p), weapon);
+            theStage.show();
+            theStage.toBack();
         }
         else
             if(tim.runIntoSupply(p) != null)
             {
+                theStage.close();
                 atSupply(theStage);
+                theStage.show();
+                theStage.toBack();
                 Supplies su = (Supplies)tim.returnMaterial(p);
             }
         if(tim.enteredNewBiome(p) != null)
+        {
+            theStage.close();
             biomeChange(theStage, tim.enteredNewBiome(p));
+            theStage.show();
+            theStage.toBack();
+        }
         if(tim.randomGift(p) != null)
+        {
+            theStage.close();
             giftMessage(theStage, tim.randomGift(p));
+            theStage.show();
+            theStage.toBack();
+        }
     }
+    
     private static void showInstructions(Stage theStage)
     {
         // close the menu
@@ -685,6 +705,8 @@ public class GameRunner extends Application
         popup.setScene(pop);
         popup.setTitle("Obstacle");
         
+        
+        
         VBox vb2 = new VBox();
         HBox hb = new HBox();
         
@@ -731,7 +753,7 @@ public class GameRunner extends Application
         
         g3.getChildren().add(vb2);
 
-        
+
         
         // when the option 1 button is pressed
         counterB1.setOnAction(new EventHandler<ActionEvent>()
@@ -740,7 +762,7 @@ public class GameRunner extends Application
             {
                 // do the first option
                 // System.out.println("Op 1");
-                tim.fightObstacle(p, true);
+                wol = tim.fightObstacle(p, true);
                 if (weapon.equals("bow and arrow"))
                     p.subtractBowAndArrow(1);
                 else
@@ -767,6 +789,7 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 // do the second option
+                wol = tim.fightObstacle(p, false);
                 popup.close();
             }
         });
