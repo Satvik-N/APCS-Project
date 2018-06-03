@@ -71,5 +71,10 @@ public class Sandstorm extends Obstacles // lvl 4
    {
        return "sandstorm";
    }
+   
+   public String weapon()
+    {
+        return "armor";
+    }
 
 }

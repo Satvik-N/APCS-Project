@@ -24,4 +24,5 @@ public abstract class Obstacles extends Materials
   public abstract void healthDecrement(Player p); 
   public abstract boolean succeedOrFail(Player p, boolean choice);
   public abstract String toString();
+  public abstract String weapon();
 }

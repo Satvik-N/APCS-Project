@@ -71,4 +71,9 @@ public class Mudslide extends Obstacles
     {
         return "mudslide";
     }
+    
+    public String weapon()
+    {
+        return "rope";
+    }
 }

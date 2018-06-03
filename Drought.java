@@ -71,5 +71,10 @@ public class Drought extends Obstacles // lvl 4
     {
         return "drought";
     }
+    
+    public String weapon()
+    {
+        return "pickaxe";
+    }
 
 }

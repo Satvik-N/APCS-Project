@@ -70,5 +70,10 @@ public class Fire extends Obstacles // lvl 3
     {
         return "fire";
     }
+    
+    public String weapon()
+    {
+        return "fire-proof shield";
+    }
 
 }

@@ -70,5 +70,10 @@ public class Animal extends Obstacles // lvl 2
     {
         return "animal";
     }
+    
+    public String weapon()
+    {
+        return "spear";
+    }
 
 }

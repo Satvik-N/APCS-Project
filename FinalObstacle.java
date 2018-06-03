@@ -35,4 +35,9 @@ public class FinalObstacle extends Obstacles
     {
         return "goto heat wave";
     }
+    
+    public String weapon()
+    {
+        return "nothing... yep, no weapons on this one... just fight it with the skills you have gained...";
+    }
     }

@@ -71,5 +71,10 @@ public class Famine extends Obstacles // lvl 3
     {
         return "famine";
     }
+    
+    public String weapon()
+    {
+        return "bow and arrow";
+    }
 
 }
