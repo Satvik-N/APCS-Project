@@ -283,6 +283,10 @@ public class Player
     
     public void addHealth(int myHealth)
     {
+        if(health == 100)
+        {
+            throw new IllegalArgumentException("You already have 100 health. Save the food and water for when you need it!");
+        }
         health += myHealth; 
     }
     

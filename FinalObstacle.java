@@ -9,7 +9,7 @@ public class FinalObstacle extends Obstacles
 {
     // instance variables - replace the example below with your own
     private int x;
-    // health, water, and food 
+    // health, water, and food to succeed
 
     /**
      * Constructor for objects of class FinalObstacle
@@ -20,15 +20,18 @@ public class FinalObstacle extends Obstacles
         x = 0;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public void healthDecrement(Player p)
     {
-        // put your code here
-        return x + y;
+        p.subtractHealth(50);
     }
-}
+    public boolean succeedOrFail(Player p)
+    {
+        double constant = generateConstant();
+        if(constant*p.getHealth() + constant*p.getFood() + constant*p.getWater() > 1000)
+            return true;
+        healthDecrement(Player p);
+        
+    }
+    // if fail, decrement health and move to right behind the wall into a random position
+    public abstract String toString();
+    }
