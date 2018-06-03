@@ -34,7 +34,7 @@ public class TimTheEnchanter
         {
             obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
             return "Oh no! You've run into a " + obstacle.toString() + "!"
-                   + "You can fight this with " + obstacle.weapon() + ", if you have some"; 
+                   + "You can fight this with " + obstacle.weapon() + ", if you have some to spare..."; 
         }
         return null;
     }
@@ -42,13 +42,48 @@ public class TimTheEnchanter
     {
         return "hello";
     }
-    public String runIntoSupply(Player player)
+    public String runIntoSupply(Player p)
     {
+        Supplies supply;
+        if(p.isAtSupply())
+        {
+            supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
+            return "Yay! You've just found a a " + supply.toString() + "!"; 
+        }
         return null;
     }
-        public String collectSupply(Player player)
+        public void collectSupply(Player p)
     {
-        return null;
+        Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
+        double random = Math.random(); 
+        int amountToAdd = 0;
+        if(random <= .50)
+        {
+            amountToAdd = 20;
+        }
+        else
+        {
+            amountToAdd = 40;
+        }
+        if(supply instanceof Metal)
+        {
+            p.addMetal(amountToAdd); 
+        }
+        else
+            if(supply instanceof Wood)
+            {
+                p.addWood(amountToAdd); 
+            }
+            else
+                if(supply instanceof Food)
+                {
+                    p.addFood(amountToAdd); 
+                }
+                else
+                    if(supply instanceof Water)
+                    {
+                        p.addWater(amountToAdd); 
+                    }   
     }
     public String randomGift(Player player)
     {
