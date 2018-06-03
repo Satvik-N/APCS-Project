@@ -266,6 +266,7 @@ public class GameRunner extends Application
     
     private static void startGame(Stage theStage)
     {
+        System.out.println("hihihihi");
         // Close the menu window
         theStage.close();
         // create a new window
@@ -404,7 +405,7 @@ public class GameRunner extends Application
         
         if(tim.runIntoObstacle(p) != null)
         {
-            atObstacle(theStage);
+            atObstacle(theStage, tim.runIntoObstacle(p));
         }
         else
             if(tim.runIntoSupply(p) != null)
@@ -650,13 +651,14 @@ public class GameRunner extends Application
         credStage.show();
     }
     
-    private static void atObstacle(Stage theStage)
+    private static void atObstacle(Stage theStage, String message)
     {
         Group g3 = new Group();
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
         
         popup.setScene(pop);
+        popup.setTitle("Obstacle");
         
         VBox vb2 = new VBox();
         HBox hb = new HBox();
@@ -669,7 +671,7 @@ public class GameRunner extends Application
         else
             s = "Oh No! ";
         
-        Text obstacle = new Text(s + " =( You encountered a "); //+ p.getObstacle().toString());
+        Text obstacle = new Text(s + message); //+ p.getObstacle().toString());
         
         Button counterB1 = new Button(" 1 "); // p.getObstacle().getOption1());
         Button counterB2 = new Button(" 2 "); // p.getObstacle().getOption2());
