@@ -62,6 +62,7 @@ public class GameRunner extends Application
     static int choice;
     static TimTheEnchanter tim;
     static String playerImage;
+    static int scale;
 
     public static void main(String[] args) 
     {
@@ -77,7 +78,9 @@ public class GameRunner extends Application
         // save the width and height of the window and scale it by 66%
         windowY = (int)(bounds.getHeight());
         windowX = windowY;
-
+        
+        scale = (int)(windowX*0.9)/(200);
+        
         // create a VBox to organize the other nodes
         VBox vb = new VBox(20);
 
@@ -364,10 +367,11 @@ public class GameRunner extends Application
                 // refresh the canvas
                 gc.setFill(new Color(0, 0, 0, 0));
                 gc.fillRect(0, 0, windowX, windowY);
-    
+                
                 // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
                 // move the player to the desired location
+                if (p.playerBiome(p.getLocation()).toString().equals("Desert"))
                 if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
                 {
                     p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
@@ -395,7 +399,7 @@ public class GameRunner extends Application
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
-                gc.drawImage(pImage, p.getLocation().getX(), p.getLocation().getY(), pWidth, pHeight);
+                gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 
                 health.setText("\nHealth: " + p.getHealth() + "\n");
                 wood.setText("Wood: " + p.getWood());
