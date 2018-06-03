@@ -29,12 +29,14 @@ public class TimTheEnchanter
     }
     public String runIntoObstacle(Player p)
     {
+        Obstacles obstacle;
         if(p.isAtObstacle())
         {
-            if(p.playerBiome())
-            return "Oh no! You've run into a " + p.playerBiome().getMaterial(p.getX(), p.getY).toString() + "!"; 
+            obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.getLocation().getX(), (int)p.getLocation().getY());
+            return "Oh no! You've run into a " + obstacle.toString() + "!"
+                   + "You can fight this with " + obstacle.weapon() + ", if you have some"; 
         }
-            return null;
+        return null;
     }
     public String fightObstacle(Player player)
     {
