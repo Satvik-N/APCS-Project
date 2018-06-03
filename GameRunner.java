@@ -803,7 +803,7 @@ public class GameRunner extends Application
         Text nope = new Text("Sorry, you don't have the weapons that can fight this one.");
         Button counterB1 = new Button(" Use Weapon "); // p.getObstacle().getOption1());
         Button counterB2 = new Button(" Don't Use Weapon "); // p.getObstacle().getOption2());
-        Button close = new Button(" Close ");
+        Button ok = new Button(" Ok ");
         int number = 0;
         if (weapon.equals("bow and arrow"))
             number = p.getBowAndArrow();
@@ -824,7 +824,7 @@ public class GameRunner extends Application
                                 number = p.getFireProofShield();
         
         if (number == 0)
-            vb2.getChildren().addAll(obstacle, nope, close);
+            vb2.getChildren().addAll(obstacle, nope, ok);
         else
             vb2.getChildren().addAll(obstacle, counterB1, counterB2);
         vb2.setPrefWidth(windowX / 4);
@@ -862,6 +862,7 @@ public class GameRunner extends Application
                                     if (weapon.equals("fire-proof shield"))
                                         p.subtractFireProofShield(1);
                 popup.close();
+                winOrLose(theStage, wol);
             }
         });
         
@@ -872,15 +873,18 @@ public class GameRunner extends Application
                 // do the second option
                 wol = tim.fightObstacle(p, false);
                 popup.close();
+                winOrLose(theStage, wol);
             }
         });
         
-        close.setOnAction(new EventHandler<ActionEvent>()
+        ok.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
                 // do the second option
+                wol = tim.fightObstacle(p, false);
                 popup.close();
+                winOrLose(theStage, wol);
             }
         });
         
@@ -888,7 +892,25 @@ public class GameRunner extends Application
         
         popup.show();
     }
-    
+    private static void winOrLose(Stage theStage, String status)
+    {
+        Group g = new Group();
+        Stage s = new Stage();
+        Scene results = new Scene(g);
+        s.setScene(results);
+        s.setTitle("Results");
+        
+        VBox vB = new VBox(20);
+        
+        Label title = new Label("RESULTS:");
+        Text msg = new Text(wol);
+        
+        vB.getChildren().addAll(title, msg);
+        
+        g.getChildren().add(vB);
+        
+        s.showAndWait();
+    }
     private static void atSupply(Stage theStage)
     {
         Group g3 = new Group();
