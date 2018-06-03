@@ -396,9 +396,22 @@ public class GameRunner extends Application
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
                 
-                
-        
-                
+                if(tim.runIntoObstacle(p) != null)
+                {
+                    Obstacles ob = (Obstacles)tim.returnMaterial(p);
+                    String weapon = ob.weapon();
+                    atObstacle(theStage, tim.runIntoObstacle(p), weapon);
+                }
+                else
+                    if(tim.runIntoSupply(p) != null)
+                    {
+                        atSupply(theStage);
+                        Supplies su = (Supplies)tim.returnMaterial(p);
+                    }
+                if(tim.enteredNewBiome(p) != null)
+                    biomeChange(theStage, tim.enteredNewBiome(p));
+                if(tim.randomGift(p) != null)
+                    giftMessage(theStage, tim.randomGift(p));
             }
         }.start();
     
@@ -406,23 +419,6 @@ public class GameRunner extends Application
         // runIntoObstacle(Player player)
         // runIntoSupply(Player player)
         // randomGift(Player player)
-        
-        if(tim.runIntoObstacle(p) != null)
-        {
-            atObstacle(theStage, tim.runIntoObstacle(p));
-        }
-        else
-            if(tim.runIntoSupply(p) != null)
-            {
-                atSupply(theStage);
-            }
-            
-        if(tim.enteredNewBiome(p) != null)
-            biomeChange(theStage, tim.enteredNewBiome(p));
-        if(tim.randomGift(p) != null)
-            giftMessage(theStage, tim.randomGift(p));
-        
-        
         
         craft.setOnAction(new EventHandler<ActionEvent>()
             {
@@ -657,7 +653,7 @@ public class GameRunner extends Application
         credStage.show();
     }
     
-    private static void atObstacle(Stage theStage, String message)
+    private static void atObstacle(Stage theStage, String message, String weapon)
     {
         Group g3 = new Group();
         Scene pop = new Scene(g3);
@@ -700,8 +696,24 @@ public class GameRunner extends Application
                 // do the first option
                 // System.out.println("Op 1");
                 tim.fightObstacle(p, true);
-                
-                p.subtract
+                if (weapon.equals("bow and arrow"))
+                    p.subtractBowAndArrow(1);
+                else
+                    if (weapon.equals("rope"))
+                        p.subtractRope(1);
+                    else
+                        if (weapon.equals("spear"))
+                            p.subtractSpear(1);
+                        else
+                            if (weapon.equals("armor"))
+                                p.subtractArmor(1);
+                            else
+                                if (weapon.equals("pickaxe"))
+                                    p.subtractPickaxe(1);
+                                else
+                                    if (weapon.equals("fire-proof shield"))
+                                        p.subtractFireProofShield(1);
+                popup.close();
             }
         });
         
@@ -710,8 +722,7 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 // do the second option
-                // System.out.println("Op 2");
-                choice = 2;
+                popup.close();
             }
         });
         
@@ -943,7 +954,7 @@ public class GameRunner extends Application
         Text warning = new Text(biome);
         vb.getChildren().addAll(title, warning, close);
         g.getChildren().add(vb);
-        /*
+        
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
@@ -951,7 +962,7 @@ public class GameRunner extends Application
                 popup.close();
             }
         });
-        */
+        
         popup.showAndWait();
     }
     
