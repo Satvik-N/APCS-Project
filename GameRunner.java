@@ -371,9 +371,7 @@ public class GameRunner extends Application
                 // if the key pressed is LEFT, RIGHT, DOWN, or UP
                 // and the player will not move out of the board
                 // move the player to the desired location
-                if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("desert"))
-                {
-                    if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
+                if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
                     {
                         p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
                         checkForStuff(game, p);
@@ -396,66 +394,17 @@ public class GameRunner extends Application
                                     p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
                                     checkForStuff(game, p);
                                 }
-                }
-                else
-                    if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("rainforest"))
-                    {
-                        if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
-                        {
-                            p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY() + (int)c.getHeight()/2);
-                            checkForStuff(game, p);
-                        }
-                        else
-                            if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
-                            {
-                                p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY() + (int)c.getHeight()/2);
-                                checkForStuff(game, p);
-                            }
-                            else
-                                if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
-                                {
-                                    p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed + (int)c.getHeight()/2);
-                                    checkForStuff(game, p);
-                                }
-                                else
-                                    if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
-                                    {
-                                        p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed + (int)c.getHeight()/2);
-                                        checkForStuff(game, p);
-                                    }
-                    }
-                    else
-                        if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("grassland"))
-                        {
-                            if(input.contains("LEFT") && p.getLocation().getX() >= moveSpeed + BORDER)
-                            {
-                                p.move((int)p.getLocation().getX() - moveSpeed + (int)c.getHeight()/2, (int)p.getLocation().getY() + (int)c.getHeight()/2);
-                                checkForStuff(game, p);
-                            }
-                            else
-                                if(input.contains("RIGHT") && p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
-                                {
-                                    p.move((int)p.getLocation().getX() + moveSpeed + (int)c.getHeight()/2, (int)p.getLocation().getY() + (int)c.getHeight()/2);
-                                    checkForStuff(game, p);
-                                }
-                                else
-                                    if(input.contains("DOWN") && p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
-                                    {
-                                        p.move((int)p.getLocation().getX() + (int)c.getHeight()/2, (int)p.getLocation().getY() + moveSpeed + (int)c.getHeight()/2);
-                                        checkForStuff(game, p);
-                                    }
-                                    else
-                                        if(input.contains("UP") && p.getLocation().getY() >= moveSpeed + BORDER / 10.)
-                                        {
-                                            p.move((int)p.getLocation().getX() + (int)c.getHeight()/2,(int)p.getLocation().getY() - moveSpeed + (int)c.getHeight()/2);
-                                            checkForStuff(game, p);
-                                        }
-                        }
-    
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
-                gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
+                if (p.playerBiome(p.getLocation()).toString().equals("dessert"))
+                    gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
+                else
+                    if (p.playerBiome(p.getLocation()).toString().equals("rainforest"))
+                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
+                    else
+                        if (p.playerBiome(p.getLocation()).toString().equals("grassland"))
+                            gc.drawImage(pImage, scale * p.getLocation().getX() + c.getHeight()/2, scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
                 
                 health.setText("\nHealth: " + p.getHealth() + "\n");
                 wood.setText("Wood: " + p.getWood());
@@ -584,7 +533,7 @@ public class GameRunner extends Application
         // label the window
         Label title = new Label("Instructions:");
         // create two 'paragraphs'
-        Text p1 = new Text(" I...am an enchanter. ");
+        Text p1 = new Text(" I am an enchanter. ");
         Text p2 = new Text(" There are some who call me...Tim. ");
 
         
