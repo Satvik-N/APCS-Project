@@ -99,12 +99,12 @@ public class Player
     
     public boolean isAtObstacle()
     {
-        if (playerBiome(pos).equalsIgnoreCase("Desert"))
+        if (playerBiome(pos).equals(desert))
         {
             return desert.isObstacle((int)pos.getX(), (int)pos.getY());
         }
         else
-            if (playerBiome(pos).equalsIgnoreCase("Rainforest"))
+            if (playerBiome(pos).equals(rainforest))
             {
                 return rainforest.isObstacle((int)pos.getX(), (int)(pos.getY() - 80));
             }
@@ -115,25 +115,24 @@ public class Player
     public boolean isAtSupply()
     {
         boolean supply = false;
-        if (playerBiome(pos).equalsIgnoreCase("Rainforest"))
+        if (playerBiome(pos).equals(rainforest))
             supply = rainforest.isAtSupply((int)pos.getX(), (int)(pos.getY() - 80));
         else
-            if (playerBiome(pos).equalsIgnoreCase("Grassland"))
+            if (playerBiome(pos).equals(grassland))
                 supply = grassland.isAtSupply((int)(pos.getX() - 100), (int)(pos.getY() - 80));
         return supply;
     }
     
-    public String playerBiome(Point pos)
+    public Biomes playerBiome(Point pos)
     {
         String s;
         if (pos.getY() < 80)
-            s = "DESERT";
+            return desert;
         else 
             if (pos.getX() < 100)
-                s = "RAINFOREST";
+                return rainforest;
             else
-                s = "GRASSLAND";
-        return s;
+                return grassland;
     }
 
     public Point getLocation()
