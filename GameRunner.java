@@ -459,7 +459,7 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getY() >= moveSpeed)
+                    if(p.getLocation().getY() >= moveSpeed + BORDER / 10.)
                     {
                         p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
                         checkForStuff(game, p);
@@ -473,13 +473,12 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed)
+                    if(p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
                     {
                         System.out.println("In Player, current location is: " + "( " + 
                         (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY()) + ")");
                         System.out.println("In GameRunner, we want to move to: " + "( " + 
                         (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY() + moveSpeed) + ")");
-                        //p.move((int)p.getLocation().getX(), (int)p.getLocation().getY() + moveSpeed);
                         p.move((int)(p.getLocation().getX()), (int)(p.getLocation().getY() + moveSpeed));
                         checkForStuff(game, p);
                     }
@@ -492,7 +491,7 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getX() >= moveSpeed)
+                    if(p.getLocation().getX() >= moveSpeed + BORDER)
                     {
                         p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
                         checkForStuff(game, p);
@@ -506,7 +505,7 @@ public class GameRunner extends Application
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed)
+                    if(p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
                     {
                         p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
                         checkForStuff(game, p);
@@ -530,7 +529,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        if (p.getHealth() <= 90 && p.getFood() >= 10)
+                        if (p.getHealth() <= 98 && p.getFood() >= 10)
                         {
                             p.addHealth(2);
                             p.subtractFood(10);
@@ -550,7 +549,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        if (p.getHealth() <= 90 && p.getWater() >= 10)
+                        if (p.getHealth() <= 99 && p.getWater() >= 10)
                         {
                             p.addHealth(1);
                             p.subtractWater(10);
