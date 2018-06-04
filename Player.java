@@ -51,7 +51,10 @@ public class Player
         rope = 0;
         name = playerName;
         //starts off at a random location somewhere at the beginning of the rainforest or grassland
-        pos = new Point((int)(Math.random()*201),  (int)(Math.random()*176 + 25));
+        int x = (int)(Math.random()*201);
+        int y = (int)(Math.random()*176 + 25);
+        pos = new Point(x, y);
+        System.out.println("Initial x: " + x + ", Initial y: " + y + ", Biome: " + playerBiomeString(getLocation()));
         //old pos is set to pos
         oldPos = pos;
         //instantiate new biomes with obstacles and supplies
@@ -109,10 +112,11 @@ public class Player
      */
     public void move(int x, int y)
     {
-        System.out.println("pos: " + pos + " and biome: " + playerBiomeString(getLocation()));
         if(pos != null)
             setOldPosition(pos); //sets old location of player
         pos.setLocation(x, y); //sets current location of player
+        System.out.println("After the move, the actual pos: " + pos + " and biome: " + playerBiomeString(getLocation()));
+        System.out.println("x: " + pos.getX() + ", y: " + pos.getY());
     }
     
     /**
@@ -199,23 +203,24 @@ public class Player
      * @param pos - board location of player
      * @return position of player in biome
      */
-    public Point convertLoc(Point pos)
+    public Point convertLoc(Point posTwo)
     {
-        if (playerBiome(pos).equals(desert)) //if player is in desert
+        if (playerBiome(posTwo).equals(desert)) //if player is in desert
         {
-            return pos; //same position
+            return posTwo; //same position
         }
         else
             if (playerBiome(pos).equals(rainforest)) //if player is in rainforest
             {
-                pos.setLocation(pos.getX(), pos.getY() - 80); //same position, but y coordinate is shifted down 80
-                return pos;
+                //posTwo.setLocation(posTwo.getX(), posTwo.getY() - 80); //same position, but y coordinate is shifted down 80
+                return new Point((int)posTwo.getX(), (int)posTwo.getY() - 80);
             }
             else //player is in grassland
             {
                 //x coordinate is shifted down 100 and y coordinate is shifted down 80
-                pos.setLocation((pos.getX() - 100), (pos.getY() - 80));
-                return pos;
+                //posTwo.setLocation((posTwo.getX() - 100), (posTwo.getY() - 80));
+                return new Point((int)posTwo.getX() - 100, (int)posTwo.getY() - 80);
+                //return posTwo;
             }
     }
 

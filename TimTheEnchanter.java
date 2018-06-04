@@ -17,6 +17,7 @@ public class TimTheEnchanter
     {
         if(!player.playerBiome(player.getLocation()).equals(player.playerBiome(player.getOldLocation())))
         {
+            System.out.println(("You've entered the " + player.playerBiome(player.getLocation()).toString() + " terrain!"));
             return ("You've entered the " + player.playerBiome(player.getLocation()).toString() + " terrain!");
         }
         player.playerBiome(player.getOldLocation()).clearObstacles();
