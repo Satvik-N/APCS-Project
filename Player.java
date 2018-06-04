@@ -109,7 +109,7 @@ public class Player
      */
     public void move(int x, int y)
     {
-        System.out.println("pos: " + pos + " and biome: " + playerBiome(getLocation()).toString());
+        System.out.println("pos: " + pos + " and biome: " + playerBiomeString(getLocation()));
         if(pos != null)
             setOldPosition(pos); //sets old location of player
         pos.setLocation(x, y); //sets current location of player
