@@ -31,6 +31,21 @@ public abstract class Biomes
     {
         return biome[y][x];
     }
+    
+    /**
+     * <b>Summary</b> Method clearObstacles() - clears obstacles in the given biome
+     */
+    public void clearObstacles()
+    {
+        for (int row = 0; row < biome.length; row++)
+        {
+            for (int col = 0; col < biome[row].length; col++)
+            {
+                if (isObstacle(col, row))
+                    biome[row][col] = null;
+            }
+        }
+    }
 }
     
 
