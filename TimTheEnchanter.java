@@ -139,7 +139,7 @@ public class TimTheEnchanter
     {
         if(p.getHealth() <= 0)
         {
-            return "I had faith in you... but you failed... you failure";
+            return "";
         }
         return null; 
     }
@@ -151,11 +151,11 @@ public class TimTheEnchanter
             Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
             if(obstacle.succeedOrFail(p, true))
             {
-                return "Congratulations! You have escaped!";
+                return "";
             }
             else
             {
-               return "LOSING AT THE FINAL STEP... you fool... come up with another strategy and try again...";
+               return "";
             }
         }
         return null; 
