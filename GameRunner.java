@@ -534,6 +534,8 @@ public class GameRunner extends Application
                             p.addHealth(2);
                             p.subtractFood(10);
                         }
+                        else
+                            showErrorMessage(theStage, "You can't do this.");
                     }
                     catch (IllegalArgumentException ex)
                     {
