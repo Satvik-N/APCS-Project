@@ -183,6 +183,17 @@ public class Player
                 return grassland;
     }
     
+    public String playerBiomeString(Point pos)
+    { 
+        if (pos.getY() < 80) //if player is in first 2/5 of board
+            return "desert";
+        else 
+            if (pos.getX() < 100) //if player is in left half of board
+                return "rainforest";
+            else
+                return "grassland";
+    }
+    
     /**
      * <b>Summary</b> Method converLoc()
      * @param pos - board location of player
