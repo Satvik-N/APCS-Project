@@ -53,6 +53,7 @@ public class TimTheEnchanter
         if(p.isAtSupply())
         {
             supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
+            System.out.println("supply: " + supply);
             return "Yay! You've just found some " + supply.toString() + "!"; 
         }
         return null;

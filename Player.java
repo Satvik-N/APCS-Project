@@ -160,6 +160,10 @@ public class Player
         //checks whether there is an obstacle at location
             if (playerBiome(pos).equals(grassland)) //player in grassland
                 supply = grassland.isAtSupply((int)(convertLoc(pos).getX()), (int)(convertLoc(pos).getY()));
+        if(supply != false)
+        {
+           System.out.println("supply: " + playerBiome(getLocation()).getMaterial((int)convertLoc(getLocation()).getX(), (int)convertLoc(getLocation()).getY()).toString());
+        }
         return supply;
     }
     
