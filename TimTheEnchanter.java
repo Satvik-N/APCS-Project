@@ -62,7 +62,7 @@ public class TimTheEnchanter
         return null;
     }
 
-    public void collectSupply(Player p)
+    public int collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
         p.playerBiome(p.getLocation()).clearMaterial(p.getLocation());
@@ -84,7 +84,8 @@ public class TimTheEnchanter
         if(supply instanceof Water)
         {
             p.addWater(supply.getAmount()); 
-        }   
+        }
+        return supply.getAmount();
     }
 
     public String randomGift(Player player)
