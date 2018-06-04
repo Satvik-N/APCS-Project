@@ -597,10 +597,11 @@ public class GameRunner extends Application
                 theStage.show();
                 
             }
-        if(tim.randomGift(p) != null)
+        String gift = tim.randomGift(p);
+        if(gift != null)
         {
             theStage.close();
-            giftMessage(theStage, tim.randomGift(p));
+            giftMessage(theStage, gift);
             
         }
         
@@ -984,8 +985,10 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
+                tim.collectSupply(p);
                 supMessage(popup, sup, tim.collectSupply(p));
-                popup.close() ;
+                popup.close();
+                
             }
         });
         
@@ -997,17 +1000,30 @@ public class GameRunner extends Application
         Group g = new Group();
         Stage s = new Stage();
         Scene msgS = new Scene(g);
+        
         s.setScene(msgS);
         s.setTitle("Supply");
         
-        VBox vB = new VBox(20);
+        VBox vb = new VBox(20);
+        
+        vb.setPrefWidth(windowX / 4);
+        vb.setPrefHeight(windowY / 4);
         
         Label title = new Label("You got:");
         Text msgT = new Text(num + " " + msg);
+        Button close = new Button("Close");
         
-        vB.getChildren().addAll(title, msgT);
+        vb.getChildren().addAll(title, msgT, close);
         
-        g.getChildren().add(vB);
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                s.close();
+            }
+        });
+        
+        g.getChildren().add(vb);
         
         s.showAndWait();
     }
