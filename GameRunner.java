@@ -409,14 +409,14 @@ public class GameRunner extends Application
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
-                if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("desert"))
+                
+                if (p.playerBiomeString(p.getLocation()).toString().equalsIgnoreCase("desert"))
                     gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 else
-                    if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("rainforest"))
+                    if (p.playerBiomeString(p.getLocation()).toString().equalsIgnoreCase("rainforest"))
                         gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
                     else
-
-                            gc.drawImage(pImage, scale * p.getLocation().getX() + c.getHeight()/2, scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
+                        gc.drawImage(pImage, scale * p.getLocation().getX() + c.getHeight()/2, scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
                 
                 health.setText("\nHealth: " + p.getHealth() + "\n");
                 wood.setText("Wood: " + p.getWood());
@@ -519,7 +519,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        if (p.getHealth() <= 90 && p.getFood() > 10)
+                        if (p.getHealth() <= 90 && p.getFood() >= 10)
                         {
                             p.addHealth(2);
                             p.subtractFood(10);
@@ -539,7 +539,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        if (p.getHealth() <= 90 && p.getWater() > 10)
+                        if (p.getHealth() <= 90 && p.getWater() >= 10)
                         {
                             p.addHealth(1);
                             p.subtractWater(10);
