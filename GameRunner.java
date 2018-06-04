@@ -589,12 +589,6 @@ public class GameRunner extends Application
                 theStage.show();
                 
             }
-        if(tim.enteredNewBiome(p) != null)
-        {
-            theStage.close();
-            biomeChange(theStage, tim.enteredNewBiome(p));
-            theStage.show();
-        }
         if(tim.randomGift(p) != null)
         {
             theStage.close();
@@ -1139,34 +1133,6 @@ public class GameRunner extends Application
         g.getChildren().add(vB);
         
         s.showAndWait();
-    }
-    
-    private static void biomeChange(Stage theStage, String biome)
-    {
-        Group g = new Group();
-        Stage popup = new Stage();
-        Scene s = new Scene(g);
-        
-        popup.setScene(s);
-        popup.setTitle("Biome Changing");
-        
-        Button close = new Button("Close");
-        
-        VBox vb = new VBox();
-        Label title = new Label("MESSAGE:");
-        Text warning = new Text(biome);
-        vb.getChildren().addAll(title, warning, close);
-        g.getChildren().add(vb);
-        
-        close.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override public void handle(ActionEvent e)
-            {
-                popup.close();
-            }
-        });
-        
-        popup.showAndWait();
     }
     
     private static void giftMessage(Stage theStage, String gift)
