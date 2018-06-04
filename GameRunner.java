@@ -410,14 +410,16 @@ public class GameRunner extends Application
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
                 
-                if (p.playerBiomeString(p.getLocation()).toString().equalsIgnoreCase("desert"))
+                if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("desert"))
                     gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 else
-                    if (p.playerBiomeString(p.getLocation()).toString().equalsIgnoreCase("rainforest"))
-                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
+                    if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("rainforest"))
+                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY() + (windowX*0.9)/2, pWidth, pHeight);
                     else
-                        gc.drawImage(pImage, scale * p.getLocation().getX() + c.getHeight()/2, scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
+                        gc.drawImage(pImage, scale * p.getLocation().getX() + (windowX*0.9)/2, scale * p.getLocation().getY() + (windowX*0.9)/2, pWidth, pHeight);
                 
+                //System.out.println("Biome: " + p.playerBiomeString(p.getLocation()));
+                        
                 health.setText("\nHealth: " + p.getHealth() + "\n");
                 wood.setText("Wood: " + p.getWood());
                 metal.setText("Metal: " + p.getMetal());
@@ -429,7 +431,7 @@ public class GameRunner extends Application
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
                 
-                System.out.println("pX " + p.getLocation().getX() + "   pY " + p.getLocation().getY());
+                //System.out.println("pX " + p.getLocation().getX() + "   pY " + p.getLocation().getY());
                 
                 if(tim.die(p) != null)
                 {
