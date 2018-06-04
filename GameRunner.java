@@ -414,9 +414,9 @@ public class GameRunner extends Application
                     gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 else
                     if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("rainforest"))
-                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY() + (windowX*0.9)/2, pWidth, pHeight);
+                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                     else
-                        gc.drawImage(pImage, scale * p.getLocation().getX() + (windowX*0.9)/2, scale * p.getLocation().getY() + (windowX*0.9)/2, pWidth, pHeight);
+                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 
                 //System.out.println("Biome: " + p.playerBiomeString(p.getLocation()));
                         
