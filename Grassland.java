@@ -38,9 +38,9 @@ public class Grassland extends Biomes
                 {
                     //decides between the two level 3 obstacles
                     if (Math.random() < 0.5)
-                        biome[row][col] = new Drought(col, row);
+                        biome[row][col] = new Fire(col, row);
                     else
-                        biome[row][col] = new Sandstorm(col, row);
+                        biome[row][col] = new Famine(col, row);
                 }
             }
         }
