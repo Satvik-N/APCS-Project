@@ -58,4 +58,9 @@ public class Supplies extends Materials
         return point;
     }
     
+    public String toString()
+    {
+        return "supply";
+    }
+    
 }
