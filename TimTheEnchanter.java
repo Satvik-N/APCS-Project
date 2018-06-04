@@ -66,31 +66,34 @@ public class TimTheEnchanter
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
         p.playerBiome(p.getLocation()).clearMaterial(p.getLocation());
+        int amount = supply.getAmount();
         if(supply instanceof Metal)
         {
-            p.addMetal(supply.getAmount()); 
+            p.addMetal(amount); 
         }
         else
         if(supply instanceof Wood)
         {
-            p.addWood(supply.getAmount()); 
+            p.addWood(amount); 
         }
         else
         if(supply instanceof Food)
         {
-            p.addFood(supply.getAmount()); 
+            p.addFood(amount); 
         }
         else
         if(supply instanceof Water)
         {
-            p.addWater(supply.getAmount()); 
+            p.addWater(amount); 
         }
-        return supply.getAmount();
+        System.out.println("supply: " + amount);
+        return amount;
     }
 
     public String randomGift(Player player)
     {
         double random = Math.random();
+        
         if(random >= 0.96)
         {
             if(random >= 0.97)
@@ -100,39 +103,46 @@ public class TimTheEnchanter
                     if(player.getHealth() < 50)
                     {
                         player.addWater(45); 
+                        System.out.println("You've been working hard... here's 45 more water!");
                         return "You've been working hard... here's 45 more water!";
                     }
 
                     else
                     {
                         player.addFood(100);
+                        System.out.println("You look hungry... here's 100 more food!");
                         return "You look hungry... here's 100 more food!";
                     }
                 }
                 if(player.getHealth() < 50)
                 {
                     player.addWater(25); 
+                    System.out.println("You've been working hard... here's 25 more water!");
                     return "You've been working hard... here's 25 more water!";
                 }
 
                 else
                 {
                     player.addFood(80);
+                    System.out.println("You look hungry... here's 80 more food!");
                     return "You look hungry... here's 80 more food!";
                 }
             }
             if(player.getHealth() < 50)
             {
                 player.addWater(10); 
+                System.out.println("You've been working hard... here's 10 more water!");
                 return "You've been working hard... here's 10 more water!";
             }
 
             else
             {
                 player.addFood(50);
+                System.out.println("You look hungry... here's 50 more food!");
                 return "You look hungry... here's 50 more food!";
             }
         }
+        System.out.println("null");
         return null; 
     }
 
