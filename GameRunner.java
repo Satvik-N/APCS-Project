@@ -51,7 +51,7 @@ import java.util.ArrayList;
 public class GameRunner extends Application 
 {
     // double to hold the speed of movement of the character
-    static final int moveSpeed = 1;
+    static final int moveSpeed = 5;
     // will hold the size of the window
     static int windowX, windowY;
     // border around the edge where player cannot travel
@@ -409,13 +409,13 @@ public class GameRunner extends Application
         
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
-                if (p.playerBiome(p.getLocation()).toString().equals("desert"))
+                if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("desert"))
                     gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 else
-                    if (p.playerBiome(p.getLocation()).toString().equals("rainforest"))
+                    if (p.playerBiome(p.getLocation()).toString().equalsIgnoreCase("rainforest"))
                         gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
                     else
-                        if (p.playerBiome(p.getLocation()).toString().equals("grassland"))
+
                             gc.drawImage(pImage, scale * p.getLocation().getX() + c.getHeight()/2, scale * p.getLocation().getY() + c.getHeight()/2, pWidth, pHeight);
                 
                 health.setText("\nHealth: " + p.getHealth() + "\n");
@@ -428,7 +428,22 @@ public class GameRunner extends Application
                 pick.setText("Pickaxe: " + p.getPickaxe());
                 fireproof.setText("Fire-Proof Shield: " + p.getFireProofShield());
                 rope.setText("Rope: " + p.getRope());
+                
                 System.out.println("pX " + p.getLocation().getX() + "   pY " + p.getLocation().getY());
+                
+                if(tim.die(p) != null)
+                {
+                    game.close();
+                    finalScene(theStage, false);
+                    stop();
+                }
+                else
+                if(tim.win(p) != null)
+                {
+                    game.close();
+                    finalScene(theStage, true);
+                    stop();
+                }  
             }
         }.start();
     
@@ -553,33 +568,31 @@ public class GameRunner extends Application
             String weapon = ob.weapon();
             theStage.close();
             atObstacle(theStage, tim.runIntoObstacle(p), weapon);
-            theStage.show();
-            theStage.toBack();
+            
         }
         else
             if(tim.runIntoSupply(p) != null)
             {
-                theStage.close();
-                atSupply(theStage);
-                theStage.show();
-                theStage.toBack();
                 Supplies su = (Supplies)tim.returnMaterial(p);
+                String supply = su.toString();
+                String msg = tim.runIntoSupply(p);
+                theStage.close();
+                atSupply(theStage, msg);
+                theStage.show();
+                
             }
         if(tim.enteredNewBiome(p) != null)
         {
             theStage.close();
             biomeChange(theStage, tim.enteredNewBiome(p));
             theStage.show();
-            theStage.toBack();
         }
         if(tim.randomGift(p) != null)
         {
             theStage.close();
             giftMessage(theStage, tim.randomGift(p));
-            theStage.show();
-            theStage.toBack();
+            
         }
-        
         
     }
     
@@ -783,6 +796,8 @@ public class GameRunner extends Application
         Scene pop = new Scene(g3);
         Stage popup = new Stage();
         
+        
+        
         popup.setScene(pop);
         popup.setTitle("Obstacle");
         
@@ -799,10 +814,10 @@ public class GameRunner extends Application
         else
             s = "Oh No! ";
         
-        Text obstacle = new Text(s + message); //+ p.getObstacle().toString());
+        Text obstacle = new Text(s + message);
         Text nope = new Text("Sorry, you don't have the weapons that can fight this one.");
-        Button counterB1 = new Button(" Use Weapon "); // p.getObstacle().getOption1());
-        Button counterB2 = new Button(" Don't Use Weapon "); // p.getObstacle().getOption2());
+        Button counterB1 = new Button(" Use Weapon ");
+        Button counterB2 = new Button(" Don't Use Weapon ");
         Button ok = new Button(" Ok ");
         int number = 0;
         if (weapon.equals("bow and arrow"))
@@ -863,6 +878,9 @@ public class GameRunner extends Application
                                         p.subtractFireProofShield(1);
                 popup.close();
                 winOrLose(theStage, wol);
+                
+                theStage.show();
+                theStage.toBack();
             }
         });
         
@@ -874,6 +892,9 @@ public class GameRunner extends Application
                 wol = tim.fightObstacle(p, false);
                 popup.close();
                 winOrLose(theStage, wol);
+                
+                theStage.show();
+                theStage.toBack();
             }
         });
         
@@ -885,13 +906,16 @@ public class GameRunner extends Application
                 wol = tim.fightObstacle(p, false);
                 popup.close();
                 winOrLose(theStage, wol);
+                
+                theStage.show();
+                theStage.toBack();
             }
         });
         
-        // p.getObstacle().succeedOrFail(p);
         
         popup.show();
     }
+    
     private static void winOrLose(Stage theStage, String status)
     {
         Group g = new Group();
@@ -911,7 +935,8 @@ public class GameRunner extends Application
         
         s.showAndWait();
     }
-    private static void atSupply(Stage theStage)
+    
+    private static void atSupply(Stage theStage, String msg)
     {
         Group g3 = new Group();
         Scene pop = new Scene(g3);
@@ -930,12 +955,11 @@ public class GameRunner extends Application
         else
             s = "Awesome! ";
         
-        Text obstacle = new Text(s + " =) You found a some supplies");
+        Text obstacle = new Text(s + " =) You found a some supplies. " + msg);
         
         Button supplyB1 = new Button("Take and Leave");
-        Button supplyB2 = new Button("Leave");
         
-        vb2.getChildren().addAll(supplyB1, supplyB2);
+        vb2.getChildren().addAll(supplyB1);
         vb2.setPrefWidth(windowX / 4);
         vb2.setPrefHeight(windowY / 4);
         
@@ -945,23 +969,14 @@ public class GameRunner extends Application
 
         
         
-        // when the option 1 button is pressed
+        // when the button is pressed
         supplyB1.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
-                
+               popup.close() ;
             }
         });
-        
-        supplyB2.setOnAction(new EventHandler<ActionEvent>()
-        {
-            @Override public void handle(ActionEvent e)
-            {
-                
-            }
-        });
-        
         
         popup.showAndWait();
     }
@@ -1167,60 +1182,39 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 popup.close();
+                theStage.show();
             }
         });
         
         popup.show();
     }
     
-    private static void finalObstacle(Stage theStage)
+    private static void finalScene(Stage theStage, boolean wonGame)
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene confirmScene = new Scene(g);
+        Scene s = new Scene(g);
         
-        popup.setScene(confirmScene);
+        theStage.close();
         
-        Button confirm = new Button("Yes");
-        Button deny = new Button("Nah");
+        popup.setScene(s);
+        popup.setTitle("congrats");
         
-        VBox vb = new VBox(10);
-        HBox buttonHB = new HBox(15);
-        
-        Label title = new Label("MESSAGE:");
-        Text msg = new Text("Are you sure you want to enter the final battle?");
-        Text msg2 = new Text("Once you accept, there is no going back.");
-        
-        buttonHB.getChildren().addAll(confirm, deny);
-        
-        vb.getChildren().addAll(title, msg, msg2, buttonHB);
-        g.getChildren().add(vb);
-           
-        deny.setOnAction(new EventHandler<ActionEvent>()
+        if(wonGame)
         {
-            @Override public void handle(ActionEvent e)
-            {
-                popup.close();
-            }
-        });
-        
-        confirm.setOnAction(new EventHandler<ActionEvent>()
+            Text msg = new Text("congrats you wasted ur time on this game and won.");
+            Text msg2 = new Text("you have made your friend tim proud.");
+            VBox vb = new VBox(msg, msg2);
+            g.getChildren().addAll(vb);
+        }
+        else
         {
-            @Override public void handle(ActionEvent e)
-            {
-                theStage.close();
-                
-                Scene finalBoss = new Scene(g);
-                popup.setScene(finalBoss);
-                
-                popup.setTitle("Final Boss");
-                
-                
-                
-                popup.show();
-            }
-        });
+            Text msg = new Text("congrats you wasted ur time on this game and lost.");
+            Text msg2 = new Text("you have dissapointed tim. you have no friends now.");
+            VBox vb = new VBox(msg, msg2);
+            g.getChildren().addAll(vb);
+        }
         
-        popup.showAndWait();
+        popup.show();
     }
 } 
