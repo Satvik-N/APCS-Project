@@ -593,7 +593,7 @@ public class GameRunner extends Application
                 String supply = su.toString();
                 String msg = tim.runIntoSupply(p);
                 theStage.close();
-                atSupply(theStage, msg);
+                atSupply(theStage, msg, supply);
                 theStage.show();
                 
             }
@@ -946,7 +946,7 @@ public class GameRunner extends Application
         s.showAndWait();
     }
     
-    private static void atSupply(Stage theStage, String msg)
+    private static void atSupply(Stage theStage, String msg, String sup)
     {
         Group g3 = new Group();
         Scene pop = new Scene(g3);
@@ -969,7 +969,7 @@ public class GameRunner extends Application
         
         Button supplyB1 = new Button("Take and Leave");
         
-        vb2.getChildren().addAll(supplyB1);
+        vb2.getChildren().addAll(obstacle, supplyB1);
         vb2.setPrefWidth(windowX / 4);
         vb2.setPrefHeight(windowY / 4);
         
@@ -984,11 +984,32 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-               popup.close() ;
+                supMessage(popup, sup, tim.collectSupply(p));
+                popup.close() ;
             }
         });
         
         popup.showAndWait();
+    }
+    
+    private static void supMessage(Stage theStage, String msg, int num)
+    {
+        Group g = new Group();
+        Stage s = new Stage();
+        Scene msgS = new Scene(g);
+        s.setScene(msgS);
+        s.setTitle("Supply");
+        
+        VBox vB = new VBox(20);
+        
+        Label title = new Label("You got:");
+        Text msgT = new Text(num + " " + msg);
+        
+        vB.getChildren().addAll(title, msgT);
+        
+        g.getChildren().add(vB);
+        
+        s.showAndWait();
     }
     
     private static void showCraftMenu(Stage theStage)
