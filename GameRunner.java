@@ -519,8 +519,11 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.addHealth(2);
-                        p.subtractFood(10);
+                        if (p.getHealth() <= 90 && p.getFood() > 10)
+                        {
+                            p.addHealth(2);
+                            p.subtractFood(10);
+                        }
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -536,8 +539,11 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.addHealth(1);
-                        p.subtractWater(10);
+                        if (p.getHealth() <= 90 && p.getWater() > 10)
+                        {
+                            p.addHealth(1);
+                            p.subtractWater(10);
+                        }
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -880,7 +886,7 @@ public class GameRunner extends Application
                 winOrLose(theStage, wol);
                 
                 theStage.show();
-                theStage.toBack();
+                theStage.toFront();
             }
         });
         
@@ -894,7 +900,7 @@ public class GameRunner extends Application
                 winOrLose(theStage, wol);
                 
                 theStage.show();
-                theStage.toBack();
+                theStage.toFront();
             }
         });
         
@@ -908,7 +914,7 @@ public class GameRunner extends Application
                 winOrLose(theStage, wol);
                 
                 theStage.show();
-                theStage.toBack();
+                theStage.toFront();
             }
         });
         
@@ -1200,20 +1206,31 @@ public class GameRunner extends Application
         popup.setScene(s);
         popup.setTitle("congrats");
         
+        Button close = new Button("Close");
+        Text msg;
+        Text msg2;
+        VBox vb = new VBox(20);
+        
         if(wonGame)
         {
-            Text msg = new Text("congrats you wasted ur time on this game and won.");
-            Text msg2 = new Text("you have made your friend tim proud.");
-            VBox vb = new VBox(msg, msg2);
-            g.getChildren().addAll(vb);
+            msg = new Text("congrats you wasted ur time on this game and won.");
+            msg2 = new Text("you have made your friend tim proud.");
         }
         else
         {
-            Text msg = new Text("congrats you wasted ur time on this game and lost.");
-            Text msg2 = new Text("you have dissapointed tim. you have no friends now.");
-            VBox vb = new VBox(msg, msg2);
-            g.getChildren().addAll(vb);
+            msg = new Text("congrats you wasted ur time on this game and lost.");
+            msg2 = new Text("you have dissapointed tim. you have no friends now.");
         }
+        vb.getChildren().addAll(msg, msg2, close);
+        g.getChildren().addAll(vb);
+        
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
         
         popup.show();
     }
