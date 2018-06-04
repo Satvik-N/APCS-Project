@@ -102,6 +102,12 @@ public class Grassland extends Biomes
         }
     }
     
+    
+    /**
+     * <b>Summary</b> Method toString() - returns String biome
+     *
+     * @return the string that represents the biome
+     */
     public String toString() 
     {
         return "GRASSLAND";

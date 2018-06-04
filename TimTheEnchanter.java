@@ -19,6 +19,8 @@ public class TimTheEnchanter
         {
             return ("You've entered the " + player.playerBiome(player.getLocation()).toString() + " terrain!");
         }
+        player.playerBiome(player.getOldLocation()).clearObstacles();
+        player.playerBiome(player.getOldLocation()).buildObstacles();
         return null;
     }
 
@@ -62,6 +64,7 @@ public class TimTheEnchanter
     public void collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
+        p.playerBiome(p.getLocation()).clearMaterial(p.getLocation());
         if(supply instanceof Metal)
         {
             p.addMetal(supply.getAmount()); 

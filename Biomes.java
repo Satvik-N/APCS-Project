@@ -1,4 +1,4 @@
-import java.awt.geom.*;
+import java.awt.Point;
 /**
  * Abstract class Biomes - write a description of the class here
  *
@@ -45,6 +45,11 @@ public abstract class Biomes
                     biome[row][col] = null;
             }
         }
+    }
+    
+    public void clearMaterial(Point pos)
+    {
+        biome[(int)pos.getY()][(int)pos.getX()] = null;
     }
 }
     
