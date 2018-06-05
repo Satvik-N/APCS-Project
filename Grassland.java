@@ -34,7 +34,7 @@ public class Grassland extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/15.0)) //randomly spaces obstacles every 8 spaces
+                if (Math.random() < (1.0/20.0)) //randomly spaces obstacles every 8 spaces
                 {
                     //decides between the two level 3 obstacles
                     if (Math.random() < 0.5)
@@ -50,7 +50,7 @@ public class Grassland extends Biomes
             for (int col = 0; col < biome[row].length; col++)
             {
                 //randomly spaces out obstacles every 8 spaces.
-                if (Math.random() < (1.0/15.0))
+                if (Math.random() < (1.0/20.0))
                     biome[row][col] = new Animal(col, row);
             }
         }
@@ -59,7 +59,7 @@ public class Grassland extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/15.0))
+                if (Math.random() < (1.0/20.0))
                     biome[row][col] = new Mudslide(col, row);
             }
         }

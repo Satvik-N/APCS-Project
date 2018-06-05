@@ -18,7 +18,7 @@ public class Desert extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/10.0))
+                if (Math.random() < (1.0/15.0))
                 {
                     if (Math.random() < .5)
                         biome[row][col] = new Drought(col, row);
@@ -31,7 +31,7 @@ public class Desert extends Biomes
         {
             for (int j = 0; j < biome[i].length; j++)
             {
-                if (Math.random() < (1.0/10.0))
+                if (Math.random() < (1.0/15.0))
                 {
                     if (Math.random() < .5)
                         biome[i][j] = new Fire(j, i);
