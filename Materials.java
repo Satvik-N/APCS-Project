@@ -1,4 +1,3 @@
-import java.awt.geom.*;
 import java.awt.Point;
 /**
  * Write a description of class Materials here.
