@@ -86,7 +86,7 @@ public class GameRunner extends Application
         windowX = windowY;
         
         scale = (int)(windowX*.9/200);
-       
+        
         // create a VBox to organize the other nodes
         VBox vb = new VBox(20);
 
@@ -101,7 +101,7 @@ public class GameRunner extends Application
         theStage.setScene(startScreen);
 
         // Button to start the game
-        Button startB = new Button("   Start   ");
+        Button startB = new Button("Start");
         // Button to start the instructions
         Button instB = new Button("How to play");
         // Button to show credits
@@ -165,13 +165,13 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g, windowX * .5, windowX * .27);
+        Scene s = new Scene(g, windowX * .8, windowX * .4);
         
         popup.sizeToScene(); 
         
         Canvas c = new Canvas(s.getWidth(), s.getHeight());
         
-        HBox hbButtons = new HBox(55);
+        HBox hbButtons = new HBox(70);
         HBox hbLabels = new HBox(20);
         
         theStage.close();
@@ -183,6 +183,8 @@ public class GameRunner extends Application
         HBox hb = new HBox(20);
         hb.setPrefHeight(c.getHeight());
         hb.setPrefWidth(c.getWidth());
+        
+        HBox images = new HBox(60);
         
         GraphicsContext gc = c.getGraphicsContext2D();
         
@@ -212,15 +214,32 @@ public class GameRunner extends Application
         Image hs = new Image("henry.PNG");
         Image zb = new Image("Zaphod Beeblebrox.png");
         
+        ImageView vbsp = new ImageView(bsp);
+        vbsp.setFitWidth(50);
+        vbsp.setFitHeight(50);
+        ImageView vbtc = new ImageView(btc);
+        vbtc.setFitWidth(50);
+        vbtc.setFitHeight(50);
+        ImageView vl = new ImageView(l);
+        vl.setFitWidth(50);
+        vl.setFitHeight(50);
+        ImageView vhs = new ImageView(hs);
+        vhs.setFitWidth(50);
+        vhs.setFitHeight(50);
+        ImageView vzb = new ImageView(zb);
+        vzb.setFitWidth(50);
+        vzb.setFitHeight(50);
         
-        gc.drawImage(bsp, c.getWidth() * 0.01, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        images.getChildren().addAll(vbsp, vbtc, vl, vhs, vzb);
         
-        vb.getChildren().addAll(title, hbButtons,hbLabels);
-        g.getChildren().addAll(c, vb);
+        // gc.drawImage(bsp, c.getWidth() * 0.01, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        
+        vb.getChildren().addAll(title, hbButtons,hbLabels, images);
+        g.getChildren().addAll(vb);
         
         popup.setScene(s);
         
