@@ -598,8 +598,8 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.addHealth(2);
                         p.subtractFood(10);
+                        p.addHealth(2);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -615,8 +615,8 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.addHealth(1);
                         p.subtractWater(10);
+                        p.addHealth(1);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -1036,6 +1036,7 @@ public class GameRunner extends Application
             }
         });
         
+        s.toFront();
         s.show();
     }
     
