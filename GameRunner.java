@@ -979,18 +979,16 @@ public class GameRunner extends Application
         vb2.setAlignment(Pos.CENTER);
         
         g3.getChildren().add(vb2);
-
         
+        int supNum = tim.collectSupply(p);
         
         // when the button is pressed
         supplyB1.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
             {
-                tim.collectSupply(p);
-                supMessage(popup, sup, tim.collectSupply(p));
                 popup.close();
-                
+                supMessage(popup, sup, supNum);
             }
         });
         
@@ -999,23 +997,24 @@ public class GameRunner extends Application
     
     private static void supMessage(Stage theStage, String msg, int num)
     {
-        Group g = new Group();
+        Group g2 = new Group();
         Stage s = new Stage();
-        Scene msgS = new Scene(g);
+        Scene msgS = new Scene(g2);
         
         s.setScene(msgS);
         s.setTitle("Supply");
         
         VBox vb = new VBox(20);
         
-        vb.setPrefWidth(windowX / 4);
-        vb.setPrefHeight(windowY / 4);
+        //vb.setPrefWidth(windowX / 4);
+        //vb.setPrefHeight(windowY / 4);
         
         Label title = new Label("You got:");
         Text msgT = new Text(num + " " + msg);
         Button close = new Button("Close");
         
         vb.getChildren().addAll(title, msgT, close);
+        g2.getChildren().add(vb);
         
         close.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -1024,8 +1023,6 @@ public class GameRunner extends Application
                 s.close();
             }
         });
-        
-        g.getChildren().add(vb);
         
         s.showAndWait();
     }
