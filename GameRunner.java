@@ -51,7 +51,7 @@ import java.util.ArrayList;
 public class GameRunner extends Application 
 {
     // double to hold the speed of movement of the character
-    static final int moveSpeed = 5;
+    static final int moveSpeed = 1;
     // will hold the size of the window
     static int windowX, windowY;
     // border around the edge where player cannot travel
@@ -566,7 +566,7 @@ public class GameRunner extends Application
                 @Override public void handle(ActionEvent e)
                 {
                     // show the instructions page
-                    showInstructionsOther(theStage);
+                    showInstructions(theStage);
                 }
             });
         theStage.toFront();
@@ -641,10 +641,10 @@ public class GameRunner extends Application
         // create two 'paragraphs'
         Text p1 = new Text(" I...am an enchanter. There are some who call me...Tim. ");
         Text p2 = new Text(" Welcome to GoTo Island, an isolated and deserted land full of" + 
-                            " never-before seen mysteries. Many brave souls like you that once set" + 
-                            " foot on this island were never seen again… will you share their fate? ");
+                            " never-before seen mysteries.\nMany brave souls like you that once set" + 
+                            " foot on this island were never seen again… will you share their fate?");
         Text p3 = new Text(" Those before you that tried to escape the island all failed, but you have" + 
-                            " potential, so I will give you the best form of guidance- a magical map. This map" + 
+                            " potential,\nso I will give you the best form of guidance- a magical map. This map" + 
                             " will help you find your way from the Rainforest and the Grassland to the end of the" + 
                             " Desert, where you can escape. As you explore these puzzling lands, you may run into" + 
                             " metal, wood, water, and food, which you can utilize to build useful tools and nourish" + 
@@ -664,8 +664,8 @@ public class GameRunner extends Application
         
         // add everything to VBox
         textVB.getChildren().addAll(title, pixHB, p2, p3, p4, p5, p6, backB);
-        textVB.setPrefWidth(windowX / 3);
-        textVB.setPrefHeight(windowY / 3);
+        // textVB.setPrefWidth(windowX / 3);
+        // textVB.setPrefHeight(windowY / 3);
         
         textVB.setAlignment(Pos.CENTER_LEFT);
         
@@ -690,56 +690,6 @@ public class GameRunner extends Application
         instStage.show();
     }
     
-    private static void showInstructionsOther(Stage theStage)
-    {
-        // close the menu
-        theStage.close();
-
-        // create a new group of nodes
-        Group instG = new Group();
-        // make a new window
-        Stage instStage = new Stage();
-
-        // set the title of the window
-        instStage.setTitle("Instructions");
-
-        // create a VBox to organize the texts
-        VBox textVB = new VBox(20);
-        HBox pixHB = new HBox(10);
-
-        // create and add scene with instructions
-        Scene instScene = new Scene(instG);
-        instStage.setScene(instScene);
-        
-        Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
-        
-        Canvas timSpace = new Canvas(windowX / 4, windowY / 4);
-        GraphicsContext gc = timSpace.getGraphicsContext2D();
-        
-        gc.drawImage(timImage, 0, 20, windowX / 4, windowY / 4);
-
-        // label the window
-        Label title = new Label("Instructions:");
-        // create two 'paragraphs'
-        Text p1 = new Text(" I am an enchanter. ");
-        Text p2 = new Text(" There are some who call me...Tim. ");
-
-        
-        pixHB.getChildren().addAll(p1, timSpace);
-        
-        // add everything to VBox
-        textVB.getChildren().addAll(title, pixHB, p2);
-        textVB.setPrefWidth(windowX / 3);
-        textVB.setPrefHeight(windowY / 3);
-        
-        textVB.setAlignment(Pos.CENTER_LEFT);
-        
-        
-        // add VBox to window
-        instG.getChildren().add(textVB);
-        // show the instructions window
-        instStage.show();
-    }
     private static void showCredits(Stage theStage)
     {
         theStage.close();
