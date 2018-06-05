@@ -29,7 +29,7 @@ public class Supplies extends Materials
      */
     public Supplies(int amount, double x, double y)
     {
-        myAmount = amount;
+        setAmount(amount);
         point = new Point2D.Double(x, y); 
     }
 
