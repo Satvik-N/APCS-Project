@@ -188,11 +188,11 @@ public class GameRunner extends Application
         
         Label title = new Label("Choose Your Player");
         
-        Button pic1 = new Button("           ");
-        Button pic2 = new Button("           ");
-        Button pic3 = new Button("           ");
-        Button pic4 = new Button("           ");
-        Button pic5 = new Button("           ");
+        Button pic1 = new Button("       ");
+        Button pic2 = new Button("       ");
+        Button pic3 = new Button("       ");
+        Button pic4 = new Button("       ");
+        Button pic5 = new Button("       ");
         
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         
@@ -993,7 +993,6 @@ public class GameRunner extends Application
         {
             @Override public void handle(ActionEvent e)
             {
-                popup.close();
                 supMessage(popup, sup, supNum);
             }
         });
@@ -1007,12 +1006,16 @@ public class GameRunner extends Application
         Scene msgS = new Scene(g2);
         Stage s = new Stage();
         
+        theStage.close();
+        
         Canvas c = new Canvas(windowX / 5, windowX / 5);
         
         s.setScene(msgS);
         s.setTitle("Supply");
         
         VBox vb = new VBox(20);
+        
+        g2.getChildren().addAll(vb);
         
         vb.setPrefWidth(windowX / 6);
         vb.setPrefHeight(windowY / 4);
@@ -1022,7 +1025,8 @@ public class GameRunner extends Application
         Button close = new Button("Close");
         
         vb.getChildren().addAll(title, msgT, close);
-        g2.getChildren().addAll(vb);
+        vb.setAlignment(Pos.CENTER);
+        
         
         close.setOnAction(new EventHandler<ActionEvent>()
         {
@@ -1032,7 +1036,7 @@ public class GameRunner extends Application
             }
         });
         
-        s.showAndWait();
+        s.show();
     }
     
     private static void showCraftMenu(Stage theStage)
