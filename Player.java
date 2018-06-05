@@ -525,7 +525,7 @@ public class Player
     public void subtractWater(int myWater)
     {
         //checks if there is enough wood 
-        if(water - myWater < 0)
+        if(water - myWater < 0 || getHealth() >99)
             throw new IllegalArgumentException("You don't have enough water");
         water -= myWater;
     }
@@ -537,7 +537,7 @@ public class Player
     public void subtractFood(int myFood)
     {
         //checks if there is enough food
-        if(food - myFood < 0)
+        if(food - myFood < 0 || getHealth() >98)
             throw new IllegalArgumentException("You don't have enough food");
         food -= myFood;
     }
