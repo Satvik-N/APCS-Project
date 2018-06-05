@@ -454,12 +454,11 @@ public class GameRunner extends Application
         // runIntoSupply(Player player)
         // randomGift(Player player)
         
-        //+ BORDER / 10.
         up.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getY() >= moveSpeed + BORDER / 10.)
+                    if(p.getLocation().getY() * scale >= moveSpeed + BORDER / 10.)
                     {
                         p.move((int)p.getLocation().getX(),(int)p.getLocation().getY() - moveSpeed);
                         checkForStuff(game, p);
@@ -468,12 +467,11 @@ public class GameRunner extends Application
             }
         );
         
-        // - BORDER
         down.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getY() <= c.getWidth() - pHeight - moveSpeed - BORDER)
+                    if(p.getLocation().getY() * scale <= c.getWidth() - pHeight - moveSpeed - BORDER)
                     {
                         System.out.println("In Player, current location is: " + "( " + 
                         (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY()) + ")");
@@ -486,12 +484,11 @@ public class GameRunner extends Application
             }
         );
         
-        // + BORDER
         left.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getX() >= moveSpeed + BORDER)
+                    if(p.getLocation().getX() * scale >= moveSpeed + BORDER)
                     {
                         p.move((int)p.getLocation().getX() - moveSpeed, (int)p.getLocation().getY());
                         checkForStuff(game, p);
@@ -500,12 +497,11 @@ public class GameRunner extends Application
             }
         );
         
-        // - BORDER
         right.setOnAction(new EventHandler<ActionEvent>()
             {
                 @Override public void handle(ActionEvent e)
                 {
-                    if(p.getLocation().getX() <= c.getWidth() - pWidth - moveSpeed - BORDER)
+                    if(p.getLocation().getX() * scale <= c.getWidth() - pWidth - moveSpeed - BORDER)
                     {
                         p.move((int)p.getLocation().getX() + moveSpeed, (int)p.getLocation().getY());
                         checkForStuff(game, p);
