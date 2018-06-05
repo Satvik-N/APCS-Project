@@ -1,7 +1,3 @@
-import java.awt.geom.*;
-import java.util.List;
-import java.util.ArrayList;
-import java.awt.Point;
 /**
  * Write a description of class Famine here- a Level 3 obstacle.
  *

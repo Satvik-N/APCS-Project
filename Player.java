@@ -52,7 +52,7 @@ public class Player
         name = playerName;
         //starts off at a random location somewhere at the beginning of the rainforest or grassland
         int x = (int)(Math.random()*201);
-        int y = (int)(Math.random()*120 + 80);
+        int y = (int)(Math.random()*80 + 120);
         pos = new Point(x, y);
         System.out.println("Initial x: " + x + ", Initial y: " + y + ", Biome: " + playerBiomeString(getLocation()));
         //old pos is set to pos
@@ -484,7 +484,7 @@ public class Player
     public void addHealth(int myHealth)
     {
         //checks if player health is already 100
-        if(health == 100)
+        if(health > 98)
         {
             throw new IllegalArgumentException("If you eat 10 more food or drink 10 more water, you'll have over 100 health. Save the food and water for when you need it!");
         }

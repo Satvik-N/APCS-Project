@@ -35,7 +35,7 @@ public class Rainforest extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/8.0)) //randomly, every 8 spaces
+                if (Math.random() < (1.0/15.0)) //randomly, every 8 spaces
                 {
                     if (Math.random() < 0.5) //decides between the two level 3 obstacles
                         //row and col must switch spots to make an (x, y) Point
@@ -50,7 +50,7 @@ public class Rainforest extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/8.0)) //occur every 8 spaces randomly
+                if (Math.random() < (1.0/15.0)) //occur every 8 spaces randomly
                     biome[row][col] = new Animal(col, row); //col and row switch spots to create an (x, y) point
             }
         }
@@ -59,7 +59,7 @@ public class Rainforest extends Biomes
         {
             for (int col = 0; col < biome[row].length; col++)
             {
-                if (Math.random() < (1.0/8.0)) //occur every 8 spaces
+                if (Math.random() < (1.0/15.0)) //occur every 8 spaces
                     biome[row][col] = new Mudslide(col, row); //col and row switch spots
             }
         }
@@ -78,7 +78,7 @@ public class Rainforest extends Biomes
                 if (biome[row][col] == null)
                 {
                     //randomly generates every 10 spaces
-                    if (Math.random() < (1.0/10.0))
+                    if (Math.random() < (1.0/8.0))
                     {
                         //randomly chooses one of the supplies
                         if (Math.random() < (1.0/3.0))
