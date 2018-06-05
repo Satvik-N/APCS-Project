@@ -106,7 +106,7 @@ public class GameRunner extends Application
         // Button to show credits
         Button creditB = new Button("Credits");
         // make a welcome text
-        Label welcome = new Label("Welcome to:\n Survivor ");
+        Label welcome = new Label("Welcome to:\nSurvivor");
         welcome.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         welcome.setTextAlignment(TextAlignment.CENTER);
         
@@ -164,7 +164,7 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g, windowX * .5, windowX * .2);
+        Scene s = new Scene(g, windowX * .5, windowX * .27);
         
         popup.sizeToScene(); 
         
@@ -185,12 +185,15 @@ public class GameRunner extends Application
         
         GraphicsContext gc = c.getGraphicsContext2D();
         
-        Label title = new Label("CHOOSE YOUR PLAYER");
+        Label title = new Label("Choose Your Player");
+        
         Button pic1 = new Button("           ");
         Button pic2 = new Button("           ");
         Button pic3 = new Button("           ");
         Button pic4 = new Button("           ");
         Button pic5 = new Button("           ");
+        
+        title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         
         hbButtons.getChildren().addAll(pic1, pic2, pic3, pic4, pic5);
         
@@ -209,13 +212,13 @@ public class GameRunner extends Application
         Image zb = new Image("Zaphod Beeblebrox.png");
         
         
-        gc.drawImage(bsp, c.getWidth() * 0.05, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(bsp, c.getWidth() * 0.01, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         
-        vb.getChildren().addAll(hbButtons,hbLabels);
+        vb.getChildren().addAll(title, hbButtons,hbLabels);
         g.getChildren().addAll(c, vb);
         
         popup.setScene(s);
