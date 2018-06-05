@@ -484,7 +484,7 @@ public class Player
     public void addHealth(int myHealth)
     {
         //checks if player health is already 100
-        if(health == 100)
+        if(health > 98)
         {
             throw new IllegalArgumentException("If you eat 10 more food or drink 10 more water, you'll have over 100 health. Save the food and water for when you need it!");
         }
