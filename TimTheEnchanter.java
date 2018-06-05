@@ -65,8 +65,12 @@ public class TimTheEnchanter
     public int collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-        p.playerBiome(p.getLocation()).clearMaterial(p.getLocation());
-        int amount = supply.getAmount();
+        int amount = 0;
+        if (supply != null)
+        {
+            amount = supply.getAmount();
+        }
+        p.playerBiome(p.getLocation()).clearMaterial(p.convertLoc(p.getLocation()));
         if(supply instanceof Metal)
         {
             p.addMetal(amount); 
