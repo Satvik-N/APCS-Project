@@ -998,23 +998,25 @@ public class GameRunner extends Application
     private static void supMessage(Stage theStage, String msg, int num)
     {
         Group g2 = new Group();
-        Stage s = new Stage();
         Scene msgS = new Scene(g2);
+        Stage s = new Stage();
+        
+        Canvas c = new Canvas(windowX / 5, windowX / 5);
         
         s.setScene(msgS);
         s.setTitle("Supply");
         
         VBox vb = new VBox(20);
         
-        //vb.setPrefWidth(windowX / 4);
-        //vb.setPrefHeight(windowY / 4);
+        vb.setPrefWidth(windowX / 6);
+        vb.setPrefHeight(windowY / 4);
         
         Label title = new Label("You got:");
         Text msgT = new Text(num + " " + msg);
         Button close = new Button("Close");
         
         vb.getChildren().addAll(title, msgT, close);
-        g2.getChildren().add(vb);
+        g2.getChildren().addAll(vb);
         
         close.setOnAction(new EventHandler<ActionEvent>()
         {
