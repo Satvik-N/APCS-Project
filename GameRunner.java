@@ -17,6 +17,7 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyEvent;
@@ -325,7 +326,7 @@ public class GameRunner extends Application
         // add canvas to group
         root.getChildren().add(hb);
         
-        Text health = new Text("\nHealth: " + p.getHealth() + "\n");
+        Text health = new Text("Health: " + p.getHealth());
         Text wood = new Text("Wood: " + p.getWood());
         Text metal = new Text("Metal: " + p.getMetal());
         Text food = new Text("Food: " + p.getFood());
@@ -337,10 +338,65 @@ public class GameRunner extends Application
         Text rope = new Text("Rope: " + p.getRope());
         Text spear = new Text("Spear: " + p.getSpear());
         
+        Image h = new Image("HEART.png");
+        Image wo = new Image("WOOD.png");
+        Image m = new Image("METAL.png");
+        Image fo = new Image("FOOD.png");
+        Image wa = new Image("WATER.png");
+        Image b = new Image("BOW AND ARROW.png");
+        Image a = new Image("ARMOR.png");
+        Image pi = new Image("PICK AXE.png");
+        Image fi = new Image("FULL ON TIM.png");
+        Image r = new Image("ROPE.png");
+        Image s = new Image("SPEAR.png");
+        
+        ImageView vh = new ImageView(h);
+        vh.setFitWidth(20);
+        vh.setFitHeight(20);
+        ImageView vwo = new ImageView(wo);
+        vwo.setFitWidth(20);
+        vwo.setFitHeight(20);
+        ImageView vm = new ImageView(m);
+        vm.setFitWidth(20);
+        vm.setFitHeight(20);
+        ImageView vfo = new ImageView(fo);
+        vfo.setFitWidth(20);
+        vfo.setFitHeight(20);
+        ImageView vwa = new ImageView(wa);
+        vwa.setFitWidth(20);
+        vwa.setFitHeight(20);
+        ImageView vB = new ImageView(b);
+        vB.setFitWidth(20);
+        vB.setFitHeight(20);
+        ImageView va = new ImageView(a);
+        va.setFitWidth(20);
+        va.setFitHeight(20);
+        ImageView vpi = new ImageView(pi);
+        vpi.setFitWidth(20);
+        vpi.setFitHeight(20);
+        ImageView vfi = new ImageView(fi);
+        vfi.setFitWidth(20);
+        vfi.setFitHeight(20);
+        ImageView vr = new ImageView(r);
+        vr.setFitWidth(20);
+        vr.setFitHeight(20);
+        ImageView vs = new ImageView(s);
+        vs.setFitWidth(20);
+        vs.setFitHeight(20);
+        
+        HBox IandL = new HBox(5);
+        VBox images = new VBox(15);
+        VBox labels = new VBox(19);
+        
+        images.getChildren().addAll(vh, vwo, vm, vfo, vwa, vB, va, vpi, vfi, vr, vs);
+        labels.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear);
+        
+        IandL.getChildren().addAll(images, labels);
+        
         Button craft = new Button("Craft");
         Button eat = new Button("Eat Food");
         Button drink = new Button("Drink");
-        vb.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear, craft, eat, drink);
+        vb.getChildren().addAll(IandL, craft, eat, drink);
         
         vb.getChildren().addAll(up, lr, down);
         
@@ -437,7 +493,7 @@ public class GameRunner extends Application
                 
                 //System.out.println("Biome: " + p.playerBiomeString(p.getLocation()));
                         
-                health.setText("\nHealth: " + p.getHealth() + "\n");
+                health.setText("Health: " + p.getHealth());
                 wood.setText("Wood: " + p.getWood());
                 metal.setText("Metal: " + p.getMetal());
                 food.setText("Food: " + p.getFood());
@@ -542,13 +598,8 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        if (p.getHealth() <= 98 && p.getFood() >= 10)
-                        {
-                            p.addHealth(2);
-                            p.subtractFood(10);
-                        }
-                        else
-                            showErrorMessage(theStage, "You can't do this.");
+                        p.addHealth(2);
+                        p.subtractFood(10);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -564,11 +615,8 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        if (p.getHealth() <= 99 && p.getWater() >= 10)
-                        {
-                            p.addHealth(1);
-                            p.subtractWater(10);
-                        }
+                        p.addHealth(1);
+                        p.subtractWater(10);
                     }
                     catch (IllegalArgumentException ex)
                     {
