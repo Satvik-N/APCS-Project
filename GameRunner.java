@@ -27,6 +27,9 @@ import javafx.scene.text.Text;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.event.ActionEvent;
@@ -103,7 +106,9 @@ public class GameRunner extends Application
         // Button to show credits
         Button creditB = new Button("Credits");
         // make a welcome text
-        Label welcome = new Label("Welcome to Survivor");
+        Label welcome = new Label("Welcome to:\n Survivor ");
+        welcome.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
+        welcome.setTextAlignment(TextAlignment.CENTER);
         
         // add the buttons to the VBox
         vb.getChildren().addAll(welcome, startB, instB, creditB);
@@ -282,7 +287,6 @@ public class GameRunner extends Application
     
     private static void startGame(Stage theStage)
     {
-        System.out.println("hihihihi");
         // Close the menu window
         theStage.close();
         // create a new window
@@ -640,6 +644,7 @@ public class GameRunner extends Application
 
         // label the window
         Label title = new Label("Instructions:");
+        title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         // create two 'paragraphs'
         Text p1 = new Text("I...am an enchanter. There are some who call me...Tim. ");
         Text p2 = new Text("Welcome to GoTo Island, an isolated and deserted land full of" + 
@@ -717,19 +722,20 @@ public class GameRunner extends Application
 
         // label the window
         Label title = new Label("Credits");
+        title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         // create two 'paragraphs'
-        Text p1 = new Text(" 1 ");
-        Text p2 = new Text(" 2 ");
-        Text p3 = new Text(" 3 ");
-        Text p4 = new Text(" 4 ");
-        Text p5 = new Text(" 5 ");
+        Text p1 = new Text("Varun Agarwal");
+        Text p2 = new Text("Arushi Dogra");
+        Text p3 = new Text("Satvikoooo Nagpal");
+        Text p4 = new Text("Priya Khatri");
+        Text p5 = new Text("HUGE THANKS TO MR. L FOR EVERYTHING!!!!!!!!");
         
         // add everything to VBox
         textVB.getChildren().addAll(title, p1, p2, p3, p4, p5, backB);
         textVB.setPrefWidth(windowX / 3);
         textVB.setPrefHeight(windowY / 3);
         
-        textVB.setAlignment(Pos.CENTER_LEFT);
+        textVB.setAlignment(Pos.CENTER);
         
         
         // add VBox to window
