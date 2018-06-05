@@ -65,12 +65,8 @@ public class TimTheEnchanter
     public int collectSupply(Player p)
     {
         Supplies supply = (Supplies)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-        int amount = 0;
-        if (supply != null)
-        {
-            amount = supply.getAmount();
-        }
         p.playerBiome(p.getLocation()).clearMaterial(p.convertLoc(p.getLocation()));
+        int amount = supply.getAmount();
         if(supply instanceof Metal)
         {
             p.addMetal(amount); 
@@ -146,7 +142,6 @@ public class TimTheEnchanter
                 return "You look hungry... here's 50 more food!";
             }
         }
-        System.out.println("null");
         return null; 
     }
 
