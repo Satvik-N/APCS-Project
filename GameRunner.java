@@ -159,13 +159,14 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g, windowX * 2 / 3, windowX * 1 / 3);
+        Scene s = new Scene(g, windowX * .5, windowX * .2);
         
         popup.sizeToScene(); 
         
-        Canvas c = new Canvas(s.getWidth() * 0.7, windowX / 5.5);
+        Canvas c = new Canvas(s.getWidth(), s.getHeight());
         
-        
+        HBox hbButtons = new HBox(55);
+        HBox hbLabels = new HBox(20);
         
         theStage.close();
         
@@ -180,11 +181,21 @@ public class GameRunner extends Application
         GraphicsContext gc = c.getGraphicsContext2D();
         
         Label title = new Label("CHOOSE YOUR PLAYER");
-        Button pic1 = new Button("         n00b         ");
-        Button pic2 = new Button("     Bill the Cat     ");
-        Button pic3 = new Button("    The Lantsberger   ");
-        Button pic4 = new Button("  Henry the Stressed  ");
-        Button pic5 = new Button("  Zaphod Beeblebrox   ");
+        Button pic1 = new Button("           ");
+        Button pic2 = new Button("           ");
+        Button pic3 = new Button("           ");
+        Button pic4 = new Button("           ");
+        Button pic5 = new Button("           ");
+        
+        hbButtons.getChildren().addAll(pic1, pic2, pic3, pic4, pic5);
+        
+        Label l1 = new Label("Boring Standard\nPlayer");
+        Label l2 = new Label("Bill the Cat");
+        Label l3 = new Label("The Lantsberger");
+        Label l4 = new Label("Henry the Stressed");
+        Label l5 = new Label("Zaphod Beeblebrox");
+        
+        hbLabels.getChildren().addAll(l1, l2, l3, l4, l5);
         
         Image bsp = new Image("Person.png");
         Image btc = new Image("bill the cat.png");
@@ -192,14 +203,14 @@ public class GameRunner extends Application
         Image hs = new Image("henry.PNG");
         Image zb = new Image("Zaphod Beeblebrox.png");
         
+        
         gc.drawImage(bsp, c.getWidth() * 0.05, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(l, c.getWidth() * 0.45, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(hs, c.getWidth() * 0.7, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
         
-        hb.getChildren().addAll(pic1, pic2, pic3, pic4, pic5);
-        vb.getChildren().addAll(title, hb);
+        vb.getChildren().addAll(hbButtons,hbLabels);
         g.getChildren().addAll(c, vb);
         
         popup.setScene(s);
@@ -322,8 +333,7 @@ public class GameRunner extends Application
         Button craft = new Button("Craft");
         Button eat = new Button("Eat Food");
         Button drink = new Button("Drink");
-        Button instruct = new Button("Instructions");
-        vb.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear, craft, eat, drink, instruct);
+        vb.getChildren().addAll(health, wood, metal, food, water, bAndA, armor, pick, fireproof, rope, spear, craft, eat, drink);
         
         vb.getChildren().addAll(up, lr, down);
         
@@ -561,14 +571,6 @@ public class GameRunner extends Application
             }
         );
         
-        instruct.setOnAction(new EventHandler<ActionEvent>()
-            {
-                @Override public void handle(ActionEvent e)
-                {
-                    // show the instructions page
-                    showInstructions(theStage);
-                }
-            });
         theStage.toFront();
         // show the window with the game
         game.show();
@@ -639,26 +641,27 @@ public class GameRunner extends Application
         // label the window
         Label title = new Label("Instructions:");
         // create two 'paragraphs'
-        Text p1 = new Text(" I...am an enchanter. There are some who call me...Tim. ");
-        Text p2 = new Text(" Welcome to GoTo Island, an isolated and deserted land full of" + 
+        Text p1 = new Text("I...am an enchanter. There are some who call me...Tim. ");
+        Text p2 = new Text("Welcome to GoTo Island, an isolated and deserted land full of" + 
                             " never-before seen mysteries.\nMany brave souls like you that once set" + 
                             " foot on this island were never seen again… will you share their fate?");
-        Text p3 = new Text(" Those before you that tried to escape the island all failed, but you have" + 
-                            " potential,\nso I will give you the best form of guidance- a magical map. This map" + 
+        Text p3 = new Text("Those before you that tried to escape the island all failed, but you have" + 
+                            " potential,\nso I will give you the best form of guidance- a magical map.\nThis map" + 
                             " will help you find your way from the Rainforest and the Grassland to the end of the" + 
-                            " Desert, where you can escape. As you explore these puzzling lands, you may run into" + 
-                            " metal, wood, water, and food, which you can utilize to build useful tools and nourish" + 
+                            " Desert,\nwhere you can escape. As you explore these puzzling lands, you may run into" + 
+                            " metal, wood, water, and food,\nwhich you can utilize to build useful tools and nourish" + 
                             " your health during the long journey. ");
-        Text p4 = new Text(" You will also encounter various obstacles along the way. Know that the journey only gets" + 
-                            " harder as you get closer to the escape zone. To participate in it, ye must be people of valor." + 
-                            " If you do doubt your courage or your strength, come no further for DEATH AWAITS YOU ALL WITH " + 
-                            "NASTY BIG POINTY TEETH. Wait...no, wrong scenario...");
-        Text p5 = new Text("Ahem. The tools can help you survive the obstacles that you will face, but you may still lose to " + 
-                            "the obstacles. Your health will reflect the severity of your losses, and once your health hits zero" + 
+        Text p4 = new Text("You will also encounter various obstacles along the way.\nKnow that the journey only gets" + 
+                            " harder as you get closer to the escape zone.\nTo participate in it, ye must be people of valor." + 
+                            "\nIf you do doubt your courage or your strength,\ncome no further for DEATH AWAITS YOU ALL WITH " + 
+                            "NASTY BIG POINTY TEETH. Wait... no, wrong line...");
+        Text p5 = new Text("Ahem. The tools can help you survive the obstacles that you will face,\nbut you may still lose to " + 
+                            "the obstacles.\nYour health will reflect the severity of your losses,\nand once your health hits zero" + 
                             ", it’s game over. ");
-        Text p6 = new Text(" The map won’t show you where you can find certain supplies and obstacles, so you’ll have to figure them out " + 
-                            "on your own. Be smart in your moves and devise a strategy to make it across the desert alive. Of course, I’m not" + 
-                            " entirely cruel either. I will attempt to lend you my help and be...helpful. You might find random gifts along the way if you have earned them. Be warned, I know much that is hidden.");
+        Text p6 = new Text("The map won’t show you where you can find certain supplies and obstacles,\nso you’ll have to figure them out " + 
+                            "on your own.\nBe smart in your moves and devise a strategy to make it across the desert alive.\nOf course, I’m not" + 
+                            " entirely cruel either.\nI will attempt to lend you my help and be...helpful." +
+                            "\nYou might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers.");
         
         pixHB.getChildren().addAll(p1, timSpace);
         
