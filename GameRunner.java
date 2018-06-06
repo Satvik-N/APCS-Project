@@ -232,12 +232,6 @@ public class GameRunner extends Application
         
         images.getChildren().addAll(vbsp, vbtc, vl, vhs, vzb);
         
-        // gc.drawImage(bsp, c.getWidth() * 0.01, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        // gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        // gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        // gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        // gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        
         vb.getChildren().addAll(title, hbButtons,hbLabels, images);
         g.getChildren().addAll(vb);
         
@@ -334,7 +328,7 @@ public class GameRunner extends Application
         VBox vb = new VBox(20);
         HBox lr = new HBox(5);
         
-        Button up = new Button("       up       ");
+        Button up = new Button("      up      ");
         Button down = new Button("     down     ");
         Button left = new Button("left");
         Button right = new Button("right");
@@ -697,8 +691,9 @@ public class GameRunner extends Application
         instStage.setScene(instScene);
         
         Image timImage = new Image("tim the enchanter.png"); // Replace with picture of Tim
+        ImageView tim = new ImageView(timImage);
         
-        Canvas timSpace = new Canvas(windowX / 4, windowY / 4);
+        Canvas timSpace = new Canvas(windowX / 4, windowY/ 4);
         GraphicsContext gc = timSpace.getGraphicsContext2D();
         
         gc.drawImage(timImage, 0, 20, windowX / 4, windowY / 4);
@@ -732,7 +727,7 @@ public class GameRunner extends Application
                             " entirely cruel either.\nI will attempt to lend you my help and be...helpful." +
                             "\nYou might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers...");
         
-        pixHB.getChildren().addAll(p1, timSpace);
+        pixHB.getChildren().addAll(p1, tim);
         
         // add everything to VBox
         textVB.getChildren().addAll(title, pixHB, p2, p3, p4, p5, p6, backB);
@@ -888,7 +883,6 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 // do the first option
-                // System.out.println("Op 1");
                 wol = tim.fightObstacle(p, true);
                 if (weapon.equals("bow and arrow"))
                     p.subtractBowAndArrow(1);
@@ -1238,6 +1232,18 @@ public class GameRunner extends Application
     
     private static void finalScene(Stage theStage, boolean wonGame)
     {
+        if(wonGame)
+        {
+            finalBoss(theStage);
+        }
+        else
+        {
+            loseGame(theStage);
+        }
+    }
+    
+    private static void finalBoss(Stage theStage)
+    {
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
@@ -1245,26 +1251,46 @@ public class GameRunner extends Application
         theStage.close();
         
         popup.setScene(s);
-        popup.setTitle("congrats");
         
         Button close = new Button("Close");
-        Text msg;
-        Text msg2;
-        VBox vb = new VBox(20);
         
-        if(wonGame)
-        {
-            msg = new Text("congrats you wasted ur time on this game and won.");
-            msg2 = new Text("you have made your friend tim proud.");
-        }
-        else
-        {
-            msg = new Text("congrats you wasted ur time on this game and lost.");
-            msg2 = new Text("you have dissapointed tim. you have no friends now.");
-        }
+        Text msg = new Text("congrats you wasted ur time on this game and won.");
+        Text msg2 = new Text("you have made your friend tim proud.");
+        
+        VBox vb = new VBox();
         vb.getChildren().addAll(msg, msg2, close);
-        g.getChildren().addAll(vb);
+        g.getChildren().add(vb);
         
+        close.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                System.exit(0);
+            }
+        });
+        
+        popup.show();
+    }
+    
+    private static void loseGame(Stage theStage)
+    {
+        Group g = new Group();
+        Stage popup = new Stage();
+        Scene s = new Scene(g);
+        
+        theStage.close();
+        
+        popup.setScene(s);
+        
+        Button close = new Button("Close");
+        
+        Text msg = new Text("congrats you wasted ur time on this game and lost.");
+        Text msg2 = new Text("you have dissapointed tim. you have no friends now.");
+            
+        VBox vb = new VBox();
+        vb.getChildren().addAll(msg, msg2, close);
+        g.getChildren().add(vb);
+           
         close.setOnAction(new EventHandler<ActionEvent>()
         {
             @Override public void handle(ActionEvent e)
