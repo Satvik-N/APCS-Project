@@ -84,7 +84,7 @@ public class GameRunner extends Application
         windowY = (int)(bounds.getHeight());
         windowX = windowY;
         
-        scale = (int)(windowX*.9/200);
+        scale = (int)(windowX * .9 / 200);
         
         // create a VBox to organize the other nodes
         VBox vb = new VBox(20);
@@ -503,13 +503,8 @@ public class GameRunner extends Application
                 // draw the map and the players again        
                 gc.drawImage(map, 0, 0, c.getWidth(), c.getWidth());
                 
-                if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("desert"))
-                    gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
-                else
-                    if (p.playerBiomeString(p.getLocation()).equalsIgnoreCase("rainforest"))
-                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
-                    else
-                        gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
+                
+                gc.drawImage(pImage, scale * p.getLocation().getX(), scale * p.getLocation().getY(), pWidth, pHeight);
                 
                 //System.out.println("Biome: " + p.playerBiomeString(p.getLocation()));
                         
