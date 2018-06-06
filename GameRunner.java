@@ -565,10 +565,6 @@ public class GameRunner extends Application
                 {
                     if(p.getLocation().getY() * scale <= c.getWidth() - pHeight - moveSpeed - BORDER)
                     {
-                        System.out.println("In Player, current location is: " + "( " + 
-                        (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY()) + ")");
-                        System.out.println("In GameRunner, we want to move to: " + "( " + 
-                        (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY() + moveSpeed) + ")");
                         p.move((int)(p.getLocation().getX()), (int)(p.getLocation().getY() + moveSpeed));
                         checkForStuff(game, p);
                     }
@@ -658,7 +654,6 @@ public class GameRunner extends Application
             String weapon = ob.weapon();
             theStage.close();
             atObstacle(theStage, tim.runIntoObstacle(p), weapon);
-            
         }
         else
             if(tim.runIntoSupply(p) != null)
@@ -668,17 +663,15 @@ public class GameRunner extends Application
                 String msg = tim.runIntoSupply(p);
                 theStage.close();
                 atSupply(theStage, msg, supply);
-                theStage.show();
-                
+
             }
+            
         String gift = tim.randomGift(p);
         if(gift != null)
         {
             theStage.close();
             giftMessage(theStage, gift);
-            
         }
-        
     }
     
     private static void showInstructions(Stage theStage)
@@ -886,8 +879,7 @@ public class GameRunner extends Application
         vb2.setAlignment(Pos.CENTER);
         
         g3.getChildren().add(vb2);
-
-
+        
         
         // when the option 1 button is pressed
         counterB1.setOnAction(new EventHandler<ActionEvent>()
@@ -1013,6 +1005,8 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 supMessage(popup, sup, supNum);
+                theStage.show();
+                theStage.toBack();
             }
         });
         
