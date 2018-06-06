@@ -153,7 +153,7 @@ public class TimTheEnchanter
         }
         else
         {
-            if (p.getHealth() > 98)
+            if (p.getHealth() == 100)
                 throw new IllegalArgumentException("You already have enough health");
             else
             {
@@ -171,7 +171,7 @@ public class TimTheEnchanter
         }
         else
         {
-            if (p.getHealth() > 98)
+            if (p.getHealth() == 100)
                 throw new IllegalArgumentException("You already have enough health");
             else
             {

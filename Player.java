@@ -275,7 +275,7 @@ public class Player
      */
     public int getWater()
     {
-        return wood;
+        return water;
     }
     
     /**
