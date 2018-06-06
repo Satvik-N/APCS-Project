@@ -161,7 +161,7 @@ public class TimTheEnchanter
 
     public String win(Player p)
     {
-        if(p.getLocation().getY() == 0)
+        if(p.getLocation().getY() == 1)
         {
             Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
             if(obstacle.succeedOrFail(p, true))
