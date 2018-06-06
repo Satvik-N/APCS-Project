@@ -43,7 +43,6 @@ import javafx.geometry.Pos;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-
 /**
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * 
@@ -52,7 +51,7 @@ import java.util.ArrayList;
  */
 
 
-public class GameRunner extends Application 
+public class GameRunner extends Application
 {
     // double to hold the speed of movement of the character
     static final int moveSpeed = 1;
@@ -651,7 +650,10 @@ public class GameRunner extends Application
             Obstacles ob = (Obstacles)tim.returnMaterial(p);
             String weapon = ob.weapon();
             theStage.close();
-            atObstacle(theStage, tim.runIntoObstacle(p), weapon);
+            if (ob.toString().equalsIgnoreCase("goto heat wave"))
+                atFinal(theStage, tim.runIntoObstacle(p), weapon);
+            else
+                atObstacle(theStage, tim.runIntoObstacle(p), weapon);
         }
         else
             if(tim.runIntoSupply(p) != null)
@@ -946,7 +948,107 @@ public class GameRunner extends Application
         
         popup.show();
     }
-    
+    private static void atFinal(Stage theStage, String message, String weapon)
+    {
+        Group g3 = new Group();
+        Scene pop = new Scene(g3);
+        Stage popup = new Stage();
+        
+        popup.setScene(pop);
+        popup.setTitle("FINAL OBSTACLE");
+        
+        VBox vb2 = new VBox();
+        HBox hb = new HBox();
+        
+        double rand = Math.random() * 2;
+        String s = "";
+        
+        if(rand < 1)
+            s = "ACK! ";
+        else
+            s = "OH NO! ";
+        
+        Text obstacle = new Text(s + message);
+        Text nope = new Text(weapon);
+        
+        Button ok = new Button(" Ok ");
+
+        vb2.getChildren().addAll(obstacle, nope, ok);
+        
+        vb2.setPrefWidth(windowX / 4);
+        vb2.setPrefHeight(windowY / 4);
+        
+        vb2.setAlignment(Pos.CENTER);
+        
+        g3.getChildren().add(vb2);
+        
+        ok.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                wol = tim.fightObstacle(p, false);
+                popup.close();
+                waiting(theStage);
+                winOrLose(theStage, wol);
+                theStage.show();
+                theStage.toFront();
+            }
+        });
+        
+        popup.show();
+    }
+    private static void waiting(Stage theStage)
+    {
+        theStage.close();
+        
+        // create a new group of nodes
+        Group credG = new Group();
+        // make a new window
+        Stage credStage = new Stage();
+
+        // set the title of the window
+        credStage.setTitle("THE ANTICIPATION ESCALATES...");
+
+        // create a VBox to organize the texts
+        VBox textVB = new VBox(20);
+
+        // create and add scene with instructions
+        Scene credScene = new Scene(credG);
+        credStage.setScene(credScene);
+
+        // label the window
+        Label title = new Label("LOADING");
+        
+        //progress bar
+        //JProgressBar progressBar;
+        
+        // add everything to VBox
+        textVB.getChildren().addAll(title);
+        textVB.setPrefWidth(windowX / 3);
+        textVB.setPrefHeight(windowY / 3);
+        
+        textVB.setAlignment(Pos.CENTER);
+        
+        
+        // add VBox to window
+        credG.getChildren().add(textVB);
+
+        // when the back button is pressed
+        // backB.setOnAction(new EventHandler<ActionEvent>()
+            // {
+                // @Override public void handle(ActionEvent e)
+                // {
+                    // // close instructions window
+                    // credStage.close();
+                    // // show the main menu window
+                    // theStage.show();
+                // }
+            // }
+        // );
+
+        // show the instructions window
+        credStage.show();
+    }
     private static void winOrLose(Stage theStage, String status)
     {
         Group g = new Group();
