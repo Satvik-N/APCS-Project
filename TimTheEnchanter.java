@@ -94,11 +94,11 @@ public class TimTheEnchanter
     {
         double random = Math.random();
         
-        if(random >= 0.99)
+        if(random >= 0.992)
         {
-            if(random >= 0.91)
+            if(random >= 0.994)
             {
-                if(random >= 0.992)
+                if(random >= 0.996)
                 {
                     if(player.getHealth() < 50)
                     {
