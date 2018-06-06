@@ -28,13 +28,18 @@ public class TimTheEnchanter
     public String runIntoObstacle(Player p)
     {
         Obstacles obstacle;
+        String returnString = null;
         if(p.isAtObstacle())
         {
             obstacle = (Obstacles)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY());
-            return "Oh no! You've run into a " + obstacle.toString() + "! "
-            + "You can fight this with " + obstacle.weapon() + ", if you have some to spare..."; 
+            returnString ="Oh no! You've run into a " + obstacle.toString() + "! "
+            + "You can fight this with " + obstacle.weapon();
+            if(!(obstacle instanceof FinalObstacle))
+            {
+                 returnString += ", if you have some to spare..."; 
+            }
         }
-        return null;
+        return returnString;
     }
 
     public String fightObstacle(Player p, boolean choice)
@@ -197,7 +202,7 @@ public class TimTheEnchanter
 
     public String win(Player p)
     {
-        if(p.getLocation().getY() == 1)
+        if(p.getLocation().getY() == 2)
         {
             Obstacles obstacle = (FinalObstacle)p.playerBiome(p.getLocation()).getMaterial((int)p.convertLoc(p.getLocation()).getX(), (int)p.convertLoc(p.getLocation()).getY()); 
             if(obstacle.succeedOrFail(p, true))
