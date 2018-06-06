@@ -40,7 +40,7 @@ public class Drought extends Obstacles // lvl 4
         boolean survive;
         if(choice)
         {
-            if ((constant) * (p.getHealth() + p.getWater()) >= 700)
+            if ((constant) * (p.getHealth() + p.getWater()) >= 100)
                 survive = true;
             else
             {
@@ -50,7 +50,7 @@ public class Drought extends Obstacles // lvl 4
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getWater()) >= 800)
+            if ((constant) * (p.getHealth() + p.getWater()) >= 125)
             {
                 survive = true;
             }

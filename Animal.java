@@ -40,7 +40,7 @@ public class Animal extends Obstacles // lvl 2
         boolean survive;
         if(choice)
         {
-            if ((constant) * (p.getHealth() + p.getFood()) >= 300)
+            if ((constant) * (p.getHealth() + p.getFood()) >= 50)
                 survive = true;
             else
             {
@@ -50,7 +50,7 @@ public class Animal extends Obstacles // lvl 2
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getFood()) >= 400)
+            if ((constant) * (p.getHealth() + p.getFood()) >= 75)
             {
                 survive = true;
             }

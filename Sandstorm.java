@@ -40,7 +40,7 @@ public class Sandstorm extends Obstacles // lvl 4
         boolean survive;
         if(choice)
         {
-            if ((constant) * (p.getHealth() + p.getArmor()) >= 700)
+            if ((constant) * (p.getHealth() + p.getArmor()) >= 100)
                 survive = true;
             else
             {
@@ -50,7 +50,7 @@ public class Sandstorm extends Obstacles // lvl 4
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getArmor()) >= 800)
+            if ((constant) * (p.getHealth() + p.getArmor()) >= 125)
             {
                 survive = true;
             }

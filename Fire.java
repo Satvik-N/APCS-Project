@@ -42,7 +42,7 @@ public class Fire extends Obstacles // lvl 3
         boolean survive;
         if(choice)
         {
-            if ((constant) * (p.getHealth() + p.getWater()) >= 500)
+            if ((constant) * (p.getHealth() + p.getWater()) >= 75)
                 survive = true;
             else
             {
@@ -52,7 +52,7 @@ public class Fire extends Obstacles // lvl 3
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getWater()) >= 600)
+            if ((constant) * (p.getHealth() + p.getWater()) >= 100)
             {
                 survive = true;
             }

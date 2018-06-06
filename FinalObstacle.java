@@ -24,7 +24,7 @@ public class FinalObstacle extends Obstacles
     public boolean succeedOrFail(Player p, boolean choice)
     {
         double constant = generateConstant();
-        if(constant*p.getHealth() + constant*p.getFood() + constant*p.getWater() > 1000)
+        if(constant*p.getHealth() + constant*p.getFood() + constant*p.getWater() >= 150)
             return true;
         healthDecrement(p);
         p.move(85, 100);
