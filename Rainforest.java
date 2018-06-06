@@ -79,7 +79,7 @@ public class Rainforest extends Biomes
                 if (biome[row][col] == null)
                 {
                     //randomly generates every 10 spaces
-                    if (Math.random() < (1.0/10.0))
+                    if (Math.random() < (1.0/12.0))
                     {
                         randPos = Math.random();
                         //randomly chooses one of the supplies

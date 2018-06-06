@@ -20,8 +20,8 @@ public class Player
     private int fireProofShield; //lvl 2 built supply (requires wood and metal)
     private int rope; //lvl 1 built supply (requires wood)
     private int health; //player health
-    private final int WOOD_DECREMENT = 50; //constant used in required amount of wood in each built supply
-    private final int METAL_DECREMENT = 50; //constant used in required amount of metal in each built supply
+    private final int WOOD_DECREMENT = 70; //constant used in required amount of wood in each built supply
+    private final int METAL_DECREMENT = 70; //constant used in required amount of metal in each built supply
     private String name; //player name
     private Point pos; //player location
     private Point oldPos; //player location from one move ago
@@ -53,7 +53,7 @@ public class Player
         //starts off at a random location somewhere at the beginning of the rainforest or grassland
         int x = (int)(Math.random()*201);
         int y = (int)(Math.random()*50 + 150);
-        pos = new Point(100, 1);
+        pos = new Point(x, y);
         System.out.println("Initial x: " + x + ", Initial y: " + y + ", Biome: " + playerBiomeString(getLocation()));
         //old pos is set to pos
         oldPos = pos;
@@ -375,14 +375,14 @@ public class Player
     public void addBowAndArrow(int amount)
     {
         //checks if there is enough wood
-        if(wood - ((amount) * WOOD_DECREMENT * 2) < 0)
+        if(wood - ((amount) * WOOD_DECREMENT) < 0)
             throw new IllegalArgumentException("You don't have enough wood");
         //checks if there is enough metal
-        if(metal - ((amount) * METAL_DECREMENT) < 0)
+        if(metal - ((amount) * METAL_DECREMENT/2) < 0)
             throw new IllegalArgumentException("You don't have enough metal"); 
         //takes away wood and metal to add bow and arrows
-        subtractWood((amount) * WOOD_DECREMENT * 2);
-        subtractMetal((amount) * METAL_DECREMENT);
+        subtractWood((amount) * WOOD_DECREMENT);
+        subtractMetal((amount) * METAL_DECREMENT/2);
         bowAndArrow += amount;
     }
     
@@ -393,14 +393,14 @@ public class Player
     public void addSpear(int amount)
     { 
         //checks if there is enough wood
-        if(wood - ((amount) * WOOD_DECREMENT) < 0)
+        if(wood - ((amount) * WOOD_DECREMENT/2) < 0)
             throw new IllegalArgumentException("You don't have enough wood");
         //checks if there is enough metal
-        if(metal - ((amount) * METAL_DECREMENT/2) < 0)
+        if(metal - ((amount) * METAL_DECREMENT/4) < 0)
             throw new IllegalArgumentException("You don't have enough metal"); 
         //takes away wood and metal to add spears
-        subtractWood((amount) * WOOD_DECREMENT);
-        subtractMetal((amount) * METAL_DECREMENT/2);
+        subtractWood((amount) * WOOD_DECREMENT/2);
+        subtractMetal((amount) * METAL_DECREMENT/4);
         spear += amount;
     }
     
@@ -411,14 +411,14 @@ public class Player
     public void addFireProofShield(int amount)
     {
         //checks if there is enough wood
-        if(wood - ((amount) * WOOD_DECREMENT) < 0)
+        if(wood - ((amount) * WOOD_DECREMENT/2) < 0)
             throw new IllegalArgumentException("You don't have enough wood");
         //checks if there is enough metal
-        if(metal - ((amount) * METAL_DECREMENT*2) < 0)
+        if(metal - ((amount) * METAL_DECREMENT) < 0)
             throw new IllegalArgumentException("You don't have enough metal");
         //takes away wood and metal to add shields
-        subtractWood((amount) * WOOD_DECREMENT);
-        subtractMetal((amount) * METAL_DECREMENT * 2);
+        subtractWood((amount) * WOOD_DECREMENT/2);
+        subtractMetal((amount) * METAL_DECREMENT);
         fireProofShield += amount;
     }
     
@@ -429,10 +429,10 @@ public class Player
     public void addRope(int amount)
     {
         //checks if there is enough wood
-        if(wood - ((amount) * (int)(WOOD_DECREMENT * 1.5)) < 0)
+        if(wood - ((amount) * (int)(WOOD_DECREMENT)) < 0)
             throw new IllegalArgumentException("You don't have enough wood");
         //takes away wood to add rope
-        subtractWood((amount) * (int)(WOOD_DECREMENT * 1.5));
+        subtractWood((amount) * (int)(WOOD_DECREMENT));
         rope += amount;
     }
     
@@ -443,10 +443,10 @@ public class Player
     public void addArmor (int amount)
     {
         //checks if there is enough metal
-        if(metal - ((amount) * METAL_DECREMENT*2) < 0)
+        if(metal - ((amount) * METAL_DECREMENT) < 0)
             throw new IllegalArgumentException("You don't have enough metal");
         //takes away metal to add armor
-        subtractMetal((amount) * METAL_DECREMENT * 2);
+        subtractMetal((amount) * METAL_DECREMENT);
         armor += amount;
     }
     
@@ -457,14 +457,14 @@ public class Player
     public void addPickaxe (int amount)
     {
         //checks if there is enough wood
-        if(wood - ((amount) * WOOD_DECREMENT) < 0)
+        if(wood - ((amount) * WOOD_DECREMENT/2) < 0)
             throw new IllegalArgumentException("You don't have enough wood");
         //checks if there is enough metal
-        if(metal - ((amount) * METAL_DECREMENT/2) < 0)
+        if(metal - ((amount) * METAL_DECREMENT/4) < 0)
             throw new IllegalArgumentException("You don't have enough metal");
         //takes away wood and metal to add pickaxe
-        subtractWood((amount) * WOOD_DECREMENT);
-        subtractMetal((amount) * METAL_DECREMENT/2);
+        subtractWood((amount) * WOOD_DECREMENT/2);
+        subtractMetal((amount) * METAL_DECREMENT/4);
         pickaxe += amount;
     }
     
