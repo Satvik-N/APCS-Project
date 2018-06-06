@@ -40,7 +40,7 @@ public class Famine extends Obstacles // lvl 3
         boolean survive;
         if(choice)
         {
-            if ((constant) * (p.getHealth() + p.getFood()) >= 500)
+            if ((constant) * (p.getHealth() + p.getFood()) >= 75)
                 survive = true;
             else
             {
@@ -50,7 +50,7 @@ public class Famine extends Obstacles // lvl 3
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getFood()) >= 600)
+            if ((constant) * (p.getHealth() + p.getFood()) >= 100)
             {
                 survive = true;
             }

@@ -2,7 +2,7 @@
 /**
  * Write a description of class Desert here.
  *
- * @author (your name)
+ * @author (Satvik Nagpal)
  * @version (a version number or a date)
  */
 public class Desert extends Biomes
@@ -14,7 +14,11 @@ public class Desert extends Biomes
 
     public void buildObstacles() //sandstorm, fire, drought, famine, and animal
     {
-        for (int row = 0; row < biome.length/2; row++)
+        for (int col = 0; col < biome[0].length; col++)
+        {
+            biome[0][col] = new FinalObstacle(col, 0);
+        }
+        for (int row = 1; row < biome.length/2; row++)
         {
             for (int col = 0; col < biome[row].length; col++)
             {

@@ -69,6 +69,7 @@ public class Rainforest extends Biomes
      */
     public void buildSupplies()
     {   
+        double randPos;
         //builds wood, food, and water supplies
         for (int row = 0; row < biome.length; row++)
         {
@@ -78,10 +79,11 @@ public class Rainforest extends Biomes
                 if (biome[row][col] == null)
                 {
                     //randomly generates every 10 spaces
-                    if (Math.random() < (1.0/8.0))
+                    if (Math.random() < (1.0/10.0))
                     {
+                        randPos = Math.random();
                         //randomly chooses one of the supplies
-                        if (Math.random() < (1.0/3.0))
+                        if (randPos < (1.0/3.0))
                         {
                             //chooses whether to add 20 or 40 wood
                             if (Math.random() < 0.5)
@@ -90,7 +92,7 @@ public class Rainforest extends Biomes
                                 biome[row][col] = new Wood(40, col, row);
                         }
                         else
-                            if (Math.random() < (1.0/3.0))
+                            if (randPos < (2.0/3.0))
                             {
                                 //chooses whether to add 20 or 40 food
                                 if (Math.random() < 0.5)

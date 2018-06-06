@@ -96,9 +96,9 @@ public class TimTheEnchanter
         
         if(random >= 0.992)
         {
-            if(random >= 0.93)
+            if(random >= 0.994)
             {
-                if(random >= 0.997)
+                if(random >= 0.996)
                 {
                     if(player.getHealth() < 50)
                     {
@@ -143,6 +143,42 @@ public class TimTheEnchanter
             }
         }
         return null; 
+    }
+    
+    public void drink(Player p)
+    {
+        if (p.getWater() < 10)
+        {
+            throw new IllegalArgumentException("Not enough water to drink");
+        }
+        else
+        {
+            if (p.getHealth() == 100)
+                throw new IllegalArgumentException("You already have enough health");
+            else
+            {
+                p.subtractWater(10);
+                p.addHealth(1);
+            }
+        }
+    }
+    
+    public void eat(Player p)
+    {
+        if (p.getFood() < 10)
+        {
+            throw new IllegalArgumentException("Not enough food to eat");
+        }
+        else
+        {
+            if (p.getHealth() == 100)
+                throw new IllegalArgumentException("You already have enough health");
+            else
+            {
+                p.subtractFood(10);
+                p.addHealth(2);
+            }
+        }
     }
 
     public Materials returnMaterial(Player p)

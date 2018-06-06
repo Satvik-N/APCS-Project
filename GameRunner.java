@@ -43,7 +43,6 @@ import javafx.geometry.Pos;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-
 /**
  * https://gamedevelopment.tutsplus.com/tutorials/introduction-to-javafx-for-game-development--cms-23835
  * 
@@ -52,7 +51,7 @@ import java.util.ArrayList;
  */
 
 
-public class GameRunner extends Application 
+public class GameRunner extends Application
 {
     // double to hold the speed of movement of the character
     static final int moveSpeed = 1;
@@ -86,7 +85,7 @@ public class GameRunner extends Application
         windowX = windowY;
         
         scale = (int)(windowX*.9/200);
-       
+        
         // create a VBox to organize the other nodes
         VBox vb = new VBox(20);
 
@@ -101,7 +100,7 @@ public class GameRunner extends Application
         theStage.setScene(startScreen);
 
         // Button to start the game
-        Button startB = new Button("   Start   ");
+        Button startB = new Button("Start");
         // Button to start the instructions
         Button instB = new Button("How to play");
         // Button to show credits
@@ -165,13 +164,13 @@ public class GameRunner extends Application
     {
         Group g = new Group();
         Stage popup = new Stage();
-        Scene s = new Scene(g, windowX * .5, windowX * .27);
+        Scene s = new Scene(g, windowX * .8, windowX * .4);
         
         popup.sizeToScene(); 
         
         Canvas c = new Canvas(s.getWidth(), s.getHeight());
         
-        HBox hbButtons = new HBox(55);
+        HBox hbButtons = new HBox(70);
         HBox hbLabels = new HBox(20);
         
         theStage.close();
@@ -183,6 +182,8 @@ public class GameRunner extends Application
         HBox hb = new HBox(20);
         hb.setPrefHeight(c.getHeight());
         hb.setPrefWidth(c.getWidth());
+        
+        HBox images = new HBox(60);
         
         GraphicsContext gc = c.getGraphicsContext2D();
         
@@ -212,15 +213,32 @@ public class GameRunner extends Application
         Image hs = new Image("henry.PNG");
         Image zb = new Image("Zaphod Beeblebrox.png");
         
+        ImageView vbsp = new ImageView(bsp);
+        vbsp.setFitWidth(50);
+        vbsp.setFitHeight(50);
+        ImageView vbtc = new ImageView(btc);
+        vbtc.setFitWidth(50);
+        vbtc.setFitHeight(50);
+        ImageView vl = new ImageView(l);
+        vl.setFitWidth(50);
+        vl.setFitHeight(50);
+        ImageView vhs = new ImageView(hs);
+        vhs.setFitWidth(50);
+        vhs.setFitHeight(50);
+        ImageView vzb = new ImageView(zb);
+        vzb.setFitWidth(50);
+        vzb.setFitHeight(50);
         
-        gc.drawImage(bsp, c.getWidth() * 0.01, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
-        gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        images.getChildren().addAll(vbsp, vbtc, vl, vhs, vzb);
         
-        vb.getChildren().addAll(title, hbButtons,hbLabels);
-        g.getChildren().addAll(c, vb);
+        // gc.drawImage(bsp, c.getWidth() * 0.01, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(btc, c.getWidth() * 0.2, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(l, c.getWidth() * 0.4, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(hs, c.getWidth() * 0.65, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        // gc.drawImage(zb, c.getWidth() * 0.85, c.getHeight() * 0.5, c.getWidth() / 9, c.getHeight() / 2.5);
+        
+        vb.getChildren().addAll(title, hbButtons,hbLabels, images);
+        g.getChildren().addAll(vb);
         
         popup.setScene(s);
         
@@ -546,10 +564,6 @@ public class GameRunner extends Application
                 {
                     if(p.getLocation().getY() * scale <= c.getWidth() - pHeight - moveSpeed - BORDER)
                     {
-                        System.out.println("In Player, current location is: " + "( " + 
-                        (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY()) + ")");
-                        System.out.println("In GameRunner, we want to move to: " + "( " + 
-                        (int)p.getLocation().getX() + ", " + (int)(p.getLocation().getY() + moveSpeed) + ")");
                         p.move((int)(p.getLocation().getX()), (int)(p.getLocation().getY() + moveSpeed));
                         checkForStuff(game, p);
                     }
@@ -598,8 +612,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.addHealth(2);
-                        p.subtractFood(10);
+                        tim.eat(p);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -615,8 +628,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.addHealth(1);
-                        p.subtractWater(10);
+                        tim.drink(p);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -638,8 +650,10 @@ public class GameRunner extends Application
             Obstacles ob = (Obstacles)tim.returnMaterial(p);
             String weapon = ob.weapon();
             theStage.close();
-            atObstacle(theStage, tim.runIntoObstacle(p), weapon);
-            
+            if (ob.toString().equalsIgnoreCase("goto heat wave"))
+                atFinal(theStage, tim.runIntoObstacle(p), weapon);
+            else
+                atObstacle(theStage, tim.runIntoObstacle(p), weapon);
         }
         else
             if(tim.runIntoSupply(p) != null)
@@ -649,17 +663,15 @@ public class GameRunner extends Application
                 String msg = tim.runIntoSupply(p);
                 theStage.close();
                 atSupply(theStage, msg, supply);
-                theStage.show();
-                
+
             }
+        
         String gift = tim.randomGift(p);
         if(gift != null)
         {
             theStage.close();
             giftMessage(theStage, gift);
-            
         }
-        
     }
     
     private static void showInstructions(Stage theStage)
@@ -698,7 +710,7 @@ public class GameRunner extends Application
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         // create two 'paragraphs'
         Text p1 = new Text("I...am an enchanter. There are some who call me...Tim. ");
-        Text p2 = new Text("Welcome to GoTo Island, an isolated and deserted land full of" + 
+        Text p2 = new Text("Welcome to British Software Island, an isolated and deserted land full of" + 
                             " never-before seen mysteries.\nMany brave souls like you that once set" + 
                             " foot on this island were never seen again… will you share their fate?");
         Text p3 = new Text("Those before you that tried to escape the island all failed, but you have" + 
@@ -706,18 +718,21 @@ public class GameRunner extends Application
                             " will help you find your way from the Rainforest and the Grassland to the end of the" + 
                             " Desert,\nwhere you can escape. As you explore these puzzling lands, you may run into" + 
                             " metal, wood, water, and food,\nwhich you can utilize to build useful tools and nourish" + 
-                            " your health during the long journey. ");
+                            " your health during the long journey." +
+                            "\nThe map shows you the three terrains - Rainforest, Grassland, and Desert." +
+                            "\nFood and water are available in both the rainforest and grassland.\nIn the rainforest, you can find " +
+                            "some wood, and in the grassland, you may come across some metal." +
+                            "\nBut in the desert, there will be no supplies and you can only use whatever you have collected from the Rainforest and Grassland.");
         Text p4 = new Text("You will also encounter various obstacles along the way.\nKnow that the journey only gets" + 
                             " harder as you get closer to the escape zone.\nTo participate in it, ye must be people of valor." + 
                             "\nIf you do doubt your courage or your strength,\ncome no further for DEATH AWAITS YOU ALL WITH " + 
                             "NASTY BIG POINTY TEETH. Wait... no, wrong line...");
         Text p5 = new Text("Ahem. The tools can help you survive the obstacles that you will face,\nbut you may still lose to " + 
-                            "the obstacles.\nYour health will reflect the severity of your losses,\nand once your health hits zero" + 
+                            "the obstacles.\nYour health will reflect the severity of your losses,\nand once your health hits zero " + 
                             ", it’s game over. ");
-        Text p6 = new Text("The map won’t show you where you can find certain supplies and obstacles,\nso you’ll have to figure them out " + 
-                            "on your own.\nBe smart in your moves and devise a strategy to make it across the desert alive.\nOf course, I’m not" + 
+        Text p6 = new Text( "\nBe smart in your moves and devise a strategy to make it across the desert alive.\nOf course, I’m not" + 
                             " entirely cruel either.\nI will attempt to lend you my help and be...helpful." +
-                            "\nYou might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers.");
+                            "\nYou might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers...");
         
         pixHB.getChildren().addAll(p1, timSpace);
         
@@ -777,8 +792,8 @@ public class GameRunner extends Application
         // create two 'paragraphs'
         Text p1 = new Text("Varun Agarwal");
         Text p2 = new Text("Arushi Dogra");
-        Text p3 = new Text("Satvikoooo Nagpal");
-        Text p4 = new Text("Priya Khatri");
+        Text p3 = new Text("Satvik Nagpal");
+        Text p4 = new Text("Priya Khandelwal");
         Text p5 = new Text("HUGE THANKS TO MR. L FOR EVERYTHING!!!!!!!!");
         
         // add everything to VBox
@@ -867,8 +882,7 @@ public class GameRunner extends Application
         vb2.setAlignment(Pos.CENTER);
         
         g3.getChildren().add(vb2);
-
-
+        
         
         // when the option 1 button is pressed
         counterB1.setOnAction(new EventHandler<ActionEvent>()
@@ -934,7 +948,107 @@ public class GameRunner extends Application
         
         popup.show();
     }
-    
+    private static void atFinal(Stage theStage, String message, String weapon)
+    {
+        Group g3 = new Group();
+        Scene pop = new Scene(g3);
+        Stage popup = new Stage();
+        
+        popup.setScene(pop);
+        popup.setTitle("FINAL OBSTACLE");
+        
+        VBox vb2 = new VBox();
+        HBox hb = new HBox();
+        
+        double rand = Math.random() * 2;
+        String s = "";
+        
+        if(rand < 1)
+            s = "ACK! ";
+        else
+            s = "OH NO! ";
+        
+        Text obstacle = new Text(s + message);
+        Text nope = new Text(weapon);
+        
+        Button ok = new Button(" Ok ");
+
+        vb2.getChildren().addAll(obstacle, nope, ok);
+        
+        vb2.setPrefWidth(windowX / 4);
+        vb2.setPrefHeight(windowY / 4);
+        
+        vb2.setAlignment(Pos.CENTER);
+        
+        g3.getChildren().add(vb2);
+        
+        ok.setOnAction(new EventHandler<ActionEvent>()
+        {
+            @Override public void handle(ActionEvent e)
+            {
+                wol = tim.fightObstacle(p, false);
+                popup.close();
+                waiting(theStage);
+                winOrLose(theStage, wol);
+                theStage.show();
+                theStage.toFront();
+            }
+        });
+        
+        popup.show();
+    }
+    private static void waiting(Stage theStage)
+    {
+        theStage.close();
+        
+        // create a new group of nodes
+        Group credG = new Group();
+        // make a new window
+        Stage credStage = new Stage();
+
+        // set the title of the window
+        credStage.setTitle("THE ANTICIPATION ESCALATES...");
+
+        // create a VBox to organize the texts
+        VBox textVB = new VBox(20);
+
+        // create and add scene with instructions
+        Scene credScene = new Scene(credG);
+        credStage.setScene(credScene);
+
+        // label the window
+        Label title = new Label("LOADING");
+        
+        //progress bar
+        //JProgressBar progressBar;
+        
+        // add everything to VBox
+        textVB.getChildren().addAll(title);
+        textVB.setPrefWidth(windowX / 3);
+        textVB.setPrefHeight(windowY / 3);
+        
+        textVB.setAlignment(Pos.CENTER);
+        
+        
+        // add VBox to window
+        credG.getChildren().add(textVB);
+
+        // when the back button is pressed
+        // backB.setOnAction(new EventHandler<ActionEvent>()
+            // {
+                // @Override public void handle(ActionEvent e)
+                // {
+                    // // close instructions window
+                    // credStage.close();
+                    // // show the main menu window
+                    // theStage.show();
+                // }
+            // }
+        // );
+
+        // show the instructions window
+        credStage.show();
+    }
     private static void winOrLose(Stage theStage, String status)
     {
         Group g = new Group();
@@ -994,6 +1108,8 @@ public class GameRunner extends Application
             @Override public void handle(ActionEvent e)
             {
                 supMessage(popup, sup, supNum);
+                theStage.show();
+                theStage.toBack();
             }
         });
         
@@ -1036,6 +1152,7 @@ public class GameRunner extends Application
             }
         });
         
+        s.toFront();
         s.show();
     }
     
@@ -1197,6 +1314,8 @@ public class GameRunner extends Application
         Stage popup = new Stage();
         Scene s = new Scene(g);
         
+        theStage.close();
+        
         popup.setScene(s);
         
         Button close = new Button("Close");
@@ -1204,7 +1323,10 @@ public class GameRunner extends Application
         VBox vb = new VBox();
         Label title = new Label("MESSAGE:");
         Text msg = new Text("Tim granted you a gift. You got " + gift);
-        vb.getChildren().addAll(title, msg, close);
+        
+        Image tim = new Image("FULL ON TIM.png");
+        ImageView iv = new ImageView(tim);
+        vb.getChildren().addAll(title, msg, iv, close);
         g.getChildren().add(vb);
            
         close.setOnAction(new EventHandler<ActionEvent>()
