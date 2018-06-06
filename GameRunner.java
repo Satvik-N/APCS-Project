@@ -366,7 +366,7 @@ public class GameRunner extends Application
         Image b = new Image("BOW AND ARROW.png");
         Image a = new Image("ARMOR.png");
         Image pi = new Image("PICK AXE.png");
-        Image fi = new Image("FULL ON TIM.png");
+        Image fi = new Image("FIREPROOF SHIELD.png");
         Image r = new Image("ROPE.png");
         Image s = new Image("SPEAR.png");
         
