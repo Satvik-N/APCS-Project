@@ -790,8 +790,8 @@ public class GameRunner extends Application
         // create two 'paragraphs'
         Text p1 = new Text("Varun Agarwal");
         Text p2 = new Text("Arushi Dogra");
-        Text p3 = new Text("Satvikoooo Nagpal");
-        Text p4 = new Text("Priya Khatri");
+        Text p3 = new Text("Satvik Nagpal");
+        Text p4 = new Text("Priya Khandelwal");
         Text p5 = new Text("HUGE THANKS TO MR. L FOR EVERYTHING!!!!!!!!");
         
         // add everything to VBox
