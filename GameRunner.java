@@ -708,7 +708,7 @@ public class GameRunner extends Application
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
         // create two 'paragraphs'
         Text p1 = new Text("I...am an enchanter. There are some who call me...Tim. ");
-        Text p2 = new Text("Welcome to GoTo Island, an isolated and deserted land full of" + 
+        Text p2 = new Text("Welcome to British Software Island, an isolated and deserted land full of" + 
                             " never-before seen mysteries.\nMany brave souls like you that once set" + 
                             " foot on this island were never seen again… will you share their fate?");
         Text p3 = new Text("Those before you that tried to escape the island all failed, but you have" + 
@@ -716,18 +716,21 @@ public class GameRunner extends Application
                             " will help you find your way from the Rainforest and the Grassland to the end of the" + 
                             " Desert,\nwhere you can escape. As you explore these puzzling lands, you may run into" + 
                             " metal, wood, water, and food,\nwhich you can utilize to build useful tools and nourish" + 
-                            " your health during the long journey. ");
+                            " your health during the long journey." +
+                            "\nThe map shows you the three terrains - Rainforest, Grassland, and Desert." +
+                            "\nFood and water are available in both the rainforest and grassland.\nIn the rainforest, you can find " +
+                            "some wood, and in the grassland, you may come across some metal." +
+                            "\nBut in the desert, there will be no supplies and you can only use whatever you have collected from the Rainforest and Grassland.");
         Text p4 = new Text("You will also encounter various obstacles along the way.\nKnow that the journey only gets" + 
                             " harder as you get closer to the escape zone.\nTo participate in it, ye must be people of valor." + 
                             "\nIf you do doubt your courage or your strength,\ncome no further for DEATH AWAITS YOU ALL WITH " + 
                             "NASTY BIG POINTY TEETH. Wait... no, wrong line...");
         Text p5 = new Text("Ahem. The tools can help you survive the obstacles that you will face,\nbut you may still lose to " + 
-                            "the obstacles.\nYour health will reflect the severity of your losses,\nand once your health hits zero" + 
+                            "the obstacles.\nYour health will reflect the severity of your losses,\nand once your health hits zero " + 
                             ", it’s game over. ");
-        Text p6 = new Text("The map won’t show you where you can find certain supplies and obstacles,\nso you’ll have to figure them out " + 
-                            "on your own.\nBe smart in your moves and devise a strategy to make it across the desert alive.\nOf course, I’m not" + 
+        Text p6 = new Text( "\nBe smart in your moves and devise a strategy to make it across the desert alive.\nOf course, I’m not" + 
                             " entirely cruel either.\nI will attempt to lend you my help and be...helpful." +
-                            "\nYou might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers.");
+                            "\nYou might find random gifts along the way if you have earned them.\nBe warned, I know of many hidden dangers...");
         
         pixHB.getChildren().addAll(p1, timSpace);
         
