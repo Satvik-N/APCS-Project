@@ -66,6 +66,7 @@ public class Grassland extends Biomes
     }
     public void buildSupplies()
     {
+        double randPos;
         for (int row = 0; row < biome.length; row++)
         {
             for (int col = 0; col < biome[row].length; col++)
@@ -74,7 +75,8 @@ public class Grassland extends Biomes
                 {
                     if (Math.random() < (1.0/8.0))
                     {
-                        if (Math.random() < (1.0/3.0))
+                        randPos = Math.random();
+                        if (randPos < (1.0/3.0))
                         {
                             if (Math.random() < 0.5)
                                 biome[row][col] = new Metal(20, col, row);
@@ -82,7 +84,7 @@ public class Grassland extends Biomes
                                 biome[row][col] = new Metal(40, col, row);
                         }
                         else
-                            if (Math.random() < (1.0/3.0))
+                            if (randPos < (2.0/3.0))
                             {
                                 if (Math.random() < 0.5)
                                     biome[row][col] = new Food(20, col, row);

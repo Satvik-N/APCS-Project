@@ -2,7 +2,7 @@
 /**
  * Write a description of class Desert here.
  *
- * @author (your name)
+ * @author (Satvik Nagpal)
  * @version (a version number or a date)
  */
 public class Desert extends Biomes
