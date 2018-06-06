@@ -613,7 +613,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.eat();
+                        tim.eat(p);
                     }
                     catch (IllegalArgumentException ex)
                     {
@@ -629,7 +629,7 @@ public class GameRunner extends Application
                 {
                     try
                     {
-                        p.drink();
+                        tim.drink(p);
                     }
                     catch (IllegalArgumentException ex)
                     {
