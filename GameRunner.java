@@ -1221,7 +1221,10 @@ public class GameRunner extends Application
         VBox vb = new VBox();
         Label title = new Label("MESSAGE:");
         Text msg = new Text("Tim granted you a gift. You got " + gift);
-        vb.getChildren().addAll(title, msg, close);
+        
+        Image tim = new Image("FULL ON TIM.png");
+        ImageView iv = new ImageView(tim);
+        vb.getChildren().addAll(title, msg, iv, close);
         g.getChildren().add(vb);
            
         close.setOnAction(new EventHandler<ActionEvent>()
