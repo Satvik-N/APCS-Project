@@ -663,7 +663,7 @@ public class GameRunner extends Application
                 atSupply(theStage, msg, supply);
 
             }
-            
+        
         String gift = tim.randomGift(p);
         if(gift != null)
         {
@@ -1211,6 +1211,8 @@ public class GameRunner extends Application
         Group g = new Group();
         Stage popup = new Stage();
         Scene s = new Scene(g);
+        
+        theStage.close();
         
         popup.setScene(s);
         
