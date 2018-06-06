@@ -51,8 +51,8 @@ public class Player
         rope = 0;
         name = playerName;
         //starts off at a random location somewhere at the beginning of the rainforest or grassland
-        int x = (int)(Math.random()*201);
-        int y = (int)(Math.random()*50 + 150);
+        int x = 0;
+        int y = 198;
         pos = new Point(x, y);
         System.out.println("Initial x: " + x + ", Initial y: " + y + ", Biome: " + playerBiomeString(getLocation()));
         //old pos is set to pos
