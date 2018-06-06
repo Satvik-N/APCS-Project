@@ -144,6 +144,42 @@ public class TimTheEnchanter
         }
         return null; 
     }
+    
+    public void drink(Player p)
+    {
+        if (p.getWater() < 10)
+        {
+            throw new IllegalArgumentException("Not enough water to drink");
+        }
+        else
+        {
+            if (p.getHealth() > 98)
+                throw new IllegalArgumentException("You already have enough health");
+            else
+            {
+                p.subtractWater(10);
+                p.addHealth(1);
+            }
+        }
+    }
+    
+    public void eat(Player p)
+    {
+        if (p.getFood() < 10)
+        {
+            throw new IllegalArgumentException("Not enough food to eat");
+        }
+        else
+        {
+            if (p.getHealth() > 98)
+                throw new IllegalArgumentException("You already have enough health");
+            else
+            {
+                p.subtractFood(10);
+                p.addHealth(2);
+            }
+        }
+    }
 
     public Materials returnMaterial(Player p)
     {
