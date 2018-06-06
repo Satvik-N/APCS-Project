@@ -40,7 +40,7 @@ public class Mudslide extends Obstacles
         boolean survive;
         if(choice)
         {
-            if ((constant) * (p.getHealth() + p.getMetal()) >= 25)
+            if ((constant) * (p.getHealth() + p.getMetal()) >= 35)
                 survive = true;
             else
             {
@@ -50,7 +50,7 @@ public class Mudslide extends Obstacles
         }
         else
         {
-            if ((constant) * (p.getHealth() + p.getMetal()) >= 50)
+            if ((constant) * (p.getHealth() + p.getMetal()) >= 60)
             {
                 survive = true;
             }
