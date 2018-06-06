@@ -73,7 +73,7 @@ public class Grassland extends Biomes
             {
                 if ((biome[row][col] == null))
                 {
-                    if (Math.random() < (1.0/8.0))
+                    if (Math.random() < (1.0/10.0))
                     {
                         randPos = Math.random();
                         if (randPos < (1.0/3.0))
